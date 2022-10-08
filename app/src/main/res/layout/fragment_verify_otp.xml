@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.assetmanagementapp.ui.verifyotp.VerifyOTPViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/babyBlue"
+        android:clickable="true"
+        android:focusable="true">
+
+        <include
+            android:id="@+id/layoutVerifyOTPToolbar"
+            layout="@layout/layout_toolbar_common"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+        <View
+            android:id="@+id/ivFrontLayer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_common_front_layer_white_radius_20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutVerifyOTPToolbar" />
+
+        <TextView
+            android:id="@+id/tvVerifyOTPDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_32dp"
+            android:layout_marginTop="@dimen/margin_32dp"
+            android:gravity="center"
+            android:text="@string/s010003_verify_otp_des"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/layoutVerifyOTPToolbar"
+            tools:text="0929 2929 222 に送信された認証コードを入力してください。" />
+
+        <com.example.app_common.ui.OTPEntryView
+            android:id="@+id/edtVerifyOTPEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_40dp"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:textStyle="bold"
+            app:height="@dimen/height_60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvVerifyOTPDescription"
+            app:length="6"
+            app:otp_box_background="@drawable/bg_rectangle_stroke_silver_chalice_radius_8dp"
+            app:otp_box_background_error="@drawable/bg_rectangle_stroke_red_radius_8dp"
+            app:otp_text_size="@dimen/text_size_24"
+            app:width="@dimen/width_50dp"
+            tools:otp="123456" />
+
+        <TextView
+            android:id="@+id/tvVerifyOTPMessageError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:drawablePadding="@dimen/padding_4dp"
+            android:text="@{context.getString(data.messageError)}"
+            android:textColor="@color/alizarinCrimson"
+            android:textSize="@dimen/text_size_12"
+            android:visibility="@{data.stateViewError}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edtVerifyOTPEntry"
+            tools:text="@string/common_message_error_e003" />
+
+        <Button
+            android:id="@+id/btnVerifyOTPResend"
+            style="@style/commonButtonAuthFlow"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/margin_16dp"
+            android:layout_marginBottom="@dimen/margin_16dp"
+            android:enabled="@{data.isEnableResendOTP}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/s010003_verify_otp_resend_count_down" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

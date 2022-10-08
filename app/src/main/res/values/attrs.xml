@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Attribution for custom show more text view -->
+    <declare-styleable name="ShowMoreTextView">
+        <attr name="showingLine" format="integer" />
+        <attr name="showMoreText" format="string" />
+        <attr name="showLessText" format="string" />
+        <attr name="showMoreTextColor" format="color" />
+        <attr name="showLessTextColor" format="color" />
+    </declare-styleable>
+</resources>

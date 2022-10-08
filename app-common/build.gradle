@@ -1,0 +1,112 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+
+    // provides a Parcelable implementation generator.
+    id 'kotlin-parcelize'
+
+    // Hilt
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 24
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        def loadEnv = { target, envPath ->
+            def appPropertiesFile = rootProject.file(envPath)
+            def appProperties = new Properties()
+            appProperties.load(new FileInputStream(appPropertiesFile))
+            target.buildConfigField("String", "BASE_URL", appProperties["BASE_URL"])
+        }
+
+        dev {
+            flavorDimensions "dev"
+            loadEnv(owner, "./env/dev.properties")
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.security:security-crypto-ktx:1.1.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines_version")
+
+    // Gson
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit2_converter_gson_version"
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt("androidx.room:room-compiler:$room_version")
+    implementation "androidx.room:room-ktx:$room_version"
+
+    // Multidex
+    implementation("androidx.multidex:multidex:$multidex_version")
+
+    // DI
+    implementation("com.google.dagger:hilt-android:$hilt_version")
+    kapt("com.google.dagger:hilt-compiler:$hilt_version")
+
+    // Networking
+    implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
+    implementation("com.squareup.okhttp3:logging-interceptor:$interceptor_version")
+
+    // Lifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-common-java8:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.hilt:hilt-navigation-fragment:$hilt_navigation_fragment_version")
+    // Reflection
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$reflect_version")
+    // Library for loading image
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Fragment ktx
+    implementation("androidx.fragment:fragment-ktx:$fragment_ktx_version")
+
+    //shimmer facebook
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
+
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+    implementation 'net.objecthunter:exp4j:0.4.8'
+}

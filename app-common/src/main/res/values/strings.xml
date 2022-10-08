@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="activity_animation_duration" translatable="false">250</string>
+    <string name="v1_require_field_sign_up">* Requires username and password to be longer than 6 characters</string>
+    <string name="v1_require_field_not_blank">* Requires each field to be not blank</string>
+    <string name="v1_wrong_email">* Wrong email</string>
+    <string name="v1_wrong_citizen_id">* Wrong citizen id</string>
+    <string name="v1_wrong_phone">* Wrong phone</string>
+    <string name="v1_username_is_existed">* Username already existed</string>
+    <string name="v1_wrong_field">* The username or password is incorrect, please try again</string>
+    <string name="S022_password_changed">Password changed</string>
+    <string name="common_phone_number_length_error">* The phone number has 11 number, please try again.</string>
+    <string name="common_message_error_e002">OTP has expired</string>
+    <string name="common_message_error_e003">Invalid OTP</string>
+    <string name="common_message_error_e500">Server error</string>
+    <string name="common_message_error_e005">* The phone number or password is incorrect, please try again</string>
+    <string name="common_message_error_e008">Your account was deactivated</string>
+    <string name="common_message_error_e009">* The phone number or password is incorrect, please try again</string>
+    <string name="common_message_error_e021">* Gift card expiry, please try again</string>
+    <string name="common_message_error_e026">* Invalid gift card, please try again</string>
+    <string name="common_message_error_e027">* Gift card redeemed, please try again</string>
+    <string name="common_message_error_e033">* Oops, this coupon has just ran out.</string>
+    <string name="common_message_error_e034">* E-Coupon is not available</string>
+    <string name="common_message_error_e037">Your registration is temporarily locked, please try again</string>
+    <string name="common_message_error_e053">Campaign is not existed</string>
+    <string name="common_message_error_e054">Campaign item is not existed</string>
+    <string name="common_message_error_e065">Campaign has been closed, so this course cannot be redeemed</string>
+    <string name="common_message_error_e071">Partner is inactive, so you cannot donate for it</string>
+</resources>
