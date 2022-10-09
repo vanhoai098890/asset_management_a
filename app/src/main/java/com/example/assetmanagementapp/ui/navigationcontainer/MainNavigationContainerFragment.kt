@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import androidx.fragment.app.viewModels
+import com.example.app_common.ui.drawflower.ElasticDrawer
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentNavigationContainerBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainNavigationContainerFragment : BaseFragment() {
@@ -38,6 +39,7 @@ class MainNavigationContainerFragment : BaseFragment() {
     }
 
     private fun initViews() {
+        binding?.drawerlayout?.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL)
     }
 
     private fun initFragments() {

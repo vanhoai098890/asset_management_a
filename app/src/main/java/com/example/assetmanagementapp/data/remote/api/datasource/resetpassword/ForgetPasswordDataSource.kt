@@ -5,7 +5,7 @@ import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.Forge
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
 
 interface ForgetPasswordDataSource {
-    suspend fun getForgetPasswordInfo(username: String): ForgetPasswordResponse
+    suspend fun getForgetPasswordInfo(username: String, password: String): ForgetPasswordResponse
 
     suspend fun confirmForgotPassword(
         phoneNumber: String,

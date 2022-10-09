@@ -30,4 +30,5 @@ enum class ApiResponseCode(val code: String, val idStringResource: Int = 0) {
     E034("E034", R.string.common_message_error_e034),
     E037("E037", R.string.common_message_error_e037),
     E006("E006", R.string.common_message_error_e003),
+    E003("E003", R.string.common_message_error_e002),
 }

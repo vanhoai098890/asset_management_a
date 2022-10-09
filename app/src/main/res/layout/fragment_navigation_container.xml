@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -12,6 +13,35 @@
         android:id="@+id/clContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <com.example.app_common.ui.drawflower.FlowingDrawer
+            android:id="@+id/drawerlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            app:edPosition="1"
+            app:edMenuSize="260dp"
+            app:edMenuBackground="#dddddd">
 
+            <!--content-->
+            <RelativeLayout
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <!--menu-->
+            <com.example.app_common.ui.drawflower.FlowingMenuLayout
+                android:id="@+id/menulayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:id="@+id/id_container_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.example.app_common.ui.drawflower.FlowingMenuLayout>
+
+        </com.example.app_common.ui.drawflower.FlowingDrawer>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

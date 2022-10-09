@@ -12,6 +12,7 @@ import com.example.app_common.utils.text_watcher.TextWatcherImpl
 import com.example.assetmanagementapp.data.local.LoginSessionManager
 import com.example.assetmanagementapp.data.remote.api.model.signin.request.SignInRequestDto
 import com.example.assetmanagementapp.data.repositories.LoginRepository
+import com.example.assetmanagementapp.utils.PhoneFormatTextWatcher
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -32,9 +33,10 @@ class SignInViewModel @Inject constructor(
     val isRememberLogin = MutableStateFlow(loginSessionManager.isRememberLogin())
     var isPasswordVisible = false
     val username = MutableStateFlow("")
-    val usernameWatcherImpl = object : TextWatcherImpl() {
+    val usernameWatcherImpl = object : PhoneFormatTextWatcher() {
         override fun afterTextChanged(s: Editable?) {
-            username.value = s.toString()
+            super.afterTextChanged(s)
+            username.value = rawPhone
             isShowError.value = NORMAL
         }
     }

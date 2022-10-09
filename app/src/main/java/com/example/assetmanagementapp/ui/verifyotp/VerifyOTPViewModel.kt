@@ -34,7 +34,8 @@ import javax.inject.Inject
 class VerifyOTPViewModel @Inject constructor(
     private val repository: SignUpRepository,
     private val setPasswordRepository: SetPasswordRepository,
-    private val resetPasswordRepository: ResetPasswordRepository
+    private val resetPasswordRepository: ResetPasswordRepository,
+    private val signUpRepository: SignUpRepository
 ) :
     BaseViewModel() {
     companion object {
@@ -55,7 +56,7 @@ class VerifyOTPViewModel @Inject constructor(
                 .bindLoading(this)
                 .bindError(this)
         } else {
-            resetPasswordRepository.sendOTPResetPassword(phoneNumber)
+            signUpRepository.getResendOTP(phoneNumber)
                 .bindLoading(this)
         }
     }

@@ -39,7 +39,6 @@ class SetPasswordViewModel @Inject constructor(
     val isSixToTweentyCharacters = MutableStateFlow(false)
     val isAtLeastOneLetter = MutableStateFlow(false)
     val isNumber = MutableStateFlow(false)
-    val isSpecialCharacters = MutableStateFlow(false)
     val isPasswordMatched = MutableStateFlow(false)
     val enableSetPasswordButton = MutableStateFlow(false)
 
@@ -76,7 +75,7 @@ class SetPasswordViewModel @Inject constructor(
             .bindLoading(this)
 
     internal fun postPhoneResetPassword(phoneNumber: String) =
-        resetPasswordRepository.sendOTPResetPassword(phoneNumber)
+        resetPasswordRepository.sendOTPResetPassword(phoneNumber, password.value)
             .bindLoading(this)
 
     private fun isSixToTwentyCharacters(password: String) {

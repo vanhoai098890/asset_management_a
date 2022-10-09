@@ -34,6 +34,7 @@ class SignInFragment : BaseFragment() {
             lifecycleOwner = viewLifecycleOwner
             data = viewModel
         }
+        recreateMainScreen()
         initData()
         initEvents()
         return binding?.root

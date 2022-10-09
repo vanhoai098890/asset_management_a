@@ -12,9 +12,12 @@ import javax.inject.Inject
 
 class ForgetPasswordDataSourceImpl @Inject constructor(private val apiService: ApiService) :
     ForgetPasswordDataSource {
-    override suspend fun getForgetPasswordInfo(username: String): ForgetPasswordResponse =
+    override suspend fun getForgetPasswordInfo(
+        username: String,
+        password: String
+    ): ForgetPasswordResponse =
         apiCall {
-            apiService.forgetPassword(ForgetPasswordRequestDto(username))
+            apiService.forgetPassword(ForgetPasswordRequestDto(username, password))
         }
 
     override suspend fun confirmForgotPassword(
