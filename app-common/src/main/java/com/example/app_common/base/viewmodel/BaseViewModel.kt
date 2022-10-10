@@ -9,15 +9,15 @@ abstract class BaseViewModel : ViewModel() {
     private val loadingState = MutableStateFlow(false)
     private val errorState = MutableStateFlow<BaseError?>(null)
 
-     fun loadingState(): StateFlow<Boolean> = loadingState
+    fun loadingState(): StateFlow<Boolean> = loadingState
 
-     fun errorState(): StateFlow<BaseError?> = errorState
+    fun errorState(): StateFlow<BaseError?> = errorState
 
-     fun handleError(error: BaseError?) {
+    fun handleError(error: BaseError?) {
         errorState.value = error
     }
 
-     fun handleLoading(isLoading: Boolean) {
+    fun handleLoading(isLoading: Boolean) {
         loadingState.value = isLoading
     }
 }

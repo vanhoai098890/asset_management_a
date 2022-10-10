@@ -13,21 +13,22 @@
         android:id="@+id/clContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <com.example.app_common.ui.drawflower.FlowingDrawer
             android:id="@+id/drawerlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
-            app:edPosition="1"
+            app:edMenuBackground="#dddddd"
             app:edMenuSize="260dp"
-            app:edMenuBackground="#dddddd">
+            app:edPosition="1">
 
             <!--content-->
-            <RelativeLayout
-                android:id="@+id/content"
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/flContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
             <!--menu-->
             <com.example.app_common.ui.drawflower.FlowingMenuLayout
@@ -35,10 +36,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <FrameLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/id_container_menu"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="@color/babyBlue">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_16dp"
+                        android:text="cac"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.example.app_common.ui.drawflower.FlowingMenuLayout>
 

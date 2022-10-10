@@ -119,10 +119,12 @@ abstract class BaseControlActivity : AppCompatActivity() {
      * Region Private
      */
     private fun initBase() {
-        navigationContainer = navigationContainer()
-        noNavigationContainer = noNavigationContainer()?.apply {
+        navigationContainer = navigationContainer()?.apply {
             setLevel(AppConstant.LEVEL_CONTAINER)
         }
+//        noNavigationContainer = noNavigationContainer()?.apply {
+//            setLevel(AppConstant.LEVEL_CONTAINER)
+//        }
     }
 
     private fun hideKeyboard(v: View?) {
