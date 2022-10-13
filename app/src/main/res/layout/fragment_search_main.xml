@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:letterSpacing="0.01"
+            android:textColor="@color/blackRussian"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Hi, Hoai Van"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearSearch"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_image_button_filter"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivFilter"
+            app:layout_constraintEnd_toStartOf="@id/ivFilter"
+            app:layout_constraintStart_toStartOf="@id/tvUserName"
+            app:layout_constraintTop_toBottomOf="@id/tvUserName">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_search_24"
+                app:tint="@color/pinkSwan"
+                tools:ignore="ContentDescription" />
+
+            <EditText
+                android:id="@+id/edtSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:background="@color/transparent"
+                android:hint="@string/v1_start_entering_the_address"
+                android:imeOptions="actionDone"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textCursorDrawable="@null"
+                tools:ignore="LabelFor" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/bg_image_button_filter"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/linearSearch"
+            app:tint="@color/pinkSwan"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvLifeStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:letterSpacing="0.01"
+            android:text="@string/v1_find_the_apartment_that_fits_your_lifestyle"
+            android:textColor="@color/blackRussian"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearSearch" />
+
+        <TextView
+            android:id="@+id/tvSolution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/v1_we_have_a_solution_for_every_needs"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/tvLifeStyle"
+            app:layout_constraintTop_toBottomOf="@id/tvLifeStyle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/tvSolution"
+            app:layout_constraintTop_toBottomOf="@id/tvSolution" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

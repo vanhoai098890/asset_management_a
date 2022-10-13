@@ -5,6 +5,7 @@ import com.example.assetmanagementapp.data.remote.api.model.checkotp.CheckOtpReq
 import com.example.assetmanagementapp.data.remote.api.model.checkotp.VerifyOTPRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
@@ -72,5 +73,8 @@ interface ApiService {
 
     @POST("api/iam/verify-otp")
     suspend fun postVerifyOTP(@Body verifyOTPRequest: VerifyOTPRequest): Response<CommonResponse>
+
+    @POST("api/user_info")
+    suspend fun getUserInfo(@Body phoneRequest: InputPhoneRequest): Response<UserInfoResponse>
 
 }

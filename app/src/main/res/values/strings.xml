@@ -37,9 +37,9 @@
     <string name="v1_let_go">Let\'s go</string>
     <string name="v1_ready_to_get_closer_to_the_app">Ready to get closer to the app?</string>
     <string name="v1_welcome_onboard">Welcome onboard!</string>
-    <string name="v1_start_entering_the_address">Start entering the address</string>
+    <string name="v1_start_entering_the_address">Start entering the device</string>
     <string name="v1_find_the_best_place">Find the best place</string>
-    <string name="v1_find_the_apartment_that_fits_your_lifestyle">Find the apartment that fits your lifestyle</string>
+    <string name="v1_find_the_apartment_that_fits_your_lifestyle">Find the right device for your needs</string>
     <string name="v1_we_have_a_solution_for_every_needs">We have a solution for every needs</string>
     <string name="v1_discover_our_most_popular_cities">Discover our most popular cities</string>
     <string name="v1_the_best_solutions_in_the_coolest_cities_you_just_have_to_make_a_reservation">The best solutions in the coolest cities, you just have to make a reservation</string>
@@ -437,6 +437,7 @@
     <string name="s010003_verify_otp_resend_count_down">Re-sent (%s)</string>
     <string name="s010003_verify_otp_btn_verify_otp">VERIFY SMS</string>
     <string name="s010003_verify_otp_to_resend_otp">Re-sent</string>
+    <string name="tv_hi_account">Hi, %s</string>
     <string name="common_phone_number_length_error">* The phone number has more than 10 number, please try again.</string>
     <string-array name="property_type">
         <item>Motel</item>

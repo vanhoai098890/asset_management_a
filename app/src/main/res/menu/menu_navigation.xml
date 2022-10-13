@@ -1,3 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnFooter1"
+        android:icon="@drawable/selector_search_bottom_nav"
+        android:orderInCategory="0"
+        android:title="Search" />
+
+    <item
+        android:id="@+id/btnFooter2"
+        android:icon="@drawable/selector_request_bottom_nav"
+        android:orderInCategory="1"
+        android:title="Request" />
+
+    <item
+        android:checkable="false"
+        android:enabled="false"
+        android:orderInCategory="2"
+        android:title="" />
+
+    <item
+        android:id="@+id/btnFooter4"
+        android:icon="@drawable/selector_notification_bottom_nav"
+        android:orderInCategory="3"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/btnFooter5"
+        android:icon="@drawable/selector_personal_bottom_nav"
+        android:orderInCategory="4"
+        android:title="Personal" />
 </menu>

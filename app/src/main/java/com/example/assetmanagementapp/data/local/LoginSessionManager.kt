@@ -5,6 +5,7 @@ import androidx.core.content.edit
 import com.example.app_common.constant.AppConstant
 import com.example.app_common.utils.LogUtils
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
+import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
 import com.example.assetmanagementapp.data.remote.api.model.refreshtoken.RefreshTokenData
 import com.example.assetmanagementapp.data.remote.api.model.signin.response.LoginAuthenticator
 import com.google.gson.Gson
@@ -91,8 +92,8 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
 
     internal fun getRefreshToken(): String? = getLoginAuthenticator()?.refreshToken
 
-    internal fun saveCustomer(customerProperty: CustomerProperty?): Unit {
-        customerProperty?.let {
+    internal fun saveCustomer(userInfoResponse: UserInfoResponse?): Unit {
+        userInfoResponse?.let {
             val customer = Gson().toJson(it)
             sharedPreferences.apply {
                 edit(commit = true) {
@@ -102,9 +103,9 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
         }
     }
 
-    internal fun getCustomerLocal(): CustomerProperty? {
+    internal fun getCustomerLocal(): UserInfoResponse? {
         sharedPreferences.getString(CUSTOMER_INFO, null)?.apply {
-            return Gson().fromJson(this, CustomerProperty::class.java)
+            return Gson().fromJson(this, UserInfoResponse::class.java)
         }
         return null
     }

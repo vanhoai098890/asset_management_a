@@ -5,22 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
-import com.example.app_common.base.viewmodel.DaggerLayoutViewModel
-import com.example.app_common.ui.drawflower.ElasticDrawer
-import com.example.assetmanagementapp.MainNoNavigationContainerFragment
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentNavigationContainerBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 
 
 @AndroidEntryPoint
 class MainNavigationContainerFragment : BaseFragment() {
     private var binding: FragmentNavigationContainerBinding? = null
     private val viewModel: MainNavigationContainerViewModel by viewModels()
-    private val daggerLayoutViewModel: DaggerLayoutViewModel by viewModels()
+    private val fragmentPagers: MutableList<PagerContainerFragment> by lazy {
+        mutableListOf()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +40,9 @@ class MainNavigationContainerFragment : BaseFragment() {
     }
 
     private fun initObservers() {
-        daggerLayoutViewModel.stateOpenDragLayout.onEach { handleCloseDragLayout(it) }
-            .launchIn(lifecycleScope)
     }
 
     private fun handleCloseDragLayout(isOpen: Boolean) {
-        if (binding?.drawerlayout?.isMenuVisible == true && !isOpen) {
-            binding?.drawerlayout?.closeMenu(true)
-        }
     }
 
     private fun initActions() {
@@ -60,32 +51,44 @@ class MainNavigationContainerFragment : BaseFragment() {
     }
 
     private fun initViews() {
-        binding?.drawerlayout?.apply {
-            setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL)
-            setOnDrawerStateChangeListener(object : ElasticDrawer.OnDrawerStateChangeListener {
-                override fun onDrawerStateChange(oldState: Int, newState: Int) {
-                    if (newState == ElasticDrawer.STATE_OPENING || newState == ElasticDrawer.STATE_OPEN) {
-                        daggerLayoutViewModel.stateOpenDragLayout.value = true
+        binding?.apply {
+            vpContainer.apply {
+                adapter = MainNavigationVpAdapter(
+                    this@MainNavigationContainerFragment,
+                    level,
+                    fragmentPagers
+                )
+                isUserInputEnabled = false
+                offscreenPageLimit = 1
+            }
+            bottomNavigation.let {
+                it.setOnItemSelectedListener { menuItem ->
+                    if (menuItem.order == MainNavigationItem.SCAN.ordinal) {
+                        return@setOnItemSelectedListener true
                     }
+                    vpContainer.currentItem = when (menuItem.order + 1) {
+                        MainNavigationItem.MESSENGER.ordinal, MainNavigationItem.PERSONAL.ordinal -> {
+                            menuItem.order - 1
+                        }
+                        else -> {
+                            menuItem.order
+                        }
+                    }
+                    return@setOnItemSelectedListener true
                 }
-
-                override fun onDrawerSlide(openRatio: Float, offsetPixels: Int) {}
-
-            })
+            }
         }
     }
 
     private fun initFragments() {
-        replaceInContainer(fragment = MainNoNavigationContainerFragment(), isAddBackStack = false)
-    }
-
-    override fun handleDragLayoutInContainer(): Boolean {
-        binding?.drawerlayout?.apply {
-            if (isMenuVisible) {
-                closeMenu(true)
-                return true
+        MainNavigationItem.values().forEachIndexed { index, _ ->
+            if (index == MainNavigationItem.SCAN.ordinal) {
+                return@forEachIndexed
             }
+            fragmentPagers.add(PagerContainerFragment.newInstance(index).apply {
+                onCallApiComplete = {
+                }
+            })
         }
-        return false
     }
 }

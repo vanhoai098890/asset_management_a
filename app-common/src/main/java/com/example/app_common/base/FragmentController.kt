@@ -4,9 +4,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
-import androidx.fragment.app.viewModels
 import com.example.app_common.R
-import com.example.app_common.base.viewmodel.DaggerLayoutViewModel
 import com.example.app_common.constant.AppConstant
 import com.example.app_common.extensions.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,10 +32,6 @@ abstract class FragmentController : Fragment() {
         }
     }
 
-    private val dragLayoutViewModel: DaggerLayoutViewModel by viewModels(
-        ownerProducer = { requireParentFragment() }
-    )
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // note that you could enable/disable the callback here as well by setting callback.isEnabled = true/false
@@ -64,7 +58,6 @@ abstract class FragmentController : Fragment() {
      * Using tagNameBackStack if you want to back stack to fragment destination
      */
     open fun handleBackPressed(tagNameBackStack: String? = null) {
-        if (dragLayoutViewModel.handleCloseDragLayout()) return
         when (level) {
             AppConstant.LEVEL_TOP, AppConstant.LEVEL_CONTAINER -> return
             AppConstant.LEVEL_TAB -> {

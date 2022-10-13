@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
+import com.example.assetmanagementapp.ui.searchmain.SearchMainFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,12 +43,12 @@ class PagerContainerFragment : BaseFragment() {
         if (currentFragment == null) {
             arguments?.also {
                 currentFragment = when (it.getInt(KEY_TAB)) {
-//                    MainNavigationItem.SEARCH.ordinal -> SearchMainFragment()
+                    MainNavigationItem.SEARCH.ordinal -> SearchMainFragment()
 //                    MainNavigationItem.PERSONAL.ordinal -> PersonalFragment()
 //                    MainNavigationItem.FAVOURITE.ordinal -> FavouriteFragment()
 //                    MainNavigationItem.MESSENGER.ordinal -> MessengerFragment()
                     else -> {
-                        return
+                        SearchMainFragment()
                     }
                 }
             }

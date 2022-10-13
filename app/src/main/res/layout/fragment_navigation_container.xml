@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,46 +15,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.example.app_common.ui.drawflower.FlowingDrawer
-            android:id="@+id/drawerlayout"
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vpContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            app:edMenuBackground="#dddddd"
-            app:edMenuSize="260dp"
-            app:edPosition="1">
+            android:layout_height="@dimen/_0dp"
+            android:layout_gravity="top"
+            android:layout_marginBottom="@dimen/_40dp_negative"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <!--content-->
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/flContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_rectangle_transparent_radius_6dp"
+            android:elevation="@dimen/margin_9dp"
+            android:fitsSystemWindows="true"
+            app:itemHorizontalTranslationEnabled="false"
+            app:itemIconSize="@dimen/_24dp"
+            app:itemIconTint="@drawable/selector_dynamic_color_bottom_naviation_bar"
+            app:itemRippleColor="@null"
+            app:itemTextColor="@drawable/selector_dynamic_color_bottom_naviation_bar"
+            app:labelVisibilityMode="unlabeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/menu_navigation" />
 
-            <!--menu-->
-            <com.example.app_common.ui.drawflower.FlowingMenuLayout
-                android:id="@+id/menulayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/id_container_menu"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/babyBlue">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/_16dp"
-                        android:text="cac"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.example.app_common.ui.drawflower.FlowingMenuLayout>
-
-        </com.example.app_common.ui.drawflower.FlowingDrawer>
+        <ImageView
+            android:id="@+id/ivScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_scan_round"
+            android:elevation="@dimen/_10dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottomNavigation"
+            app:layout_constraintEnd_toEndOf="@id/bottomNavigation"
+            app:layout_constraintStart_toStartOf="@id/bottomNavigation"
+            app:layout_constraintTop_toTopOf="@id/bottomNavigation"
+            tools:ignore="ContentDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
