@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.app_common.base.BaseListAdapter
 import com.example.app_common.extensions.setSafeOnClickListener
+import com.example.assetmanagementapp.data.remote.api.model.device.ItemDeviceData
 import com.example.assetmanagementapp.databinding.LayoutItemRecycleDeviceBinding
 
 class AssetTypeAdapter : BaseListAdapter<ItemDeviceData>() {

@@ -2,6 +2,8 @@ package com.example.app_common.base
 
 import android.os.SystemClock
 import androidx.fragment.app.Fragment
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 abstract class BaseControlFragment : FragmentController() {
     var timeNow = 0L

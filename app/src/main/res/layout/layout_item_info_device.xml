@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10dp">
+
+    <ImageView
+        android:id="@+id/ivService"
+        android:layout_width="@dimen/_24dp"
+        android:layout_height="@dimen/_24dp"
+        android:clickable="true"
+        android:contentDescription="@string/v1_category"
+        android:focusable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/babyBlue"
+        tools:src="@drawable/ic_pet_friendly" />
+
+    <TextView
+        android:id="@+id/tvService"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivService"
+        app:layout_constraintStart_toEndOf="@id/ivService"
+        tools:text="Pet Friendly" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

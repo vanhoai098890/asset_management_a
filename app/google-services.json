@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "378283924257",
+    "firebase_url": "https://fir-notelession-default-rtdb.firebaseio.com",
+    "project_id": "fir-notelession",
+    "storage_bucket": "fir-notelession.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378283924257:android:edf9a8ab75edccbaa03c60",
+        "android_client_info": {
+          "package_name": "com.example.assetmanagementapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378283924257-amcljvljtl1qtpuhtuugfafpm0kuu9up.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5edqU1TrLe4-tCzTGlZSUR9IJsr9-bnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378283924257-amcljvljtl1qtpuhtuugfafpm0kuu9up.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

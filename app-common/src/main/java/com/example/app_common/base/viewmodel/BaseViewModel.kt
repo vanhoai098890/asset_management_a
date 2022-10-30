@@ -6,7 +6,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 abstract class BaseViewModel : ViewModel() {
+
     private val loadingState = MutableStateFlow(false)
+
     private val errorState = MutableStateFlow<BaseError?>(null)
 
     fun loadingState(): StateFlow<Boolean> = loadingState

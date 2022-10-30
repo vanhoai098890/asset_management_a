@@ -13,6 +13,7 @@ import com.example.app_common.constant.AppConstant
 import com.example.app_common.extensions.dpToPixels
 import com.example.app_common.utils.LogUtils
 import com.example.assetmanagementapp.R
+import com.example.assetmanagementapp.data.remote.api.model.favourite.StatusDevice
 import com.example.assetmanagementapp.ui.sign_in.SignInViewModel
 import com.example.assetmanagementapp.ui.sign_up.SignUpViewModel
 import com.google.android.material.textfield.TextInputLayout
@@ -153,9 +154,41 @@ fun TextView.bindTextStatus(status: String?) {
                 text = resources.getString(R.string.v1_canceled)
                 setTextColor(resources.getColor(R.color.alizarinCrimson, null))
             }
-            AppConstant.PAYING -> {
-                text = resources.getString(R.string.v1_paying)
-                setTextColor(resources.getColor(R.color.orange, null))
+            AppConstant.RETURNED -> {
+                text = resources.getString(R.string.v1_returned)
+                setTextColor(resources.getColor(R.color.tango, null))
+            }
+        }
+    }
+}
+
+@BindingAdapter("bindStatusDevice")
+fun TextView.bindStatusDevice(status: String?) {
+    status?.apply {
+        when (status) {
+            StatusDevice.BORROWED.statusName -> {
+                text = resources.getString(R.string.v1_borrowed)
+                setTextColor(resources.getColor(R.color.chaletGreen, null))
+                backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.peppermint, null))
+            }
+            StatusDevice.DAMAGED.statusName -> {
+                text = resources.getString(R.string.v1_damaged)
+                setTextColor(resources.getColor(R.color.sycamore, null))
+                backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.dairyCream, null))
+            }
+            StatusDevice.FREE.statusName -> {
+                text = resources.getString(R.string.v1_free)
+                setTextColor(resources.getColor(R.color.azure, null))
+                backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.linkWater, null))
+            }
+            StatusDevice.WARRANTY.statusName -> {
+                text = resources.getString(R.string.v1_warranty)
+                setTextColor(resources.getColor(R.color.azure, null))
+                backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.linkWater, null))
             }
         }
     }

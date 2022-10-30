@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="24dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tvUserName"
@@ -19,9 +19,9 @@
             android:textColor="@color/blackRussian"
             android:textSize="20sp"
             android:textStyle="bold"
-            tools:text="Hi, Hoai Van"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hi, Hoai Van" />
 
         <LinearLayout
             android:id="@+id/linearSearch"

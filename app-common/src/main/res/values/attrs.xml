@@ -55,4 +55,12 @@
         <!-- The position of the drawer -->
         <attr name="edPosition" format="integer"/>
     </declare-styleable>
+    <!--Attribution for custom show more text view -->
+    <declare-styleable name="ShowMoreTextView">
+        <attr name="showingLine" format="integer" />
+        <attr name="showMoreText" format="string" />
+        <attr name="showLessText" format="string" />
+        <attr name="showMoreTextColor" format="color" />
+        <attr name="showLessTextColor" format="color" />
+    </declare-styleable>
 </resources>

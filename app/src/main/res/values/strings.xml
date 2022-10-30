@@ -58,14 +58,26 @@
     <string name="v1_management">Management</string>
     <string name="v1_appointment">Appointment</string>
     <string name="v1_requests">Requests</string>
+    <string name="v1_request">Request</string>
+    <string name="v1_category">Category</string>
+    <string name="v1_unit_price">Unit price</string>
+    <string name="v1_name_consignment">Consignment name</string>
+    <string name="v1_date_warranty">Date Warranty</string>
+    <string name="v1_date_manufacture">Date Manufacture</string>
+    <string name="v1_ticket_is_in_progress">This device currently has a request</string>
+    <string name="v1_device_is_damaged_or_is_repairing">The device is damaged or in the process of being repaired</string>
+    <string name="v1_ticket_was_borrowed">Please check another device or wait to\nthis device have been returned</string>
+    <string name="v1_close">Close ticket</string>
+    <string name="v1_return">Return</string>
+    <string name="v1_report">Report</string>
     <string name="v1_request_detail">Request detail</string>
     <string name="v1_not_implemented_yet">Not implemented yet!!</string>
     <string name="v1_logout">Logout</string>
     <string name="v1_do_you_want_to_logout">Do you want to logout?</string>
     <string name="v1_back">Back</string>
-    <string name="v1_landlord">Landlord</string>
+    <string name="v1_provider">Provider</string>
     <string name="v1_where_you_ll_be">Where you\'ll be</string>
-    <string name="v1_properties_details">Property Details</string>
+    <string name="v1_device_details">Devices Details</string>
     <string name="v1_property"> Property</string>
     <string name="v1_details">Details</string>
     <string name="v1_see_more">See more</string>
@@ -387,11 +399,17 @@
     <string name="v1_approved">Approved</string>
     <string name="v1_approve">Approve</string>
     <string name="v1_paying">Paying</string>
+    <string name="v1_returned">Returned</string>
     <string name="v1_pending">Pending</string>
+    <string name="v1_free">Free</string>
+    <string name="v1_damaged">Damaged</string>
+    <string name="v1_borrowed">Borrowed</string>
+    <string name="v1_warranty">Warranty</string>
     <string name="v1_canceled">Canceled</string>
     <string name="v1_cancel">Cancel</string>
     <string name="v1_no_found_item">Item not found!!!</string>
     <string name="v1_favourite_rooms">Favourite rooms</string>
+    <string name="v1_favourite_devices">Favourite device</string>
     <string name="v1_property_name">Property name</string>
     <string name="v1_room_name">Room name</string>
     <string name="v1_property_type">Property type</string>
@@ -439,6 +457,8 @@
     <string name="s010003_verify_otp_to_resend_otp">Re-sent</string>
     <string name="tv_hi_account">Hi, %s</string>
     <string name="common_phone_number_length_error">* The phone number has more than 10 number, please try again.</string>
+    <string name="my_list_favorite_toast">This device has been added to your favorites</string>
+    <string name="my_list_un_favorite_toast">This device has been removed from your favorites</string>
     <string-array name="property_type">
         <item>Motel</item>
         <item>Conference room</item>

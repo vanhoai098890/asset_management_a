@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -14,6 +13,7 @@ import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.databinding.FragmentSearchMainBinding
+import com.example.assetmanagementapp.ui.detaildevice.DetailDeviceFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -25,7 +25,7 @@ class SearchMainFragment : BaseFragment() {
     private val adapter: AssetTypeAdapter by lazy {
         AssetTypeAdapter().apply {
             onItemClick = { data ->
-                Toast.makeText(requireContext(), data.name, Toast.LENGTH_SHORT).show()
+                addNoNavigationFragment(DetailDeviceFragment.newInstance(data.id))
             }
         }
     }
@@ -50,6 +50,7 @@ class SearchMainFragment : BaseFragment() {
                 layoutManager =
                     GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
                 adapter = this@SearchMainFragment.adapter
+                setHasFixedSize(true)
             }
             ivFilter.setSafeOnClickListener {
 
@@ -68,7 +69,14 @@ class SearchMainFragment : BaseFragment() {
             launch {
                 viewModel.listItemDeviceData.collect { adapter.submitList(it) }
             }
+            launch {
+                viewModel.stateShowSnackBar.collect { handleShowSnackBarError(it) }
+            }
         }
+    }
+
+    private fun handleShowSnackBarError(isShow: Boolean) {
+
     }
 
     private fun handleShowUIWithUserInfo(userInfo: UserInfo?) {
@@ -77,14 +85,11 @@ class SearchMainFragment : BaseFragment() {
                 tvUserName.text =
                     resources.getString(R.string.tv_hi_account, userInfo.username)
             }
-        }?: kotlin.run {
+        } ?: kotlin.run {
             binding?.apply {
                 tvUserName.text =
                     resources.getString(R.string.tv_hi_account, "Hoài Văn")
             }
         }
-    }
-
-    private fun navigateToAssetsFragment() {
     }
 }

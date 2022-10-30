@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentNavigationContainerBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -75,6 +76,10 @@ class MainNavigationContainerFragment : BaseFragment() {
                         }
                     }
                     return@setOnItemSelectedListener true
+                }
+                it.getOrCreateBadge(R.id.btnFooter4).apply {
+                    verticalOffset = 7
+                    horizontalOffset = 5
                 }
             }
         }

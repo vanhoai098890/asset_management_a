@@ -6,6 +6,12 @@ import com.example.assetmanagementapp.data.remote.api.model.checkotp.VerifyOTPRe
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
+import com.example.assetmanagementapp.data.remote.api.model.device.ListDeviceMainResponse
+import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.favourite.SaveDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
@@ -76,5 +82,22 @@ interface ApiService {
 
     @POST("api/user_info")
     suspend fun getUserInfo(@Body phoneRequest: InputPhoneRequest): Response<UserInfoResponse>
+
+    @POST("api/device/get_list_favourite")
+    suspend fun getFavouriteDevices(
+        @Body listMainDeviceRequest: ListMainDeviceRequest
+    ): Response<DeviceItemResponse>
+
+    @POST("api/device/save")
+    suspend fun saveDevice(@Body saveDeviceRequest: SaveDeviceRequest): Response<CommonResponse>
+
+    @POST("api/device/un_save")
+    suspend fun unSaveDevice(@Body saveDeviceRequest: SaveDeviceRequest): Response<CommonResponse>
+
+    @POST("api/device/detail_device")
+    suspend fun getDetailDevice(@Body detailDeviceRequest: DetailDeviceRequest): Response<DetailDeviceResponse>
+
+    @POST("api/device/list_main_device")
+    suspend fun getListMainDevice(@Body listMainDeviceRequest: ListMainDeviceRequest): Response<ListDeviceMainResponse>
 
 }

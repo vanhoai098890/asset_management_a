@@ -17,8 +17,4 @@ class MainNoNavigationContainerFragment : BaseFragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_no_navigation_container, container, false)
     }
-
-    override fun handleBackPressed(tagNameBackStack: String?) {
-        super.handleBackPressed(tagNameBackStack)
-    }
 }

@@ -188,4 +188,10 @@
         <item name="colorAccent">@color/black</item>
         <item name="android:textColorSecondary">@color/gray</item>
     </style>
+
+    <style name="T12">
+        <item name="android:textColor">@color/tango</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

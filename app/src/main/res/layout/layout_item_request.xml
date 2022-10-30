@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.assetmanagementapp.data.remote.api.model.request.ReceivedRequestItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8dp"
+        app:cardCornerRadius="@dimen/_5dp"
+        app:cardElevation="@dimen/_8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8dp">
+
+            <TextView
+                android:id="@+id/tvCreatedId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:text="@{data.createDate}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="22/06/2022" />
+
+            <TextView
+                bindTextStatus="@{data.status}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Approved" />
+
+            <ImageView
+                android:id="@+id/ivRoom"
+                loadImageUri="@{data.image}"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="@dimen/_0dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:background="@drawable/ic_device_laptop"
+                app:layout_constraintBottom_toBottomOf="@id/tvDateOut"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="@id/tvCreatedId"
+                app:layout_constraintTop_toBottomOf="@id/tvCreatedId"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/tvNameRoom"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8dp"
+                android:drawablePadding="@dimen/_2dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{data.nameDevice}"
+                app:drawableStartCompat="@drawable/ic_baseline_devices_other_24"
+                app:drawableTint="@color/babyBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivRoom"
+                app:layout_constraintTop_toTopOf="@id/ivRoom"
+                tools:text="Spacious bedroom (Two gates)" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_2dp"
+                android:gravity="center_vertical"
+                android:text="@{data.category}"
+                app:drawableStartCompat="@drawable/ic_baseline_category_24"
+                app:drawableTint="@color/babyBlue"
+                app:layout_constraintEnd_toEndOf="@id/tvNameRoom"
+                app:layout_constraintStart_toStartOf="@id/tvNameRoom"
+                app:layout_constraintTop_toBottomOf="@id/tvNameRoom"
+                tools:text="Laptop" />
+
+            <TextView
+                android:id="@+id/tvDateIn"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_2dp"
+                android:gravity="center_vertical"
+                android:maxLength="10"
+                android:text="@{data.startDate}"
+                app:drawableStartCompat="@drawable/ic_check_in"
+                app:drawableTint="@color/babyBlue"
+                app:layout_constraintEnd_toEndOf="@id/tvPrice"
+                app:layout_constraintStart_toStartOf="@id/tvPrice"
+                app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                tools:text="23/06/2022" />
+
+            <TextView
+                android:id="@+id/tvDateOut"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/_2dp"
+                android:gravity="center_vertical"
+                android:maxLength="10"
+                android:text="@{data.endDate}"
+                app:drawableStartCompat="@drawable/ic_check_out"
+                app:drawableTint="@color/babyBlue"
+                app:layout_constraintEnd_toEndOf="@id/tvDateIn"
+                app:layout_constraintStart_toStartOf="@id/tvDateIn"
+                app:layout_constraintTop_toBottomOf="@id/tvDateIn"
+                tools:text="23/06/2022" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

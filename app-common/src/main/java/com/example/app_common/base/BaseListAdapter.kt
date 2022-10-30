@@ -10,7 +10,7 @@ abstract class BaseListAdapter<T>(diffCallBack: BaseDiffUtilItemCallback<T> = Ba
     ListAdapter<T, BaseListAdapter<T>.BaseItemViewHolder>(diffCallBack) {
 
     override fun onBindViewHolder(holder: BaseItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(currentList[position])
     }
 
     /**

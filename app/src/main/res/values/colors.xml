@@ -44,4 +44,10 @@
     <color name="goldYellow">#FDD000</color>
     <color name="red">#FF0000</color>
     <color name="silverChalice">#ABABAB</color>
+    <color name="peppermint">#D2F0CF</color>
+    <color name="chaletGreen">#4F6F31</color>
+    <color name="dairyCream">#FAECC3</color>
+    <color name="sycamore">#927639</color>
+    <color name="linkWater">#D8E7F4</color>
+    <color name="azure">#386DAB</color>
 </resources>

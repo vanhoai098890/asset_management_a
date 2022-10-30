@@ -1,5 +1,8 @@
 package com.example.app_common.extensions
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
 import com.example.app_common.base.exception.BaseError
 import com.example.app_common.base.exception.DefaultError
 import com.example.app_common.base.viewmodel.BaseViewModel
@@ -89,3 +92,26 @@ fun countDownTimer(totalSeconds: Int, stepSeconds: Long = 1000): Flow<Int> =
         .onEach { delay(stepSeconds) } // Each second later emit a number
         .onStart { emit(totalSeconds) } // Emit total seconds immediately
         .conflate() // In case the operation onTick takes some time, conflate keeps the time ticking separately
+
+fun <T> LiveData<T>.distinctUntilChangedByRef(): LiveData<T> =
+    MediatorLiveData<T>().also { mediatorLiveData ->
+        mediatorLiveData.addSource(this, object : Observer<T> {
+
+            private var isInitialized = false
+            private var previousValue: T? = null
+
+            override fun onChanged(newValue: T) {
+                val wasInitialzed = isInitialized
+                if (!isInitialized) {
+                    isInitialized = true
+
+                }
+                if (!wasInitialzed || newValue !== previousValue) {
+                    previousValue = newValue
+                    mediatorLiveData.postValue(newValue)
+                }
+            }
+
+        })
+
+    }
