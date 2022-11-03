@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.ui.favourite.FavouriteFragment
+import com.example.assetmanagementapp.ui.personal.PersonalFragment
 import com.example.assetmanagementapp.ui.searchmain.SearchMainFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,7 +48,7 @@ class PagerContainerFragment : BaseFragment() {
                     MainNavigationItem.SEARCH.ordinal -> SearchMainFragment()
                     MainNavigationItem.FAVOURITE.ordinal -> FavouriteFragment()
 //                    MainNavigationItem.FAVOURITE.ordinal -> FavouriteFragment()
-//                    MainNavigationItem.MESSENGER.ordinal -> MessengerFragment()
+                    MainNavigationItem.PERSONAL.ordinal -> PersonalFragment()
                     else -> {
                         SearchMainFragment()
                     }

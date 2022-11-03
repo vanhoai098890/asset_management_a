@@ -5,6 +5,8 @@ import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -133,8 +135,8 @@ fun TextView.bindTextNationality(nationality: String?) {
 @BindingAdapter("bindHtmlText")
 fun TextView.bindHtmlText(name: String?) {
     name?.apply {
-        text =
-            Html.fromHtml(name, FROM_HTML_MODE_LEGACY)
+        this@bindHtmlText.text = Html.fromHtml(name.replace("'","\""), FROM_HTML_MODE_LEGACY)
+        this@bindHtmlText.movementMethod = LinkMovementMethod.getInstance()
     }
 }
 

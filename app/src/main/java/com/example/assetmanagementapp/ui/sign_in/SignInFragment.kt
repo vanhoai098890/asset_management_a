@@ -18,7 +18,6 @@ import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentSignInBinding
 import com.example.assetmanagementapp.ui.forgotpassword.ResetPasswordFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -34,7 +33,6 @@ class SignInFragment : BaseFragment() {
             lifecycleOwner = viewLifecycleOwner
             data = viewModel
         }
-        recreateMainScreen()
         initData()
         initEvents()
         return binding?.root
@@ -59,6 +57,7 @@ class SignInFragment : BaseFragment() {
     }
 
     private fun handleRemember() {
+        viewModel.saveUserName()
         binding?.apply {
             if (checkboxRemember.isChecked) {
                 saveInfo()

@@ -126,6 +126,9 @@
     <string name="v1_rent">Rent</string>
     <string name="v1_request_information">Request information</string>
     <string name="v1_rent_request_information">Information</string>
+    <string name="fragment_registration_nickname_count">0/20 letter</string>
+    <string name="fragment_registration_profile_image">Profile image</string>
+    <string name="email_number_limit">%1$d/%2$d letter</string>
     <string name="v1_rent_request_information_customer">Customer information</string>
     <string name="v1_your_name">Your name:</string>
     <string name="v1_check_in">Check in:</string>
@@ -459,6 +462,9 @@
     <string name="common_phone_number_length_error">* The phone number has more than 10 number, please try again.</string>
     <string name="my_list_favorite_toast">This device has been added to your favorites</string>
     <string name="my_list_un_favorite_toast">This device has been removed from your favorites</string>
+    <string name="timeout_session">Log in session has expired\nPlease log in again</string>
+    <string name="title_login">Login</string>
+    <string name="S0311_skip">Skip</string>
     <string-array name="property_type">
         <item>Motel</item>
         <item>Conference room</item>
@@ -466,4 +472,11 @@
         <item>Apartment</item>
         <item>Homestay</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nickname_error">May contain inappropriate expressions!!!</string>
+    <string name="profile_edit">Edit profile</string>
+    <string name="fragment_registration_nickname_title">Nickname</string>
+    <string name="default_nickname">Khiêm Nguyễn</string>
+    <string name="fragment_edit_profile_confirm">Confirm</string>
 </resources>

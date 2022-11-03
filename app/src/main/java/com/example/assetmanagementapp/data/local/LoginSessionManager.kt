@@ -4,8 +4,7 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.example.app_common.constant.AppConstant
 import com.example.app_common.utils.LogUtils
-import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
-import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.data.remote.api.model.refreshtoken.RefreshTokenData
 import com.example.assetmanagementapp.data.remote.api.model.signin.response.LoginAuthenticator
 import com.google.gson.Gson
@@ -31,12 +30,18 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
             putBoolean(KEY_REMEMBER_CHECKED, true)
         }.commit()
 
+    internal fun saveUserName(username: String) = sharedPreferences.edit().apply {
+        putString(KEY_USERNAME_LOGGED_IN, username)
+    }.commit()
+
     internal fun isRememberLogin(): Boolean =
         sharedPreferences.getBoolean(KEY_REMEMBER_CHECKED, false)
 
+    internal fun getAccessToken(): String =
+        sharedPreferences.getString(KEY_TOKEN_ACCESS, "") ?: ""
+
     internal fun clearUserInfo() =
         sharedPreferences.edit().apply {
-            putString(KEY_USERNAME_LOGGED_IN, AppConstant.EMPTY)
             putString(KEY_PASSWORD_LOGGED_IN, AppConstant.EMPTY)
             putBoolean(KEY_REMEMBER_CHECKED, false)
         }.commit()
@@ -92,8 +97,8 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
 
     internal fun getRefreshToken(): String? = getLoginAuthenticator()?.refreshToken
 
-    internal fun saveCustomer(userInfoResponse: UserInfoResponse?): Unit {
-        userInfoResponse?.let {
+    internal fun saveCustomer(userInfo: UserInfo?) {
+        userInfo?.let {
             val customer = Gson().toJson(it)
             sharedPreferences.apply {
                 edit(commit = true) {
@@ -103,9 +108,9 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
         }
     }
 
-    internal fun getCustomerLocal(): UserInfoResponse? {
+    internal fun getCustomerLocal(): UserInfo? {
         sharedPreferences.getString(CUSTOMER_INFO, null)?.apply {
-            return Gson().fromJson(this, UserInfoResponse::class.java)
+            return Gson().fromJson(this, UserInfo::class.java)
         }
         return null
     }

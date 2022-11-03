@@ -1,8 +1,10 @@
 package com.example.assetmanagementapp.data.remote.api.datasource.customer
 
 import com.example.app_common.base.exception.apiCall
+import com.example.app_common.base.response.CommonResponse
 import com.example.assetmanagementapp.data.remote.ApiService
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.ProfileRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import javax.inject.Inject
@@ -18,6 +20,12 @@ class CustomerDatasourceImpl @Inject constructor(private val apiService: ApiServ
     override suspend fun getUserInfoByPhoneNumber(phoneRequest: InputPhoneRequest): UserInfoResponse {
         return apiCall {
             apiService.getUserInfo(phoneRequest)
+        }
+    }
+
+    override suspend fun updateProfile(profileRequest: ProfileRequest): CommonResponse {
+        return apiCall {
+            apiService.updateProfiles(profileRequest = profileRequest)
         }
     }
 }

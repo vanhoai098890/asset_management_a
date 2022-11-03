@@ -32,8 +32,13 @@
     <color name="tango">#1C2445</color>
     <color name="blackSqueeze">#F4F7FB</color>
     <color name="boldBlue">#1C2445</color>
+    <color name="on_surface_high_emphasis">#CC000000</color>
+    <color name="on_surface_low_emphasis">#99000000</color>
+    <color name="primary_neutral_maintext">#2C1F50</color>
+    <color name="gray_100">#F5F4F5</color>
     <color name="blackRussian">#000115</color>
     <color name="whiteLilac">#F5F7FB</color>
+    <color name="accent_yellow">#FCBB2F</color>
     <color name="shimmerColor">#dddddd</color>
     <color name="mercury">#E5E5E5</color>
     <color name="greyMain">#F8F8F8</color>
@@ -50,4 +55,7 @@
     <color name="sycamore">#927639</color>
     <color name="linkWater">#D8E7F4</color>
     <color name="azure">#386DAB</color>
+    <color name="primary_neutral_disable_border">#DFDEE4</color>
+    <color name="sunshine_yellow">#FFD335</color>
+    <color name="black_5">#0D000000</color>
 </resources>

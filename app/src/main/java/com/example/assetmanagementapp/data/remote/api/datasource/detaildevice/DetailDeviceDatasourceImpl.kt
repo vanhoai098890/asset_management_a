@@ -8,7 +8,13 @@ import javax.inject.Inject
 
 class DetailDeviceDatasourceImpl @Inject constructor(private val apiService: ApiService) :
     DetailDeviceDataSource {
-    override suspend fun getDetailDevice(deviceId: Int): DetailDeviceResponse = apiCall {
-        apiService.getDetailDevice(DetailDeviceRequest(assetId = deviceId))
-    }
+    override suspend fun getDetailDevice(deviceId: Int, phoneNumber: String): DetailDeviceResponse =
+        apiCall {
+            apiService.getDetailDevice(
+                DetailDeviceRequest(
+                    assetId = deviceId,
+                    phoneNumber = phoneNumber
+                )
+            )
+        }
 }

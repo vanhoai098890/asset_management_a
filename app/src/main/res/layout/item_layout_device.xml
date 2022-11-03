@@ -37,8 +37,7 @@
                     loadImageUri="@{data.image}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/babyBlue"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitCenter"
                     tools:ignore="ContentDescription" />
             </androidx.cardview.widget.CardView>
 

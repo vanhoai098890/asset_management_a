@@ -11,6 +11,7 @@ import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseActivity
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.ui.sign_in.SignInFragment
+import com.example.assetmanagementapp.ui.timeoutsession.TimeoutSessionDialog.Companion.IGNORE_SPLASH_KEY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,21 +26,31 @@ class SplashFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setLevel(AppConstant.LEVEL_CONTAINER)
-        view.postDelayed(
-            {
-                if (viewModel.isRememberLogin) {
-                    recreateMainScreen()
-                    return@postDelayed
-                }
-                (requireActivity() as? BaseActivity)?.replaceFragment(
-                    SignInFragment().apply {
-                        setLevel(AppConstant.LEVEL_TAB)
-                    },
-                    isAddBackStack = false
-                )
-            },
-            1000L
-        )
+        if (arguments?.getBoolean(IGNORE_SPLASH_KEY) == true) {
+            (requireActivity() as? BaseActivity)?.replaceFragment(
+                SignInFragment().apply {
+                    setLevel(AppConstant.LEVEL_TAB)
+                },
+                isAddBackStack = false
+            )
+            return
+        } else {
+            view.postDelayed(
+                {
+                    if (viewModel.isExistAccessToken) {
+                        recreateMainScreen()
+                        return@postDelayed
+                    }
+                    (requireActivity() as? BaseActivity)?.replaceFragment(
+                        SignInFragment().apply {
+                            setLevel(AppConstant.LEVEL_TAB)
+                        },
+                        isAddBackStack = false
+                    )
+                },
+                1000L
+            )
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 }

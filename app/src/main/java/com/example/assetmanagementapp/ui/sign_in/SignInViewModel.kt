@@ -60,6 +60,9 @@ class SignInViewModel @Inject constructor(
     internal fun saveUserInfo() =
         loginSessionManager.saveUserInfo(username.value, password.value)
 
+    internal fun saveUserName() =
+        loginSessionManager.saveUserName(username.value)
+
     internal fun clearRemember() = loginSessionManager.clearUserInfo()
 
     fun loginAction() {

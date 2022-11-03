@@ -5,6 +5,7 @@ import com.example.assetmanagementapp.data.remote.api.model.checkotp.CheckOtpReq
 import com.example.assetmanagementapp.data.remote.api.model.checkotp.VerifyOTPRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.ProfileRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
@@ -99,5 +100,8 @@ interface ApiService {
 
     @POST("api/device/list_main_device")
     suspend fun getListMainDevice(@Body listMainDeviceRequest: ListMainDeviceRequest): Response<ListDeviceMainResponse>
+
+    @POST("api/customer/update_profile")
+    suspend fun updateProfiles(@Body profileRequest: ProfileRequest): Response<CommonResponse>
 
 }

@@ -7,15 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.app_common.extensions.onLoadMoreListener
 import com.example.app_common.extensions.setSafeOnClickListener
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.databinding.FragmentSearchMainBinding
 import com.example.assetmanagementapp.ui.detaildevice.DetailDeviceFragment
+import com.example.assetmanagementapp.ui.searchmain.AssetTypeAdapter.Companion.LOADING_TYPE
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -48,9 +50,27 @@ class SearchMainFragment : BaseFragment() {
         binding?.apply {
             rvFirst.apply {
                 layoutManager =
-                    GridLayoutManager(requireContext(), 2, LinearLayoutManager.VERTICAL, false)
+                    GridLayoutManager(
+                        requireContext(),
+                        2,
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    ).apply {
+                        spanSizeLookup = object : SpanSizeLookup() {
+                            override fun getSpanSize(position: Int): Int {
+                                return if (this@SearchMainFragment.adapter.getItemViewType(position) == LOADING_TYPE) {
+                                    2
+                                } else {
+                                    1
+                                }
+                            }
+                        }
+                    }
                 adapter = this@SearchMainFragment.adapter
                 setHasFixedSize(true)
+            }
+            parentLayout.onLoadMoreListener {
+                viewModel.onLoadMore()
             }
             ivFilter.setSafeOnClickListener {
 
@@ -62,9 +82,6 @@ class SearchMainFragment : BaseFragment() {
         lifecycleScope.launchWhenStarted {
             launch {
                 viewModel.stateUserInfo.collect { handleShowUIWithUserInfo(it) }
-            }
-            launch {
-                viewModel.loadingState().collect { handleShowLoadingDialog(it) }
             }
             launch {
                 viewModel.listItemDeviceData.collect { adapter.submitList(it) }
@@ -91,5 +108,10 @@ class SearchMainFragment : BaseFragment() {
                     resources.getString(R.string.tv_hi_account, "Hoài Văn")
             }
         }
+    }
+
+    override fun onResume() {
+        viewModel.getCustomerInfo()
+        super.onResume()
     }
 }

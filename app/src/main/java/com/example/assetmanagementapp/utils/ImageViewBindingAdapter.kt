@@ -27,7 +27,7 @@ fun ImageView.bindImageResource(drawableResId: Int) {
 @BindingAdapter("bindImageAvatar")
 fun ImageView.bindImageAvatar(customerId: Int?) {
     customerId?.apply {
-        when (customerId % 5) {
+        when (customerId % 15) {
             0 -> {
                 setBackgroundResource(R.drawable.avatar1)
             }
@@ -43,35 +43,35 @@ fun ImageView.bindImageAvatar(customerId: Int?) {
             4 -> {
                 setBackgroundResource(R.drawable.avatar5)
             }
-            5-> {
+            5 -> {
                 setBackgroundResource(R.drawable.avatar6)
             }
             6 -> {
-                setBackgroundResource(R.drawable.avatarr1)
+                setBackgroundResource(R.drawable.avatar7)
             }
             7 -> {
-                setBackgroundResource(R.drawable.avatarr2)
+                setBackgroundResource(R.drawable.avatar8)
             }
-            8-> {
-                setBackgroundResource(R.drawable.avatarr3)
+            8 -> {
+                setBackgroundResource(R.drawable.avatar9)
             }
             9 -> {
-                setBackgroundResource(R.drawable.avatarr4)
+                setBackgroundResource(R.drawable.avatar10)
             }
             10 -> {
-                setBackgroundResource(R.drawable.avatarr5)
+                setBackgroundResource(R.drawable.avatar11)
             }
             11 -> {
-                setBackgroundResource(R.drawable.avatarr6)
+                setBackgroundResource(R.drawable.avatar12)
             }
             12 -> {
-                setBackgroundResource(R.drawable.avatarr7)
+                setBackgroundResource(R.drawable.avatar13)
             }
-            13-> {
-                setBackgroundResource(R.drawable.avatarr8)
+            13 -> {
+                setBackgroundResource(R.drawable.avatar14)
             }
             14 -> {
-                setBackgroundResource(R.drawable.avatarr9)
+                setBackgroundResource(R.drawable.avatar15)
             }
         }
     }

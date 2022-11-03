@@ -6,13 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.app_common.extensions.onLoadMoreListener
+import com.example.app_common.ui.snackbar.CustomSnackBar
 import com.example.app_common.utils.ScreenUtils
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItem
 import com.example.assetmanagementapp.databinding.FavouriteFragmentBinding
 import com.example.assetmanagementapp.ui.detaildevice.DetailDeviceFragment
-import com.example.app_common.ui.snackbar.CustomSnackBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,7 +48,11 @@ class FavouriteFragment : BaseFragment() {
     }
 
     private fun showDialog(deviceItem: DeviceItem) {
-        addNoNavigationFragment(DetailDeviceFragment.newInstance(deviceId = deviceItem.id))
+        addNoNavigationFragment(DetailDeviceFragment.newInstance(deviceId = deviceItem.id).apply {
+            onBackPress = { deviceItem, isFavourite ->
+                viewModel.dispatchFragmentResultFavourite(deviceItem, isFavourite)
+            }
+        })
     }
 
     override fun onCreateView(
@@ -74,6 +80,8 @@ class FavouriteFragment : BaseFragment() {
         }
     }
 
+    private var loadMoreListener: RecyclerView.OnScrollListener? = null
+
     private fun initEvents() {
         viewModel.store.apply {
             observe(
@@ -81,6 +89,14 @@ class FavouriteFragment : BaseFragment() {
                 selector = { currentState -> currentState.stateListFavouriteRoom },
                 observer = {
                     roomAdapter.submitList(it.toMutableList())
+                    if (it.size == 10 && loadMoreListener == null) {
+                        loadMoreListener = binding.rvFavouriteRoom.onLoadMoreListener {
+                            viewModel.onLoadMore()
+                        }
+                    }
+                    if (it.size < 10 && loadMoreListener != null) {
+                        binding.rvFavouriteRoom.removeOnScrollListener(loadMoreListener!!)
+                    }
                 }
             )
             observe(

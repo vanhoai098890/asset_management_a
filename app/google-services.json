@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:378283924257:android:edf9a8ab75edccbaa03c60",
         "android_client_info": {
-          "package_name": "com.example.assetmanagementapp"
+          "package_name": "com.example.assetmanagementapp.dev"
         }
       },
       "oauth_client": [

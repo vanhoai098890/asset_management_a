@@ -55,7 +55,7 @@ class RefreshTokenAuthenticator @Inject constructor(
             return if (response.isSuccessful && response.body() is RefreshTokenResponse) {
                 LogUtils.d(response.body().toString())
                 response.body()?.apply {
-                    if (this.code == ApiResponseCode.E500.code) {
+                    if (this.code == ApiResponseCode.E500.code || this.code == ApiResponseCode.UNAUTHORIZED.code) {
                         showSessionTimeoutDialog()
                     }
                 }
@@ -70,10 +70,8 @@ class RefreshTokenAuthenticator @Inject constructor(
     }
 
     private fun showSessionTimeoutDialog() {
-        if (loginSessionManager.isLoggedIn()) {
-            GlobalScope.launch {
-                EventBus.invokeEvent(EventRequestLogin())
-            }
+        GlobalScope.launch {
+            EventBus.invokeEvent(EventRequestLogin())
         }
     }
 }

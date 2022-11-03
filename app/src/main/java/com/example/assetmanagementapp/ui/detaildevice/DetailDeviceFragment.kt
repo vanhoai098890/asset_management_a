@@ -20,7 +20,6 @@ import com.example.assetmanagementapp.data.remote.api.model.favourite.StatusTick
 import com.example.assetmanagementapp.databinding.DeviceDetailFragmentBinding
 import com.example.assetmanagementapp.databinding.LayoutItemInfoDeviceBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -28,6 +27,7 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
 
     private lateinit var binding: DeviceDetailFragmentBinding
     private val viewModel: DetailDeviceViewModel by viewModels()
+    var onBackPress: (Int, Boolean) -> Unit = { _, _ -> }
 
     private val customSnackBar: CustomSnackBar by lazy {
         CustomSnackBar.make(
@@ -266,6 +266,14 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
     override fun onPause() {
         super.onPause()
         customSnackBar.dismiss()
+    }
+
+    override fun handleBackPressed(tagNameBackStack: String?) {
+        onBackPress.invoke(
+            viewModel.currentState.deviceId ?: 0,
+            viewModel.currentState.stateIsFavourite
+        )
+        super.handleBackPressed(tagNameBackStack)
     }
 
     companion object {

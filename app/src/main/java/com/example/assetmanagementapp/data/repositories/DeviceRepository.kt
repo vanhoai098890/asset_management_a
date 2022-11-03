@@ -12,8 +12,8 @@ class DeviceRepository @Inject constructor(
     private val deviceDatasourceImpl: DetailDeviceDatasourceImpl,
     private val searchMainImpl: SearchMainImpl,
 ) {
-    fun getDetailDevice(deviceId: Int) = safeFlow {
-        deviceDatasourceImpl.getDetailDevice(deviceId)
+    fun getDetailDevice(deviceId: Int, phoneNumber: String) = safeFlow {
+        deviceDatasourceImpl.getDetailDevice(deviceId, phoneNumber)
     }
 
     fun getListSearchMain(listMainDeviceRequest: ListMainDeviceRequest) = safeFlow {

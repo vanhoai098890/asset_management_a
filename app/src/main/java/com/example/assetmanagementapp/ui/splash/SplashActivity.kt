@@ -14,7 +14,9 @@ import dagger.hilt.android.AndroidEntryPoint
 class SplashActivity : BaseActivity() {
 
     override fun navigationContainer(): BaseFragment =
-        SplashFragment()
+        SplashFragment().apply {
+            arguments = intent.extras
+        }
 
     override fun noNavigationContainer(): BaseFragment = MainNoNavigationContainerFragment()
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.assetmanagementapp.ui.personal.PersonalFunctionStatic" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cslItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_rectangle_white_radius_6dp">
+
+        <ImageView
+            android:id="@+id/imgTempCircle"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_circle_24"
+            app:layout_constraintBottom_toBottomOf="@id/imgPersonalTabItemMiddleLogo"
+            app:layout_constraintEnd_toEndOf="@id/imgPersonalTabItemMiddleLogo"
+            app:layout_constraintStart_toStartOf="@id/imgPersonalTabItemMiddleLogo"
+            app:layout_constraintTop_toTopOf="@id/imgPersonalTabItemMiddleLogo"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imgPersonalTabItemMiddleLogo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="16dp"
+            android:scaleType="fitCenter"
+            android:src="@{data.drawableRes}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvPersonalContentFunction"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvPersonalContentFunction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@{data.stringRes}"
+            android:textColor="@color/blackRussian"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/imgPersonalTabItemMiddleLogo"
+            app:layout_constraintEnd_toStartOf="@id/imgPersonalTabItemMiddleArrowNext"
+            app:layout_constraintStart_toEndOf="@id/imgPersonalTabItemMiddleLogo"
+            app:layout_constraintTop_toTopOf="@id/imgPersonalTabItemMiddleLogo"
+            tools:text="Language Setting" />
+
+        <ImageView
+            android:id="@+id/imgPersonalTabItemMiddleArrowNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_navigate_next_silver_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvPersonalContentFunction"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvPersonalContentFunction"
+            tools:ignore="ContentDescription"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/ivDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="14dp"
+            android:background="@color/mercury"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPersonalContentFunction"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

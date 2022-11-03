@@ -9,17 +9,18 @@ data class UserInfoResponse(
 ) : CommonResponse()
 
 data class UserInfo(
-    val address: String,
-    val birthday: String,
-    val city: City,
-    val cmnd: String,
-    val country: Country,
-    val email: String,
-    val major: Major,
-    val phoneNumber: String,
-    val sex: String,
-    val userId: Int,
-    val username: String
+    val address: String = "",
+    val birthday: String = "",
+    val city: City? = null,
+    val cmnd: String = "",
+    val country: Country? = null,
+    val email: String = "",
+    val major: Major? = null,
+    val phoneNumber: String = "",
+    val sex: String = "",
+    val userId: Int = 0,
+    val username: String = "hoai ho",
+    val avatarId: Int = 10
 )
 
 data class Major(

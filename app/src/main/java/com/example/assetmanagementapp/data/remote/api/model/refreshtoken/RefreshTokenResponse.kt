@@ -4,7 +4,7 @@ import com.example.app_common.base.response.CommonResponse
 import com.google.gson.annotations.SerializedName
 
 data class RefreshTokenResponse(
-    @SerializedName("Data")
+    @SerializedName("data")
     val data: RefreshTokenData
 ) : CommonResponse()
 

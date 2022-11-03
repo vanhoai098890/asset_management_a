@@ -7,9 +7,7 @@ import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import android.view.inputmethod.InputMethodManager
 import kotlin.math.roundToInt
 
 object ScreenUtils {
@@ -83,9 +81,9 @@ object ScreenUtils {
         return (dp * context.resources.displayMetrics.density).roundToInt()
     }
 
-    fun dpToPixels(context: Context?, dpValue: Float) : Float {
+    fun dpToPixels(context: Context?, dpValue: Float): Float {
         context?.apply {
-            val displayMetrics : DisplayMetrics = this.resources.displayMetrics
+            val displayMetrics: DisplayMetrics = this.resources.displayMetrics
             return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, displayMetrics)
         }
         return 0F
@@ -96,9 +94,14 @@ object ScreenUtils {
      * Must require: Activity context
      */
     fun getScreenWidthHeight(activityContext: Context): Pair<Int, Int> {
-        val displayMetrics : DisplayMetrics = activityContext.resources.displayMetrics
+        val displayMetrics: DisplayMetrics = activityContext.resources.displayMetrics
         val height = displayMetrics.heightPixels
         val width = displayMetrics.widthPixels
         return Pair(width, height)
     }
+}
+
+fun View.hideKeyboard() {
+    val imm = this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(this.windowToken, 0)
 }

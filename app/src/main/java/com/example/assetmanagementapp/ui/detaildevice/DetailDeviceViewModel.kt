@@ -28,19 +28,20 @@ class DetailDeviceViewModel @Inject constructor(
 
     fun getDetailDevice() {
         currentState.deviceId?.let { deviceId ->
-            deviceRepository.getDetailDevice(deviceId).bindLoading(this).onSuccess {
-                dispatchState(currentState.copy(deviceItem = it.data, stateVisibleMask = false))
-            }.onError {
-                dispatchState(currentState.copy(stateShowSomethingWrong = true))
-            }.launchIn(viewModelScope)
+            deviceRepository.getDetailDevice(deviceId, loginSessionManager.getUsername())
+                .bindLoading(this).onSuccess {
+                    dispatchState(currentState.copy(deviceItem = it.data, stateVisibleMask = false, stateIsFavourite = it.data.isFavourite))
+                }.onError {
+                    dispatchState(currentState.copy(stateShowSomethingWrong = true))
+                }.launchIn(viewModelScope)
         }
     }
 
 
     fun saveDevices(deviceId: Int, isSave: Boolean) {
         if (stateSetJobOnSaveDeviceRequest.contains(deviceId)) return
-        viewModelScope.launch {
-            synchronized(isBlockSave) {
+        synchronized(isBlockSave) {
+            viewModelScope.launch {
                 stateSetJobOnSaveDeviceRequest.add(deviceId)
                 favouriteRepository.saveDevices(loginSessionManager.getUsername(), deviceId, isSave)
                     .onSuccess {
@@ -50,9 +51,9 @@ class DetailDeviceViewModel @Inject constructor(
                                 stateIsFavourite = isSave
                             )
                         )
-                    }
-            }.onCompletion {
-                stateSetJobOnSaveDeviceRequest.remove(deviceId)
+                    }.onCompletion {
+                        stateSetJobOnSaveDeviceRequest.remove(deviceId)
+                    }.launchIn(viewModelScope)
             }
         }
     }

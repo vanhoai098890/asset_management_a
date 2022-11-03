@@ -6,6 +6,7 @@ import com.example.app_common.base.BaseListAdapter
 import com.example.app_common.extensions.setSafeOnClickListener
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItem
 import com.example.assetmanagementapp.databinding.ItemLayoutDeviceBinding
+import com.example.assetmanagementapp.databinding.LayoutItemLoadMoreBinding
 
 class DeviceFavAdapter : BaseListAdapter<DeviceItem>(diffUtil) {
 
@@ -13,9 +14,19 @@ class DeviceFavAdapter : BaseListAdapter<DeviceItem>(diffUtil) {
     var onSaveItem: (DeviceItem) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseItemViewHolder =
-        ViewHolder(
-            ItemLayoutDeviceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        )
+        if (viewType == NORMAL_ITEM) {
+            ViewHolder(
+                ItemLayoutDeviceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            )
+        } else {
+            LoadingViewHolder(
+                LayoutItemLoadMoreBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+        }
 
     override fun onBindViewHolder(
         holder: BaseItemViewHolder,
@@ -63,7 +74,20 @@ class DeviceFavAdapter : BaseListAdapter<DeviceItem>(diffUtil) {
         }
     }
 
+    inner class LoadingViewHolder(binding: LayoutItemLoadMoreBinding) :
+        BaseItemViewHolder(binding.root)
+
+    override fun getItemViewType(position: Int): Int {
+        return if (getItem(position).id == 0) {
+            LOADING_TYPE
+        } else {
+            NORMAL_ITEM
+        }
+    }
+
     companion object {
+        const val NORMAL_ITEM = 1
+        const val LOADING_TYPE = 2
         val diffUtil = object : BaseDiffUtilItemCallback<DeviceItem>() {
             override fun getChangePayload(oldItem: DeviceItem, newItem: DeviceItem): Any? {
                 if (oldItem.isFavourite != newItem.isFavourite) {

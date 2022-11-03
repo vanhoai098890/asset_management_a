@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    loginSessionManager: LoginSessionManager
+    private val loginSessionManager: LoginSessionManager
 ) : BaseViewModel() {
-    val isRememberLogin = loginSessionManager.isRememberLogin()
+    val isExistAccessToken = loginSessionManager.getAccessToken().isNotBlank()
 }
