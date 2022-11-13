@@ -17,6 +17,7 @@ import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.databinding.FragmentSearchMainBinding
 import com.example.assetmanagementapp.ui.detaildevice.DetailDeviceFragment
 import com.example.assetmanagementapp.ui.searchmain.AssetTypeAdapter.Companion.LOADING_TYPE
+import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -73,7 +74,7 @@ class SearchMainFragment : BaseFragment() {
                 viewModel.onLoadMore()
             }
             ivFilter.setSafeOnClickListener {
-
+                addNoNavigationFragment(SearchResultFragment.newInstance(edtSearch.text.toString()))
             }
         }
     }

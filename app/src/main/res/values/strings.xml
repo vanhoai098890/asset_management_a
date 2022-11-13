@@ -472,11 +472,11 @@
         <item>Apartment</item>
         <item>Homestay</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nickname_error">May contain inappropriate expressions!!!</string>
     <string name="profile_edit">Edit profile</string>
     <string name="fragment_registration_nickname_title">Nickname</string>
     <string name="default_nickname">Khiêm Nguyễn</string>
     <string name="fragment_edit_profile_confirm">Confirm</string>
+    <string name="transaction_filter">Transaction filter</string>
 </resources>

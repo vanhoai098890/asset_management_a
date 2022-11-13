@@ -4,6 +4,7 @@ import com.example.app_common.extensions.safeFlow
 import com.example.assetmanagementapp.data.remote.api.datasource.detaildevice.DetailDeviceDatasourceImpl
 import com.example.assetmanagementapp.data.remote.api.datasource.searchmain.SearchMainImpl
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -18,5 +19,13 @@ class DeviceRepository @Inject constructor(
 
     fun getListSearchMain(listMainDeviceRequest: ListMainDeviceRequest) = safeFlow {
         searchMainImpl.getListSearchMain(listMainDeviceRequest)
+    }
+
+    fun getListCategories() = safeFlow {
+        searchMainImpl.getListCategories()
+    }
+
+    fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest) = safeFlow {
+        searchMainImpl.searchListDevice(searchListDeviceRequest)
     }
 }

@@ -1,6 +1,7 @@
 package com.example.assetmanagementapp.ui.favourite
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.example.app_common.base.BaseListAdapter
 import com.example.app_common.extensions.setSafeOnClickListener
@@ -12,6 +13,7 @@ class DeviceFavAdapter : BaseListAdapter<DeviceItem>(diffUtil) {
 
     var onClick: (DeviceItem) -> Unit = {}
     var onSaveItem: (DeviceItem) -> Unit = {}
+    var isHideFavouriteButton = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseItemViewHolder =
         if (viewType == NORMAL_ITEM) {
@@ -64,6 +66,9 @@ class DeviceFavAdapter : BaseListAdapter<DeviceItem>(diffUtil) {
 
         override fun bind(data: DeviceItem) {
             binding.data = data
+            if (isHideFavouriteButton) {
+                binding.ivFavourite.visibility = View.GONE
+            }
             binding.ivFavourite.apply {
                 isSelected = data.isFavourite
             }

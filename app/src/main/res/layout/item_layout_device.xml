@@ -14,11 +14,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_8dp"
+        android:background="@drawable/bg_ripple_item_bg_round_16dp"
         app:cardCornerRadius="@dimen/margin_16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_item_bg_round_16dp"
             android:padding="@dimen/margin_16dp">
 
             <androidx.cardview.widget.CardView
@@ -56,13 +58,13 @@
                 android:layout_marginStart="@dimen/margin_6dp"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:paddingHorizontal="@dimen/_10dp"
                 android:text="@{data.name}"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/tvCategory"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:paddingHorizontal="@dimen/_10dp"
                 app:layout_constraintStart_toEndOf="@id/guideline5"
                 app:layout_constraintTop_toTopOf="@id/cvRoom"
                 tools:text="889 Palmerston Ave, Winnipeg" />
@@ -73,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:paddingHorizontal="@dimen/_10dp"
-                    android:text="@{data.typeAssetName}"
+                android:text="@{data.typeAssetName}"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toTopOf="@id/tvStatus"
                 app:layout_constraintEnd_toEndOf="@id/tvNameRoom"

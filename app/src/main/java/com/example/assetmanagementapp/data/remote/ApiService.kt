@@ -19,12 +19,14 @@ import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.Input
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.ResetPasswordRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.setnewpassword.ConfirmForgotPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.setpassword.SetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.setpassword.SetPasswordResponseDto
 import com.example.assetmanagementapp.data.remote.api.model.signin.request.SignInRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.signin.response.SignInResponseDto
 import com.example.assetmanagementapp.data.remote.api.model.signup.request.SignUpRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -103,5 +105,11 @@ interface ApiService {
 
     @POST("api/customer/update_profile")
     suspend fun updateProfiles(@Body profileRequest: ProfileRequest): Response<CommonResponse>
+
+    @GET("api/device/category")
+    suspend fun getCategories(): Response<TypeAssetResponse>
+
+    @POST("api/device/search_asset")
+    suspend fun searchListDevice(@Body searchListDeviceRequest: SearchListDeviceRequest): Response<DeviceItemResponse>
 
 }

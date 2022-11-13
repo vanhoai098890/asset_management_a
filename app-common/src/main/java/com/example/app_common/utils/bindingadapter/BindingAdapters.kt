@@ -44,7 +44,7 @@ fun View.setShimmer(str: String?) {
     }
 }
 
-fun Int.dpToPx(context: Context?) = context?.resources?.getDimensionPixelSize(this)?:0
+fun Int.dpToPx(context: Context?) = context?.resources?.getDimensionPixelSize(this) ?: 0
 fun View.setMargins(
     left: Int? = null,
     top: Int? = null,
@@ -59,4 +59,9 @@ fun View.setMargins(
         bottom ?: lp.bottomMargin
     )
     layoutParams = lp
+}
+
+@BindingAdapter("bindViewSelected")
+fun View.bindViewSelected(isSelected: Boolean) {
+    this.isSelected = isSelected
 }

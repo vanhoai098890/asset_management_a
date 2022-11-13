@@ -69,7 +69,7 @@ class FavouriteFragment : BaseFragment() {
         binding.apply {
             rvFavouriteRoom.apply {
                 layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, true)
                 adapter = roomAdapter
             }
             toolbarId.apply {
