@@ -64,8 +64,8 @@ class CategoryBottomSheet :
                 selector = { state -> state.listCategory },
                 observer = {
                     if (it.size > 0) {
-                        categoryAdapter.submitList(it.mapIndexed { index, typeAsset ->
-                            if (index == currentCategory) {
+                        categoryAdapter.submitList(it.mapIndexed { _, typeAsset ->
+                            if (typeAsset.id == currentCategory) {
                                 typeAsset.apply {
                                     isSelected = true
                                 }

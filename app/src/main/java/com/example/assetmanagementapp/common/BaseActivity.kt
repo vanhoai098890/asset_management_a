@@ -6,7 +6,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.app_common.base.BaseControlActivity
 import com.example.app_common.utils.eventbus.EventBus
 import com.example.app_common.utils.eventbus.event_model.EventRequestLogin
-import com.example.app_common.utils.eventbus.event_model.EventTimeOutApi
 import com.example.assetmanagementapp.MainActivity
 import com.example.assetmanagementapp.ui.splash.SplashActivity
 import com.example.assetmanagementapp.ui.timeoutsession.TimeoutSessionDialog

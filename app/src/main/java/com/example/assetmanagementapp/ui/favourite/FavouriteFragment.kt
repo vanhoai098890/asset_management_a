@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app_common.extensions.onLoadMoreListener
 import com.example.app_common.ui.snackbar.CustomSnackBar
 import com.example.app_common.utils.ScreenUtils
+import com.example.assetmanagementapp.MainViewModel
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItem
@@ -21,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class FavouriteFragment : BaseFragment() {
 
     private val viewModel: FavouriteViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private lateinit var binding: FavouriteFragmentBinding
     private val roomAdapter: DeviceFavAdapter by lazy {
         DeviceFavAdapter().apply {
@@ -87,17 +90,7 @@ class FavouriteFragment : BaseFragment() {
             observe(
                 owner = this@FavouriteFragment,
                 selector = { currentState -> currentState.stateListFavouriteRoom },
-                observer = {
-                    roomAdapter.submitList(it.toMutableList())
-                    if (it.size == 10 && loadMoreListener == null) {
-                        loadMoreListener = binding.rvFavouriteRoom.onLoadMoreListener {
-                            viewModel.onLoadMore()
-                        }
-                    }
-                    if (it.size < 10 && loadMoreListener != null) {
-                        binding.rvFavouriteRoom.removeOnScrollListener(loadMoreListener!!)
-                    }
-                }
+                observer = { handleSubmitListItemFav(it) }
             )
             observe(
                 owner = this@FavouriteFragment,
@@ -117,6 +110,36 @@ class FavouriteFragment : BaseFragment() {
                     it?.apply { showCustomSnackBar(it) }
                 }
             )
+        }
+        mainViewModel.store.apply {
+            observe(
+                owner = this@FavouriteFragment,
+                selector = { state -> state.stateCLickedFav },
+                observer = {
+                    if (it) {
+                        viewModel.getFavouriteDevices()
+                        mainViewModel.dispatchClickFav(false)
+                    }
+                })
+        }
+    }
+
+    private fun handleSubmitListItemFav(listItem: List<DeviceItem>) {
+        roomAdapter.submitList(listItem.toMutableList())
+        if (listItem.size == 10 && loadMoreListener == null) {
+            loadMoreListener = binding.rvFavouriteRoom.onLoadMoreListener {
+                viewModel.onLoadMore()
+            }
+        }
+        if (listItem.size < 10 && loadMoreListener != null) {
+            binding.rvFavouriteRoom.removeOnScrollListener(loadMoreListener!!)
+        }
+        if (listItem.size <= 10) {
+            binding.rvFavouriteRoom.apply {
+                post {
+                    scrollToPosition(listItem.size - 1)
+                }
+            }
         }
     }
 

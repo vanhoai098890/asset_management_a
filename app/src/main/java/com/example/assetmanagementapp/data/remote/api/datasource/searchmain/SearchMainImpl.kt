@@ -5,6 +5,7 @@ import com.example.assetmanagementapp.data.remote.ApiService
 import com.example.assetmanagementapp.data.remote.api.model.device.ListDeviceMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import javax.inject.Inject
@@ -24,4 +25,10 @@ class SearchMainImpl @Inject constructor(private val apiService: ApiService) :
         apiCall {
             apiService.searchListDevice(searchListDeviceRequest)
         }
+
+    override suspend fun getInfoMain(): InfoMainResponse {
+        return apiCall {
+            apiService.getInfoMain()
+        }
+    }
 }

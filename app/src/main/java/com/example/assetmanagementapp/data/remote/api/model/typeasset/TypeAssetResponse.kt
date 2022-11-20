@@ -13,5 +13,10 @@ data class TypeAsset(
     val id: Int,
     @SerializedName("typeName")
     val typeName: String,
-    var isSelected: Boolean = false
+    @SerializedName("totalDepreciation")
+    val totalDepreciation: Float = 0f,
+    @SerializedName("totalPercent")
+    val totalPercent: Float = 0f,
+    var isSelected: Boolean = false,
+    var isAnimated: Boolean = false
 )

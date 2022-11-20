@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8dp"
+        android:background="@drawable/bg_ripple_item_bg_round_16dp"
+        app:cardCornerRadius="@dimen/margin_16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ripple_item_bg_round_16dp"
+            android:padding="@dimen/margin_16dp">
+
+            <View
+                android:id="@+id/cvRoom"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="@dimen/_0dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toStartOf="@id/guideline5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="78dp"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <TextView
+                android:id="@+id/tvNameRoom"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/_10dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tvNumberOfRooms"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cvRoom"
+                tools:text="CNTT Department" />
+
+            <TextView
+                android:id="@+id/tvNumberOfRooms"
+                android:layout_width="@dimen/_0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/_10dp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/tvNumberOfAssets"
+                app:layout_constraintEnd_toEndOf="@id/tvNameRoom"
+                app:layout_constraintStart_toStartOf="@id/tvNameRoom"
+                app:layout_constraintTop_toBottomOf="@id/tvNameRoom"
+                tools:text="Number of rooms: 10" />
+
+            <TextView
+                android:id="@+id/tvNumberOfAssets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/_10dp"
+                android:paddingVertical="@dimen/_5dp"
+                android:text="@string/number_of_assets_d"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/cvRoom"
+                app:layout_constraintStart_toStartOf="@id/tvNumberOfRooms"
+                app:layout_constraintTop_toBottomOf="@id/tvNumberOfRooms"
+                tools:text="Number of assets: 10" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

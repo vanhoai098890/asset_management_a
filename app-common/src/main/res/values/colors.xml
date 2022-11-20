@@ -20,6 +20,12 @@
     <color name="textDim">#C9CAC6</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="textHintColor">#9F9D9B</color>
+    <color name="on_surface_high_emphasis">#CC000000</color>
+    <color name="on_surface_low_emphasis">#99000000</color>
+    <color name="geyser">#C6DDDD</color>
+    <color name="snuff">#E5DFF0</color>
+    <color name="pampas">#F1EEE9</color>
+    <color name="bizarre">#EEDFDF</color>
     <color name="trout">#515662</color>
     <color name="dawnPink">#F5EFE8</color>
     <color name="twilightBlue">#FAFFFF</color>
@@ -44,4 +50,5 @@
     <color name="scorpion">#606060</color>
     <color name="colorRed">#FF3D00</color>
     <color name="outer_space">#373939</color>
+    <color name="black_10_alpha">#1A000000</color>
 </resources>

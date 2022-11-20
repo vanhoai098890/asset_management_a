@@ -139,6 +139,8 @@
     <string name="v1_thirty_five_percent">(35%)</string>
     <string name="v1_back_to_home">Back Home</string>
     <string name="v1_success">Success!</string>
+    <string name="v1_about">About</string>
+    <string name="v1_help">Help</string>
     <string name="v1_confirmed">Confirmed</string>
     <string name="v1_failed">Failed</string>
     <string name="v1_booking_confirmation">You\'ll get an email along with\nyour booking confirmation</string>
@@ -479,4 +481,20 @@
     <string name="default_nickname">Khiêm Nguyễn</string>
     <string name="fragment_edit_profile_confirm">Confirm</string>
     <string name="transaction_filter">Transaction filter</string>
+    <string name="total_depreciation">Total Depreciation</string>
+    <string name="assets">Assets</string>
+    <string name="view_all_assets">View all assets</string>
+    <string name="department">Department</string>
+    <string name="view_all_department">View all department</string>
+    <string name="view_all_categories">View all categories</string>
+    <string name="total_price">Total price</string>
+    <string name="total_price_description">Total price of all assets</string>
+    <string name="asset_information">Asset information</string>
+    <string name="number_of_rooms_d">Number of rooms: %d</string>
+    <string name="number_of_assets_d">Number of assets: %d</string>
+    <string name="name_department">%s department</string>
+    <string name="add_department">Add department</string>
+    <string name="ex_information_technology">ex: Information technology</string>
+    <string name="add_department_success">This department is already added</string>
+    <string name="add_department_false">This department is already existed</string>
 </resources>

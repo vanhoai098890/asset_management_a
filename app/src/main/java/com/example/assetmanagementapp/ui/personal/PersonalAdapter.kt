@@ -3,7 +3,6 @@ package com.example.assetmanagementapp.ui.personal
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.app_common.base.BaseListAdapter
 import com.example.app_common.constant.AppConstant
 import com.example.app_common.extensions.setSafeOnClickListener
@@ -81,7 +80,7 @@ class PersonalAdapter : BaseListAdapter<PersonalFunctionStatic>(diffCallBack = d
                 val margin16dp = root.context.resources.getDimension(R.dimen.margin_16dp).toInt()
                 this.data = data
                 when (data) {
-                    PersonalFunctionStatic.PASSWORD, PersonalFunctionStatic.REQUEST -> {
+                    PersonalFunctionStatic.PASSWORD, PersonalFunctionStatic.HELP -> {
                         ivDivider.visibility = View.INVISIBLE
                     }
                     PersonalFunctionStatic.LOGOUT -> {
@@ -106,23 +105,8 @@ class PersonalAdapter : BaseListAdapter<PersonalFunctionStatic>(diffCallBack = d
             name: PersonalFunctionStatic,
             binding: ItemPersonalContentFunctionBinding
         ) {
-            when (name) {
-                PersonalFunctionStatic.LOGOUT, PersonalFunctionStatic.PERSONAL, PersonalFunctionStatic.REQUEST -> {
-                    binding.root.setSafeOnClickListener {
-                        onClickItem.invoke(name)
-                    }
-                }
-                else -> {
-                    binding.apply {
-                        root.setSafeOnClickListener {
-                            Toast.makeText(
-                                root.context,
-                                root.context.getString(data?.stringRes ?: 0),
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    }
-                }
+            binding.root.setSafeOnClickListener {
+                onClickItem.invoke(name)
             }
         }
     }

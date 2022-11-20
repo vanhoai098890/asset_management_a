@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.example.assetmanagementapp.MainViewModel
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentNavigationContainerBinding
@@ -15,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainNavigationContainerFragment : BaseFragment() {
     private var binding: FragmentNavigationContainerBinding? = null
     private val viewModel: MainNavigationContainerViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private val fragmentPagers: MutableList<PagerContainerFragment> by lazy {
         mutableListOf()
     }
@@ -41,9 +44,6 @@ class MainNavigationContainerFragment : BaseFragment() {
     }
 
     private fun initObservers() {
-    }
-
-    private fun handleCloseDragLayout(isOpen: Boolean) {
     }
 
     private fun initActions() {
@@ -76,6 +76,12 @@ class MainNavigationContainerFragment : BaseFragment() {
                         }
                     }
                     return@setOnItemSelectedListener true
+                }
+                it.setOnItemReselectedListener { item ->
+                    when (item.order) {
+                        MainNavigationItem.SEARCH.ordinal -> mainViewModel.dispatchClickHome(true)
+                        MainNavigationItem.FAVOURITE.ordinal -> mainViewModel.dispatchClickFav(true)
+                    }
                 }
                 it.getOrCreateBadge(R.id.btnFooter4).apply {
                     verticalOffset = 7

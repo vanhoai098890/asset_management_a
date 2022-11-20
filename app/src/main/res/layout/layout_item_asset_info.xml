@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_8dp"
+    android:paddingVertical="@dimen/_4dp"
+    android:background="@drawable/bg_ripple_item_bg_round_16dp">
+
+    <ImageView
+        android:id="@+id/ivAssetInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_circle_24"
+        android:padding="@dimen/_20dp"
+        android:src="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvTitleInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvDetailInfo"
+        app:layout_constraintStart_toEndOf="@id/ivAssetInfo"
+        app:layout_constraintTop_toTopOf="@id/ivAssetInfo"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Sales" />
+
+    <TextView
+        android:id="@+id/tvDetailInfo"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_16dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivAssetInfo"
+        app:layout_constraintEnd_toStartOf="@id/tvValueInfo"
+        app:layout_constraintStart_toStartOf="@id/tvTitleInfo"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleInfo"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Since last week" />
+
+    <TextView
+        android:id="@+id/tvValueInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_14sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivAssetInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivAssetInfo"
+        tools:text="230K" />
+</androidx.constraintlayout.widget.ConstraintLayout>

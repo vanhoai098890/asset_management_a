@@ -27,6 +27,7 @@ class PersonalViewModel @Inject constructor(
             PersonalFunctionStatic.PASSWORD,
             PersonalFunctionStatic.MANAGEMENT,
             PersonalFunctionStatic.REQUEST,
+            PersonalFunctionStatic.HELP,
             PersonalFunctionStatic.LOGOUT
         )
     )

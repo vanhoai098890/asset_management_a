@@ -38,7 +38,7 @@ abstract class BaseControlFragment : FragmentController() {
         (activity as? BaseControlActivity)?.hideLoading()
     }
 
-    fun handleShowLoadingDialog(isStateShow: Boolean) {
+    open fun handleShowLoadingDialog(isStateShow: Boolean) {
         if (isStateShow) {
             showLoading()
         } else {

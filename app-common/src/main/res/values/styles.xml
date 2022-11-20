@@ -12,4 +12,15 @@
     <style name="commonBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
+
+    <style name="T17_T17B_600" parent="T17">
+        <item name="fontWeight">600</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="T17">
+        <item name="android:textColor">@color/on_surface_high_emphasis</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

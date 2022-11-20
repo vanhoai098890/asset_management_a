@@ -68,11 +68,17 @@ class FavouriteViewModel @Inject constructor(
                 dispatchState(
                     currentState.copy(
                         stateListFavouriteRoom = ArrayList(currentState.stateListFavouriteRoom).apply {
-                            removeLast()
+                            if (size > 0) {
+                                removeLast()
+                            }
                             addAll(
                                 it.data
                             )
-                        },
+                        }
+                    )
+                )
+                dispatchState(
+                    currentState.copy(
                         stateVisibleNotFoundItem = currentState.stateListFavouriteRoom.isEmpty()
                     )
                 )
@@ -81,7 +87,9 @@ class FavouriteViewModel @Inject constructor(
                 dispatchState(
                     currentState.copy(
                         stateListFavouriteRoom = ArrayList(currentState.stateListFavouriteRoom).apply {
-                            removeLast()
+                            if (size > 0) {
+                                removeLast()
+                            }
                         }
                     )
                 )

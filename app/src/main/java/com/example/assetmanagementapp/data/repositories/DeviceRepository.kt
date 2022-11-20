@@ -28,4 +28,8 @@ class DeviceRepository @Inject constructor(
     fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest) = safeFlow {
         searchMainImpl.searchListDevice(searchListDeviceRequest)
     }
+
+    fun getInfoMain() = safeFlow {
+        searchMainImpl.getInfoMain()
+    }
 }

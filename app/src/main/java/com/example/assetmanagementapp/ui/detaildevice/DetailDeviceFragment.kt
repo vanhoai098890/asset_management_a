@@ -156,7 +156,7 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
         handleShowItemInfo(
             itemInfo = binding.itemPrice,
             nameInfo = deviceItem.unitPrice.toString(),
-            icon = R.drawable.icon_amount,
+            icon = R.drawable.ic_amount,
             detail = R.string.v1_unit_price
         )
         handleShowItemInfo(

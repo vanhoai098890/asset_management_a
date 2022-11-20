@@ -56,7 +56,7 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     override fun dismiss() {
         try {
-            if (isShowing && isAdded) {
+            if (isShowing) {
                 super.dismiss()
             }
         } catch (e: IllegalStateException) {
@@ -75,10 +75,13 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     abstract fun initListeners(dialog: Dialog)
 
-
     override fun onStart() {
         super.onStart()
         dialog?.window?.apply {
+            setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+            )
             decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
                         // Set the content to appear under the system bars so that the

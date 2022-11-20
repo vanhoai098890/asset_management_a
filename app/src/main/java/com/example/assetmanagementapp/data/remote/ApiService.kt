@@ -7,6 +7,9 @@ import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPro
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
 import com.example.assetmanagementapp.data.remote.api.model.customer.ProfileRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
+import com.example.assetmanagementapp.data.remote.api.model.department.AddDepartmentItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentAdditionRequest
+import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
 import com.example.assetmanagementapp.data.remote.api.model.device.ListDeviceMainResponse
@@ -16,6 +19,7 @@ import com.example.assetmanagementapp.data.remote.api.model.favourite.SaveDevice
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
+import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.ResetPasswordRequestDto
@@ -111,5 +115,14 @@ interface ApiService {
 
     @POST("api/device/search_asset")
     suspend fun searchListDevice(@Body searchListDeviceRequest: SearchListDeviceRequest): Response<DeviceItemResponse>
+
+    @GET("api/device/get_info_main")
+    suspend fun getInfoMain(): Response<InfoMainResponse>
+
+    @GET("api/department/get_all_department")
+    suspend fun getDepartments(): Response<DepartmentItemResponse>
+
+    @POST("api/department/add_department")
+    suspend fun addDepartment(@Body departmentAdditionRequest: DepartmentAdditionRequest): Response<AddDepartmentItemResponse>
 
 }

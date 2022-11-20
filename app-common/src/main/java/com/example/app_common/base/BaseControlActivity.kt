@@ -11,14 +11,20 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.example.app_common.databinding.ActivityMainBinding
+import androidx.lifecycle.lifecycleScope
 import com.example.app_common.constant.AppConstant
+import com.example.app_common.databinding.ActivityMainBinding
 import com.example.app_common.extensions.addFragment
 import com.example.app_common.extensions.replaceFragment
 import com.example.app_common.ui.LoadingDialog
+import com.example.app_common.utils.LogUtils
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 abstract class BaseControlActivity : AppCompatActivity() {
@@ -50,7 +56,9 @@ abstract class BaseControlActivity : AppCompatActivity() {
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
-        hideSystemUI(this)
+        if (hasFocus) {
+            hideSystemUI(this)
+        }
         super.onWindowFocusChanged(hasFocus)
     }
 
@@ -105,7 +113,10 @@ abstract class BaseControlActivity : AppCompatActivity() {
     }
 
     internal fun hideLoading() {
-        loadingDialog.dismiss()
+        lifecycleScope.launchWhenStarted {
+            delay(300)
+            loadingDialog.dismiss()
+        }
     }
 
     internal fun clearNoNavigationContainerChildBackStack() {
@@ -146,10 +157,22 @@ abstract class BaseControlActivity : AppCompatActivity() {
                     or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN // Hide the nav bar and status bar
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                     or View.SYSTEM_UI_FLAG_FULLSCREEN)
+
+        hideSystemBars()
     }
 
     override fun onStart() {
         super.onStart()
         hideSystemUI(this)
+    }
+
+    private fun hideSystemBars() {
+        val windowInsetsController =
+            ViewCompat.getWindowInsetsController(window.decorView) ?: return
+        // Configure the behavior of the hidden system bars
+        windowInsetsController.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        // Hide both the status bar and the navigation bar
+        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
     }
 }

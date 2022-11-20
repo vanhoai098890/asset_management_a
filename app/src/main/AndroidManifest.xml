@@ -28,7 +28,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="nosensor"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             android:exported="false">
         </activity>
         <activity

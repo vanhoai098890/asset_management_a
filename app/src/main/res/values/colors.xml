@@ -9,6 +9,7 @@
     <color name="black_50_alpha">#80000000</color>
     <color name="black_10_alpha">#1A000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_chart_color">#F9F5F2</color>
     <color name="splashColor">#023E49</color>
     <color name="orange">#F3B15C</color>
     <color name="deepBlue">#4D515A</color>
@@ -59,4 +60,11 @@
     <color name="primary_neutral_disable_border">#DFDEE4</color>
     <color name="sunshine_yellow">#FFD335</color>
     <color name="black_5">#0D000000</color>
+    <color name="txt_background">#6278A5</color>
+    <color name="bg_main_color">#1B3168</color>
+    <color name="bg_main_color_unselected">#2D4174</color>
+    <color name="bg_bar_color_selected">#B1DB61</color>
+    <color name="bg_bar_color">#2D4174</color>
+    <color name="box_money_color">#00A1F9</color>
+    <color name="txt_unselect">#334461</color>
 </resources>

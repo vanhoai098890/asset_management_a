@@ -43,9 +43,15 @@ sealed class PersonalFunctionStatic(
         id = 7
     )
 
+    object HELP : PersonalFunctionStatic(
+        drawableRes = R.drawable.ic_outline_info_24,
+        stringRes = R.string.v1_help,
+        id = 8
+    )
+
     object LOGOUT : PersonalFunctionStatic(
         drawableRes = R.drawable.ic_log_out,
         stringRes = R.string.v1_logout,
-        id = 8
+        id = 9
     )
 }
