@@ -66,14 +66,15 @@
 
             <TextView
                 android:id="@+id/tvNumberOfAssets"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/_0dp"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/_10dp"
                 android:paddingVertical="@dimen/_5dp"
                 android:text="@string/number_of_assets_d"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="@id/cvRoom"
-                app:layout_constraintStart_toStartOf="@id/tvNumberOfRooms"
+                app:layout_constraintStart_toStartOf="@id/tvNameRoom"
+                app:layout_constraintEnd_toEndOf="@id/tvNameRoom"
                 app:layout_constraintTop_toBottomOf="@id/tvNumberOfRooms"
                 tools:text="Number of assets: 10" />
         </androidx.constraintlayout.widget.ConstraintLayout>

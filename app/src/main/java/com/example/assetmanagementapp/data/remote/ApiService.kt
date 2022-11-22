@@ -9,6 +9,7 @@ import com.example.assetmanagementapp.data.remote.api.model.customer.ProfileRequ
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
 import com.example.assetmanagementapp.data.remote.api.model.department.AddDepartmentItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentAdditionRequest
+import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentDetailRequest
 import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
@@ -23,6 +24,9 @@ import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainRes
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.ResetPasswordRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.room.AddRoomRequest
+import com.example.assetmanagementapp.data.remote.api.model.room.ListRoomItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.room.RoomItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.setnewpassword.ConfirmForgotPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.setpassword.SetPasswordRequestDto
@@ -124,5 +128,11 @@ interface ApiService {
 
     @POST("api/department/add_department")
     suspend fun addDepartment(@Body departmentAdditionRequest: DepartmentAdditionRequest): Response<AddDepartmentItemResponse>
+
+    @POST("api/department/get_room_by_department_id")
+    suspend fun getRoomsByDepartmentId(@Body detailDepartmentRequest: DepartmentDetailRequest): Response<ListRoomItemResponse>
+
+    @POST("api/room/add_room")
+    suspend fun addRoomByDepartmentId(@Body addRoomRequest: AddRoomRequest): Response<RoomItemResponse>
 
 }

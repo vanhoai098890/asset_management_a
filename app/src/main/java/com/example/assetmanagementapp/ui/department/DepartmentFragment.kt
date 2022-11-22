@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +15,7 @@ import com.example.app_common.utils.ScreenUtils
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentDepartmentBinding
+import com.example.assetmanagementapp.ui.room.DetailDepartmentFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -28,7 +28,7 @@ class DepartmentFragment : BaseFragment() {
     private val departmentAdapter by lazy {
         DepartmentAdapter().apply {
             onClick = {
-                Toast.makeText(requireContext(), it.departmentName, Toast.LENGTH_SHORT).show()
+                addNoNavigationFragment(DetailDepartmentFragment.newInstance(it.departmentId,it.departmentName))
             }
         }
     }

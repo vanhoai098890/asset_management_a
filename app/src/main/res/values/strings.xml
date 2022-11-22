@@ -83,6 +83,7 @@
     <string name="v1_see_more">See more</string>
     <string name="v1_see_less">See less</string>
     <string name="v1_rooms">Rooms</string>
+    <string name="v1_rooms_of_department">%s\' rooms</string>
     <string name="v1_bed_room">%s Bedrooms</string>
     <string name="v1_room_sqrt">%s sqft</string>
     <string name="v1_room_price">$%s/mo</string>
@@ -484,7 +485,7 @@
     <string name="total_depreciation">Total Depreciation</string>
     <string name="assets">Assets</string>
     <string name="view_all_assets">View all assets</string>
-    <string name="department">Department</string>
+    <string name="department">Departments</string>
     <string name="view_all_department">View all department</string>
     <string name="view_all_categories">View all categories</string>
     <string name="total_price">Total price</string>
@@ -497,4 +498,6 @@
     <string name="ex_information_technology">ex: Information technology</string>
     <string name="add_department_success">This department is already added</string>
     <string name="add_department_false">This department is already existed</string>
+    <string name="add_room_success">This room is already added</string>
+    <string name="add_room_false">This room is already existed</string>
 </resources>
