@@ -23,13 +23,6 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
-/**
- * @IdScreen S01003
- *
- * Canow
- * <p>
- * Created by FPT.
- */
 @HiltViewModel
 class VerifyOTPViewModel @Inject constructor(
     private val repository: SignUpRepository,

@@ -15,11 +15,6 @@ import com.example.app_common.R
 import com.example.app_common.extensions.dimensionDpToPixel
 import java.util.regex.Pattern
 
-/**
- * Canow
- * <p>
- * Created by FPT.
- */
 class OTPEntryView : FrameLayout {
     companion object {
         private const val DEFAULT_LENGTH = 4

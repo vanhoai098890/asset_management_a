@@ -500,4 +500,5 @@
     <string name="add_department_false">This department is already existed</string>
     <string name="add_room_success">This room is already added</string>
     <string name="add_room_false">This room is already existed</string>
+    <string name="room_asset">%s\' assets</string>
 </resources>

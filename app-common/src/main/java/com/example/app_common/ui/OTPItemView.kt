@@ -15,11 +15,6 @@ import androidx.core.content.res.ResourcesCompat
 import com.example.app_common.R
 import com.example.app_common.extensions.dimensionDpToPixel
 
-/**
- * Canow
- * <p>
- * Created by FPT.
- */
 class OTPItemView : FrameLayout {
     companion object {
         const val ACTIVE = 1

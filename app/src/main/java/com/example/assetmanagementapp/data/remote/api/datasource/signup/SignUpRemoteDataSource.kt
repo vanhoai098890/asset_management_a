@@ -5,13 +5,6 @@ import com.example.assetmanagementapp.data.remote.api.model.checkotp.VerifyOTPRe
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 
-/**
- * @IdScreen S01001, S010002
- *
- * Canow
- * <p>
- * Created by FPT.
- */
 interface SignUpRemoteDataSource {
     suspend fun postPhoneSignUp(phoneRequest: InputPhoneRequest): InputPhoneResponse
 

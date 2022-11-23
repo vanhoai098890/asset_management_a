@@ -6,11 +6,6 @@ import android.util.AttributeSet
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.widget.AppCompatEditText
 
-/**
- * Canow
- * <p>
- * Created by FPT.
- */
 internal class OTPEntryChildView : AppCompatEditText {
 
     constructor(context: Context) : super(context) {

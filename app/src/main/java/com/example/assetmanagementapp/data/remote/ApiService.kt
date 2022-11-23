@@ -25,6 +25,7 @@ import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.ResetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.room.AddRoomRequest
+import com.example.assetmanagementapp.data.remote.api.model.room.AssetItemRequest
 import com.example.assetmanagementapp.data.remote.api.model.room.ListRoomItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.room.RoomItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
@@ -134,5 +135,8 @@ interface ApiService {
 
     @POST("api/room/add_room")
     suspend fun addRoomByDepartmentId(@Body addRoomRequest: AddRoomRequest): Response<RoomItemResponse>
+
+    @POST("api/room/get_asset_by_id")
+    suspend fun getAssetByRoomId(@Body assetItemRequest: AssetItemRequest): Response<DeviceItemResponse>
 
 }
