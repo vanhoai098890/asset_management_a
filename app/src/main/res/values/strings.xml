@@ -491,6 +491,7 @@
     <string name="total_price">Total price</string>
     <string name="total_price_description">Total price of all assets</string>
     <string name="asset_information">Asset information</string>
+    <string name="user_information">User information</string>
     <string name="number_of_rooms_d">Number of rooms: %d</string>
     <string name="number_of_assets_d">Number of assets: %d</string>
     <string name="name_department">%s department</string>
@@ -511,4 +512,7 @@
     <string name="s6_1_1_2_put_the_qr_into_camera">Put the QR into your camera</string>
     <string name="s6_1_1_2_scan_merchant_qr">*Invalid Merchant QR code</string>
     <string name="scan_qr_code">Scan qrcode</string>
+    <string name="this_info_will_be_used_for_logging_into_the_app">*This info will be used for logging into the app</string>
+    <string name="phone_number">Phone number</string>
+    <string name="identity_number">Identity number</string>
 </resources>

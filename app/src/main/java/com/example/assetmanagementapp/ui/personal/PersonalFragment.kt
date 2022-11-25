@@ -11,6 +11,7 @@ import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentPersonalBinding
 import com.example.assetmanagementapp.ui.editprofile.EditProfileBottomSheet
 import com.example.assetmanagementapp.ui.logout.LogoutDialog
+import com.example.assetmanagementapp.ui.userinfo.UserInfoFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,6 +24,11 @@ class PersonalFragment : BaseFragment() {
         PersonalAdapter().apply {
             onClickItem = {
                 when (it) {
+                    PersonalFunctionStatic.PERSONAL -> {
+                        viewModel.statePersonalInfo.value?.let { userInfo ->
+                            addNoNavigationFragment(UserInfoFragment.newInstance(userInfo))
+                        }
+                    }
                     PersonalFunctionStatic.LOGOUT -> {
                         logoutDialog.show(parentFragmentManager, null)
                     }

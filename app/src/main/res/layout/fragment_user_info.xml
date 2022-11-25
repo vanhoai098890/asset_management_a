@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.userinfo.UserInfoFragment">
+
+        <include
+            android:id="@+id/layoutToolbar"
+            layout="@layout/layout_toolbar_common" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:background="@color/pinkSwan"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <TextView
+            android:id="@+id/tvPhoneTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:text="@string/phone_number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutToolbar" />
+
+        <TextView
+            android:id="@+id/tvPhoneNumber"
+            bindPhoneNumber="@{data.phoneNumber}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            app:layout_constraintStart_toStartOf="@id/tvPhoneTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoneTitle"
+            tools:text="0367359816" />
+
+        <TextView
+            android:id="@+id/tvNotePhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:text="@string/this_info_will_be_used_for_logging_into_the_app"
+            android:textColor="@color/alizarinCrimson"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPhoneNumber" />
+
+        <View
+            android:id="@+id/viewBottomPhone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/pinkSwan"
+            app:layout_constraintTop_toBottomOf="@id/tvNotePhoneNumber" />
+
+        <TextView
+            android:id="@+id/tvEmailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:text="@string/v1_email"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewBottomPhone" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:text="@{data.email}"
+            app:layout_constraintStart_toStartOf="@id/tvEmailTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvEmailTitle"
+            tools:text="0367359816" />
+
+        <View
+            android:id="@+id/viewBottomEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/pinkSwan"
+            app:layout_constraintTop_toBottomOf="@id/tvEmail" />
+
+        <TextView
+            android:id="@+id/tvIdentityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:text="@string/identity_number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewBottomEmail" />
+
+        <TextView
+            android:id="@+id/tvIdentityNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:text="@{data.cmnd}"
+            app:layout_constraintStart_toStartOf="@id/tvIdentityTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvIdentityTitle"
+            tools:text="0367359816" />
+
+        <View
+            android:id="@+id/viewBottomIdentity"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/pinkSwan"
+            app:layout_constraintTop_toBottomOf="@id/tvIdentityNumber" />
+
+        <TextView
+            android:id="@+id/tvBirthDayTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_16dp"
+            android:text="@string/v1_date_of_birth"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/viewBottomIdentity" />
+
+        <TextView
+            android:id="@+id/tvBirthDay"
+            bindBirthday="@{data.birthday}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            app:layout_constraintStart_toStartOf="@id/tvBirthDayTitle"
+            app:layout_constraintTop_toBottomOf="@id/tvBirthDayTitle"
+            tools:text="0367359816" />
+
+        <View
+            android:id="@+id/viewBottomBirthDay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1dp"
+            android:layout_marginHorizontal="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_8dp"
+            android:background="@color/pinkSwan"
+            app:layout_constraintTop_toBottomOf="@id/tvBirthDay" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

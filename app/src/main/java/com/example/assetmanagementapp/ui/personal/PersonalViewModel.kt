@@ -5,6 +5,7 @@ import com.example.app_common.base.viewmodel.BaseViewModel
 import com.example.app_common.extensions.bindLoading
 import com.example.app_common.extensions.onSuccess
 import com.example.assetmanagementapp.data.local.LoginSessionManager
+import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.data.repositories.CustomerRepository
 import com.example.assetmanagementapp.data.repositories.PersonalRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +19,7 @@ class PersonalViewModel @Inject constructor(
     private val localSessionManager: LoginSessionManager,
     private val customerRepository: CustomerRepository
 ) : BaseViewModel() {
+    val statePersonalInfo: MutableStateFlow<UserInfo?> = MutableStateFlow(null)
     val listPersonal: MutableStateFlow<MutableList<PersonalFunctionStatic>> = MutableStateFlow(
         mutableListOf(
             PersonalFunctionStatic.PERSON(),
@@ -37,6 +39,7 @@ class PersonalViewModel @Inject constructor(
             .bindLoading(this)
             .onSuccess { userResponse ->
                 userResponse.userInfo.apply {
+                    statePersonalInfo.value = this
                     listPersonal.value = ArrayList(listPersonal.value).map {
                         if (it is PersonalFunctionStatic.PERSON) {
                             PersonalFunctionStatic.PERSON(username = username, avatarId = avatarId)

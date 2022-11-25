@@ -6,7 +6,6 @@ import android.content.res.Resources
 import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
 import android.text.method.LinkMovementMethod
-import android.text.util.Linkify
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -103,6 +102,24 @@ fun TextView.bindTextUserName(name: String?) {
     text = tempText
 }
 
+@BindingAdapter("bindPhoneNumber")
+fun TextView.bindPhoneNumber(phoneNumber: String?) {
+    var tempText = ""
+    phoneNumber?.apply {
+        tempText = PhoneFormatTextWatcher.format(this)
+    }
+    text = tempText
+}
+
+@BindingAdapter("bindBirthday")
+fun TextView.bindBirthday(birthday: String?) {
+    var tempText = ""
+    birthday?.apply {
+        tempText = birthday.substring(0, 10)
+    }
+    text = tempText
+}
+
 @BindingAdapter("bindNation")
 fun TextView.bindNation(name: String?) {
     var flagUpper = true
@@ -135,7 +152,7 @@ fun TextView.bindTextNationality(nationality: String?) {
 @BindingAdapter("bindHtmlText")
 fun TextView.bindHtmlText(name: String?) {
     name?.apply {
-        this@bindHtmlText.text = Html.fromHtml(name.replace("'","\""), FROM_HTML_MODE_LEGACY)
+        this@bindHtmlText.text = Html.fromHtml(name.replace("'", "\""), FROM_HTML_MODE_LEGACY)
         this@bindHtmlText.movementMethod = LinkMovementMethod.getInstance()
     }
 }
@@ -239,7 +256,7 @@ fun Int.toTimeDisplay(): String = String.format("%02d:%02d", this / 60, this % 6
 fun String.toPhoneNumberDisplay(): String {
     var result = this
     try {
-        result = PhoneFormatTextWatcher().format(this)
+        result = PhoneFormatTextWatcher.format(this)
     } catch (e: Exception) {
         LogUtils.e(e.stackTraceToString())
     }

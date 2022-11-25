@@ -11,10 +11,36 @@ open class PhoneFormatTextWatcher : TextWatcherImpl() {
         private const val PATTERN_TWO_GROUP = "{0} {1}"
         private const val PATTERN_THREE_GROUP = "{0} {1} {2}"
         private const val SPACE = " "
-    }
+        private val phoneMsgFmt2Groups = MessageFormat(PATTERN_TWO_GROUP)
+        private val phoneMsgFmt3Groups = MessageFormat(PATTERN_THREE_GROUP)
 
-    private val phoneMsgFmt2Groups = MessageFormat(PATTERN_TWO_GROUP)
-    private val phoneMsgFmt3Groups = MessageFormat(PATTERN_THREE_GROUP)
+        /**
+         * Region Private
+         */
+        fun format(phoneNumber: String): String {
+            var result = phoneNumber
+            if (phoneNumber.length in (MAX_LENGTH_1_GROUP + 1)..MAX_LENGTH_2_GROUP) {
+                result = phoneMsgFmt2Groups.format(getPhoneNumArrFollow2Groups(phoneNumber))
+            } else if (phoneNumber.length > MAX_LENGTH_2_GROUP) {
+                result = phoneMsgFmt3Groups.format(getPhoneNumArrFollow3Groups(phoneNumber))
+            }
+            return result
+        }
+
+        private fun getPhoneNumArrFollow2Groups(phoneRawString: String) = arrayOf(
+            phoneRawString.substring(0, MAX_LENGTH_1_GROUP),
+            phoneRawString.substring(MAX_LENGTH_1_GROUP, phoneRawString.length),
+        )
+
+        private fun getPhoneNumArrFollow3Groups(phoneRawString: String) = arrayOf(
+            phoneRawString.substring(0, MAX_LENGTH_1_GROUP),
+            phoneRawString.substring(
+                MAX_LENGTH_1_GROUP,
+                MAX_LENGTH_2_GROUP
+            ),
+            phoneRawString.substring(MAX_LENGTH_2_GROUP)
+        )
+    }
 
     protected var rawPhone: String = ""
 
@@ -24,33 +50,6 @@ open class PhoneFormatTextWatcher : TextWatcherImpl() {
             handleReplaceEditText()
         }
     }
-
-    /**
-     * Region Private
-     */
-    fun format(phoneNumber: String): String {
-        var result = phoneNumber
-        if (phoneNumber.length in (MAX_LENGTH_1_GROUP + 1)..MAX_LENGTH_2_GROUP) {
-            result = phoneMsgFmt2Groups.format(getPhoneNumArrFollow2Groups(phoneNumber))
-        } else if (phoneNumber.length > MAX_LENGTH_2_GROUP) {
-            result = phoneMsgFmt3Groups.format(getPhoneNumArrFollow3Groups(phoneNumber))
-        }
-        return result
-    }
-
-    private fun getPhoneNumArrFollow2Groups(phoneRawString: String) = arrayOf(
-        phoneRawString.substring(0, MAX_LENGTH_1_GROUP),
-        phoneRawString.substring(MAX_LENGTH_1_GROUP, phoneRawString.length),
-    )
-
-    private fun getPhoneNumArrFollow3Groups(phoneRawString: String) = arrayOf(
-        phoneRawString.substring(0, MAX_LENGTH_1_GROUP),
-        phoneRawString.substring(
-            MAX_LENGTH_1_GROUP,
-            MAX_LENGTH_2_GROUP
-        ),
-        phoneRawString.substring(MAX_LENGTH_2_GROUP)
-    )
 
     private fun handleReplaceEditText() {
         refView?.run {
