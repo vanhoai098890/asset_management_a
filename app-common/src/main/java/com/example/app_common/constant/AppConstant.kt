@@ -23,6 +23,8 @@ object AppConstant {
     const val FORMAT_DATE = "yyyy-MM-dd"
     const val FORMAT_DATE_V2 = "yyyy-MM-dd'T'HH:mm"
     const val APPROVED = "APPROVED"
+    const val MAIL_TO = "mailto:"
+    const val EMAIL_INFO = "info@management.com"
     const val PENDING = "PENDING"
     const val RETURNED = "RETURNED"
     const val CANCELED = "CANCELLED"

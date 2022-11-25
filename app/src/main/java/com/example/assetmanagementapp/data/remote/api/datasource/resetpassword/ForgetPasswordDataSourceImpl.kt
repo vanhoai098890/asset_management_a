@@ -3,6 +3,8 @@ package com.example.assetmanagementapp.data.remote.api.datasource.resetpassword
 import com.example.app_common.base.exception.apiCall
 import com.example.app_common.base.response.CommonResponse
 import com.example.assetmanagementapp.data.remote.ApiService
+import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordRequest
+import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.ForgetPasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
@@ -37,4 +39,10 @@ class ForgetPasswordDataSourceImpl @Inject constructor(private val apiService: A
         apiCall {
             apiService.checkPhoneNumberResetPassword(InputPhoneRequest(phoneRequest))
         }
+
+    override suspend fun changePassword(changePasswordRequest: ChangePasswordRequest): ChangePasswordResponse {
+        return apiCall {
+            apiService.changePassword(changePasswordRequest)
+        }
+    }
 }

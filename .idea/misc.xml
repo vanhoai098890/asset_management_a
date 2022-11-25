@@ -53,6 +53,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable-xxhdpi/ic_navigate_next_silver_24dp.xml" value="0.173" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable-xxhdpi/ic_request.xml" value="0.173" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable-xxhdpi/ic_transaction_history.xml" value="0.173" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/bg_border_blue_interactive_radius_62dp.xml" value="0.1545" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/bg_button_sign_in.xml" value="0.159" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/bg_camera_permission.xml" value="0.1545" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/bg_card_white_radius_20dp.xml" value="0.173" />
@@ -110,6 +111,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_number.xml" value="0.17" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_outline_category_24.xml" value="0.133" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_password_toggle_visible.xml" value="0.159" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_phone_call.xml" value="0.1545" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_qr.xml" value="0.173" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_request_regular.xml" value="0.173" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/drawable/ic_reset_password.xml" value="0.173" />
@@ -137,9 +139,11 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/favourite_fragment.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_bottom_sheet_caregory.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_category.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_change_password.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_change_password_success.xml" value="0.578894472361809" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_department.xml" value="0.264" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_detail_department.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_help.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_navigation_container.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_no_navigation_container.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/fragment_note_main.xml" value="0.25" />
@@ -160,6 +164,7 @@
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/item_layout_device.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/item_personal_content_function.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/layout_bottom_sheet_edit_profile.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/layout_card_hot_line.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/layout_item_asset_info.xml" value="0.24895833333333334" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/layout_item_bar.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/AndroidStudioProjects/AssetManagementApp/app/src/main/res/layout/layout_item_category.xml" value="0.24895833333333334" />

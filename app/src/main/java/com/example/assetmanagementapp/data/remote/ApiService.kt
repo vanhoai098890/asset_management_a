@@ -1,6 +1,8 @@
 package com.example.assetmanagementapp.data.remote
 
 import com.example.app_common.base.response.CommonResponse
+import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordRequest
+import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.checkotp.CheckOtpRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.checkotp.VerifyOTPRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
@@ -148,5 +150,8 @@ interface ApiService {
 
     @POST("api/device/check_device")
     suspend fun checkDeviceExist(@Body checkDeviceExistRequest: CheckDeviceExistRequest): Response<CheckDeviceExistResponse>
+
+    @POST("api/customer/change_password")
+    suspend fun changePassword(@Body changePasswordRequest: ChangePasswordRequest): Response<ChangePasswordResponse>
 
 }

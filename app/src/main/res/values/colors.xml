@@ -34,6 +34,7 @@
     <color name="tango">#1C2445</color>
     <color name="blackSqueeze">#F4F7FB</color>
     <color name="boldBlue">#1C2445</color>
+    <color name="blue_interactive">#176BEB</color>
     <color name="on_surface_high_emphasis">#CC000000</color>
     <color name="on_surface_low_emphasis">#99000000</color>
     <color name="primary_neutral_maintext">#2C1F50</color>
@@ -67,4 +68,5 @@
     <color name="bg_bar_color">#2D4174</color>
     <color name="box_money_color">#00A1F9</color>
     <color name="txt_unselect">#334461</color>
+    <color name="system_blue_light">#007AFF</color>
 </resources>

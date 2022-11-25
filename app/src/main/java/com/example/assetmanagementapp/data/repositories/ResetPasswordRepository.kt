@@ -5,6 +5,7 @@ import com.example.app_common.base.response.CommonResponse
 import com.example.app_common.extensions.FlowResult
 import com.example.app_common.extensions.safeFlow
 import com.example.assetmanagementapp.data.remote.api.datasource.resetpassword.ForgetPasswordDataSourceImpl
+import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordRequest
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,5 +26,9 @@ class ResetPasswordRepository @Inject constructor(private val dataSource: Forget
 
     internal fun checkPhoneResetPassword(phoneRequest: String) = safeFlow {
         dataSource.checkPhoneResetPassword(phoneRequest)
+    }
+
+    internal fun changePassword(changePasswordRequest: ChangePasswordRequest) = safeFlow {
+        dataSource.changePassword(changePasswordRequest)
     }
 }

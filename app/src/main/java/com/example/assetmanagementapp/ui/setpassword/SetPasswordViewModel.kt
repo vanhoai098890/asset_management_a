@@ -1,16 +1,21 @@
 package com.example.assetmanagementapp.ui.setpassword
 
 import android.text.Editable
+import androidx.lifecycle.viewModelScope
 import com.example.app_common.base.viewmodel.BaseViewModel
 import com.example.app_common.constant.AppConstant
 import com.example.app_common.extensions.bindLoading
+import com.example.app_common.extensions.onError
+import com.example.app_common.extensions.onSuccess
 import com.example.app_common.utils.text_watcher.TextWatcherImpl
+import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import com.example.assetmanagementapp.data.repositories.ResetPasswordRepository
 import com.example.assetmanagementapp.data.repositories.SignUpRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.launchIn
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,10 +33,18 @@ class SetPasswordViewModel @Inject constructor(
     private val _password: MutableStateFlow<String> = MutableStateFlow(AppConstant.EMPTY)
     private val _confirmPassword: MutableStateFlow<String> = MutableStateFlow(AppConstant.EMPTY)
 
+    /**
+     * only for change password fragment
+     */
+    val currentPassword = MutableStateFlow("")
+    val userPhoneNumber = MutableStateFlow("")
+    val stateSuccess: MutableStateFlow<Boolean?> = MutableStateFlow(null)
+
     internal var phoneNumber: String = AppConstant.EMPTY
     internal var typeFlow: Int = -1
     internal var isPasswordVisible = false
     internal var isRePasswordVisible = false
+    internal var isCurrentPasswordVisible = false
 
     val password: StateFlow<String> = _password
     val confirmPassword: StateFlow<String> = _confirmPassword
@@ -41,6 +54,12 @@ class SetPasswordViewModel @Inject constructor(
     val isNumber = MutableStateFlow(false)
     val isPasswordMatched = MutableStateFlow(false)
     val enableSetPasswordButton = MutableStateFlow(false)
+
+    val currentPasswordTextWatcher = object : TextWatcherImpl() {
+        override fun afterTextChanged(s: Editable?) {
+            currentPassword.value = s.toString()
+        }
+    }
 
     val passwordTextWatcher = object : TextWatcherImpl() {
         override fun afterTextChanged(s: Editable?) {
@@ -102,5 +121,19 @@ class SetPasswordViewModel @Inject constructor(
         isAtLeastOneLetter(value)
         isNumber(value)
         isPasswordMatched(password.value, confirmPassword.value)
+    }
+
+    fun changePassword() {
+        resetPasswordRepository.changePassword(
+            ChangePasswordRequest(
+                phoneNumber = userPhoneNumber.value,
+                currentPassword = currentPassword.value,
+                newPassword = password.value
+            )
+        ).bindLoading(this).onSuccess {
+            stateSuccess.value = true
+        }.onError {
+            stateSuccess.value = false
+        }.launchIn(viewModelScope)
     }
 }

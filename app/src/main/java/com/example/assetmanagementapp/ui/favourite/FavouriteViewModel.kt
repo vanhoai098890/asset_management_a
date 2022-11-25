@@ -27,7 +27,7 @@ class FavouriteViewModel @Inject constructor(
     private val size = 10
 
     init {
-        dispatchState(currentState.copy(stateCurrentUserInfo = loginSessionManager.getCustomerLocal()))
+        dispatchState(currentState.copy(phoneNumber = loginSessionManager.getUsername()))
     }
 
     override fun initState() = FavouriteFragmentState()
@@ -45,7 +45,7 @@ class FavouriteViewModel @Inject constructor(
 
     fun onLoadMore() {
         if (currentState.stateLoadingListMain || currentState.isEndOfList) return
-        currentState.stateCurrentUserInfo?.phoneNumber?.apply {
+        currentState.phoneNumber?.apply {
             favouriteRepository.getFavouriteDevices(
                 phoneNumber = this,
                 page = page,
@@ -105,11 +105,11 @@ class FavouriteViewModel @Inject constructor(
 
     fun saveDevices(deviceId: Int, isSave: Boolean) {
         if (stateSetJobOnSaveDeviceRequest.contains(deviceId)) return
-        currentState.stateCurrentUserInfo?.apply {
-            viewModelScope.launch {
-                synchronized(isBlockSave) {
-                    stateSetJobOnSaveDeviceRequest.add(deviceId)
-                    favouriteRepository.saveDevices(phoneNumber, deviceId, isSave).onSuccess {
+        viewModelScope.launch {
+            synchronized(isBlockSave) {
+                stateSetJobOnSaveDeviceRequest.add(deviceId)
+                favouriteRepository.saveDevices(currentState.phoneNumber ?: "", deviceId, isSave)
+                    .onSuccess {
                         dispatchState(
                             currentState.copy(
                                 stateIsShowSnackBar = isSave,
@@ -124,7 +124,6 @@ class FavouriteViewModel @Inject constructor(
                     }.onCompletion {
                         stateSetJobOnSaveDeviceRequest.remove(deviceId)
                     }.launchIn(viewModelScope)
-                }
             }
         }
     }

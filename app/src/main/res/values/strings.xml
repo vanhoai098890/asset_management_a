@@ -447,6 +447,8 @@
     <string name="s02001_account_is_deactivate">Your account is deactivated</string>
     <string name="s02001_phone_number_is_locked">Your registration is temporarily locked, please try again.</string>
     <string name="s01004_password">Password</string>
+    <string name="s01004_new_password">New password</string>
+    <string name="s01004_current_password">Current password</string>
     <string name="s01004_retype_password">Re-type password</string>
     <string name="s01004_password_must_be">Password must be</string>
     <string name="s01004_6_20_characters_long">At least 8 characters</string>
@@ -455,6 +457,7 @@
     <string name="s01004_password_matched">Password matched</string>
     <string name="set_password_continue">Continue</string>
     <string name="s01004_password_setting">Password setting</string>
+    <string name="s01004_change_password_setting">Change password setting</string>
     <string name="common_message_error_e002">OTP has expired</string>
     <string name="s010003_verify_otp_header">SMS authentication</string>
     <string name="s010003_verify_otp_des">Enter the OTP sent to %s</string>
@@ -515,4 +518,12 @@
     <string name="this_info_will_be_used_for_logging_into_the_app">*This info will be used for logging into the app</string>
     <string name="phone_number">Phone number</string>
     <string name="identity_number">Identity number</string>
+    <string name="layout_hotline_time">Reception hours "&#x20;&#x20;" Weekdays 9:00~18:00 \n *Excluding year-end and New Year holidays</string>
+    <string name="app_phone_number">0120-510-310</string>
+    <string name="contact_via_email">Email to us</string>
+    <string name="description_about_contact_detail">You can also contact us by email. We will get back to you by email.</string>
+    <string name="send_email">Send email</string>
+    <string name="contact_us_by_phone">Contact us by phone</string>
+    <string name="contact_support_mail_subject4" />
+    <string name="contact_support_mail_subject">%s: [Management_Asset] Inquiries</string>
 </resources>
