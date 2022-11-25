@@ -11,6 +11,8 @@ import com.example.assetmanagementapp.data.remote.api.model.department.AddDepart
 import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentAdditionRequest
 import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentDetailRequest
 import com.example.assetmanagementapp.data.remote.api.model.department.DepartmentItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistRequest
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistResponse
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
 import com.example.assetmanagementapp.data.remote.api.model.device.ListDeviceMainResponse
@@ -22,6 +24,8 @@ import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.Forge
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeRequest
+import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeResponse
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.ResetPasswordRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.room.AddRoomRequest
@@ -138,5 +142,11 @@ interface ApiService {
 
     @POST("api/room/get_asset_by_id")
     suspend fun getAssetByRoomId(@Body assetItemRequest: AssetItemRequest): Response<DeviceItemResponse>
+
+    @POST("api/device/generate_qr")
+    suspend fun generateQrcode(@Body qrcodeRequest: QrcodeRequest): Response<QrcodeResponse>
+
+    @POST("api/device/check_device")
+    suspend fun checkDeviceExist(@Body checkDeviceExistRequest: CheckDeviceExistRequest): Response<CheckDeviceExistResponse>
 
 }

@@ -281,6 +281,18 @@
                         app:showingLine="3"
                         tools:text="This is campain to support our Vietnamese" />
 
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnGenerateQr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_16dp"
+                        android:layout_marginBottom="@dimen/_32dp"
+                        android:backgroundTint="@color/babyBlue"
+                        android:src="@drawable/ic_qr"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="ContentDescription" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/height_132dp"
@@ -294,6 +306,7 @@
                 android:background="@color/white"
                 android:elevation="@dimen/_2dp"
                 android:paddingTop="@dimen/_16dp"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView

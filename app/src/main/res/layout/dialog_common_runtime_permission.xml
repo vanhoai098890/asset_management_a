@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_common_dialog_round_16dp">
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvTitleDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_24dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:text="@string/s089_do_you_want_to_logout"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_14"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="@id/ivAvatar"
+        app:layout_constraintRight_toRightOf="@id/ivAvatar"
+        app:layout_constraintTop_toBottomOf="@id/ivAvatar" />
+
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_24dp"
+        android:layout_marginTop="@dimen/margin_8dp"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleDialog" />
+
+    <LinearLayout
+        android:id="@+id/btnSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_24dp"
+        android:layout_marginBottom="@dimen/margin_30dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/ivAvatar"
+        app:layout_constraintRight_toRightOf="@id/ivAvatar"
+        app:layout_constraintTop_toBottomOf="@id/tvHint">
+
+        <Button
+            android:id="@+id/btnNegative"
+            style="@style/commonButtonAuthFlow"
+            android:layout_width="@dimen/height_140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_16dp"
+            android:layout_marginEnd="@dimen/margin_6dp"
+            android:stateListAnimator="@null"
+            android:text="@string/common_deny"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:backgroundTint="@color/mercury" />
+
+        <Button
+            android:id="@+id/btnPositive"
+            style="@style/commonButtonAuthFlow"
+            android:layout_width="@dimen/height_140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_6dp"
+            android:layout_marginEnd="@dimen/margin_16dp"
+            android:stateListAnimator="@null"
+            android:text="@string/common_go_to_setting"
+            android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

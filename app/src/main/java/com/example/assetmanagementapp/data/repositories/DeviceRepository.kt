@@ -3,6 +3,7 @@ package com.example.assetmanagementapp.data.repositories
 import com.example.app_common.extensions.safeFlow
 import com.example.assetmanagementapp.data.remote.api.datasource.detaildevice.DetailDeviceDatasourceImpl
 import com.example.assetmanagementapp.data.remote.api.datasource.searchmain.SearchMainImpl
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistRequest
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
 import javax.inject.Inject
@@ -31,5 +32,9 @@ class DeviceRepository @Inject constructor(
 
     fun getInfoMain() = safeFlow {
         searchMainImpl.getInfoMain()
+    }
+
+    fun checkDeviceExist(checkDeviceExistRequest: CheckDeviceExistRequest) = safeFlow {
+        deviceDatasourceImpl.checkDeviceExist(checkDeviceExistRequest)
     }
 }

@@ -26,6 +26,11 @@ object AppConstant {
     const val PENDING = "PENDING"
     const val RETURNED = "RETURNED"
     const val CANCELED = "CANCELLED"
+    const val LOADING_BITMAP = 1
+    const val ERROR_BITMAP = 2
+    const val SHOW_BITMAP = 3
+    const val REGEX_BASE_64_IMAGE: String = "data:image/[a-z]+;base64,"
+    const val SCAN_QR_RESULT = "SCAN_QR_RESULT"
 
     val COMPOSITE_VIEWPAGER = CompositePageTransformer().apply {
         addTransformer { page, position ->

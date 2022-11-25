@@ -501,4 +501,14 @@
     <string name="add_room_success">This room is already added</string>
     <string name="add_room_false">This room is already existed</string>
     <string name="room_asset">%s\' assets</string>
+    <string name="qrcode_title">Asset\' Qrcode</string>
+    <string name="qrcode_is_generating">Qrcode is generating</string>
+    <string name="qrcode_is_error">Error occur when generating qrcode</string>
+    <string name="s089_do_you_want_to_logout">Do you want to logout?</string>
+    <string name="common_deny">Deny</string>
+    <string name="common_go_to_setting">Go to setting</string>
+    <string name="common_request_camera_permission">This features would like to access your Camera to scan QR code and take pictures</string>
+    <string name="s6_1_1_2_put_the_qr_into_camera">Put the QR into your camera</string>
+    <string name="s6_1_1_2_scan_merchant_qr">*Invalid Merchant QR code</string>
+    <string name="scan_qr_code">Scan qrcode</string>
 </resources>

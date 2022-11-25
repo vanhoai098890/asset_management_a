@@ -36,6 +36,7 @@ android {
             def appProperties = new Properties()
             appProperties.load(new FileInputStream(appPropertiesFile))
             target.buildConfigField("String", "BASE_URL", appProperties["BASE_URL"])
+            target.buildConfigField("String", "HOST_DETAIL_DEVICE", appProperties["HOST_DETAIL_DEVICE"])
         }
 
         dev {
@@ -116,4 +117,6 @@ dependencies {
     implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
     implementation 'net.objecthunter:exp4j:0.4.8'
     implementation platform('com.google.firebase:firebase-bom:31.0.2')
+    implementation("com.journeyapps:zxing-android-embedded:$zxing_version")
+    implementation "com.google.zxing:core:$zxing_core_version"
 }

@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import com.example.app_common.extensions.setSafeOnClickListener
+import com.example.app_common.utils.LogUtils
 import com.example.assetmanagementapp.MainViewModel
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentNavigationContainerBinding
+import com.example.assetmanagementapp.ui.detaildevice.DetailDeviceFragment
+import com.example.assetmanagementapp.ui.qrcode.ScanMerchantQRContract
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -20,6 +24,16 @@ class MainNavigationContainerFragment : BaseFragment() {
     private val mainViewModel: MainViewModel by activityViewModels()
     private val fragmentPagers: MutableList<PagerContainerFragment> by lazy {
         mutableListOf()
+    }
+
+    private val barcodeLauncher = registerForActivityResult(ScanMerchantQRContract()) {
+        it?.apply {
+            try {
+                addNoNavigationFragment(DetailDeviceFragment.newInstance(it.data.toInt()))
+            } catch (ex: Exception) {
+                LogUtils.d(ex.message ?: "")
+            }
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -87,6 +101,9 @@ class MainNavigationContainerFragment : BaseFragment() {
                     verticalOffset = 7
                     horizontalOffset = 5
                 }
+            }
+            ivScan.setSafeOnClickListener {
+                barcodeLauncher.launch(null)
             }
         }
     }

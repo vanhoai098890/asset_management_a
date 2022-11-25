@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.app_common.constant.AppConstant.ERROR_BITMAP
+import com.example.app_common.constant.AppConstant.LOADING_BITMAP
+import com.example.app_common.constant.AppConstant.SHOW_BITMAP
 import com.example.app_common.extensions.setSafeOnClickListener
 import com.example.app_common.ui.snackbar.CustomSnackBar
 import com.example.app_common.utils.LogUtils
@@ -20,7 +23,8 @@ import com.example.assetmanagementapp.data.remote.api.model.favourite.StatusTick
 import com.example.assetmanagementapp.databinding.DeviceDetailFragmentBinding
 import com.example.assetmanagementapp.databinding.LayoutItemInfoDeviceBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class DetailDeviceFragment private constructor() : BaseFragment() {
@@ -41,6 +45,9 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
                 bottom = ScreenUtils.toPx(context, 80f)
             )
         }
+    }
+    private val qrcodeDialog: QrcodeDialog by lazy {
+        QrcodeDialog()
     }
 
     override fun onCreateView(
@@ -97,6 +104,10 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
                         )
                     }
                 }
+                btnGenerateQr.setSafeOnClickListener {
+                    customSnackBar.dismiss()
+                    viewModel.showDialogQrcode()
+                }
             }
         }
     }
@@ -104,13 +115,10 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
 
     private fun initEvent() {
         viewModel.getDetailDevice()
-        lifecycleScope.launchWhenStarted {
-            launch {
-                viewModel.loadingState().collect {
-                    handleShowLoadingDialog(it)
-                }
-            }
-        }
+        viewModel.getQrcodeAsset()
+        viewModel.loadingState().onEach {
+            handleShowLoadingDialog(it)
+        }.launchIn(lifecycleScope)
         viewModel.store.apply {
             observe(
                 owner = this@DetailDeviceFragment,
@@ -136,6 +144,16 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
                 selector = { currentState -> currentState.deviceItem },
                 observer = {
                     it?.apply { handleShowUI(it) }
+                }
+            )
+            observe(
+                owner = this@DetailDeviceFragment,
+                selector = { currentState -> currentState.stateShowDialogBitmap },
+                observer = { stateDialog ->
+                    if (stateDialog != 0) {
+                        showSnackBarDialog(stateDialog)
+                        viewModel.dispatchResetStateDialog()
+                    }
                 }
             )
         }
@@ -238,6 +256,33 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
         val message = getString(
             if (isFavourite) R.string.my_list_favorite_toast else R.string.my_list_un_favorite_toast
         )
+
+        customSnackBar.setText(message)
+        if (customSnackBar.isShown) {
+            customSnackBar.refreshCounting()
+        } else {
+            customSnackBar.show()
+        }
+        viewModel.dispatchResetSnackBar()
+    }
+
+    private fun showSnackBarDialog(stateDialog: Int) {
+        if (stateDialog == SHOW_BITMAP) {
+            qrcodeDialog.apply {
+                bitmap = viewModel.currentState.qrCodeBitmap
+            }.show(parentFragmentManager, null)
+            viewModel.dispatchResetSnackBar()
+            return
+        }
+        val message = when (stateDialog) {
+            LOADING_BITMAP -> {
+                getString(R.string.qrcode_is_generating)
+            }
+            ERROR_BITMAP -> {
+                getString(R.string.qrcode_is_error)
+            }
+            else -> ""
+        }
 
         customSnackBar.setText(message)
         if (customSnackBar.isShown) {
