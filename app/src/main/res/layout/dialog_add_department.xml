@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_gravity="center"
     android:layout_marginHorizontal="32dp"
     android:background="@drawable/bg_common_dialog_round_16dp">

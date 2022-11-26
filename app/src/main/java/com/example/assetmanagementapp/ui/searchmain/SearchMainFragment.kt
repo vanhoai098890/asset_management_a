@@ -27,11 +27,13 @@ import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMain
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAsset
 import com.example.assetmanagementapp.databinding.FragmentSearchMainBinding
+import com.example.assetmanagementapp.ui.category.CategoryFragment
 import com.example.assetmanagementapp.ui.department.DepartmentFragment
 import com.example.assetmanagementapp.ui.searchmain.chart.ChartCategoryAdapter
 import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import com.example.assetmanagementapp.utils.bindImageAvatar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -129,6 +131,9 @@ class SearchMainFragment : BaseFragment(), TipListener {
             ivAssetInfo.setImageResource(R.drawable.ic_outline_category_24)
             tvTitleInfo.text = getString(R.string.v1_category)
             tvDetailInfo.text = getString(R.string.view_all_categories)
+            root.setSafeOnClickListener {
+                addNoNavigationFragment(CategoryFragment())
+            }
         }
         binding?.layoutTotalPrice?.apply {
             ivAssetInfo.setBackgroundResource(R.drawable.ic_baseline_circle_bizarre_24)
