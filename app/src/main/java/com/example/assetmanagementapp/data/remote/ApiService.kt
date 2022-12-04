@@ -41,6 +41,7 @@ import com.example.assetmanagementapp.data.remote.api.model.setpassword.SetPassw
 import com.example.assetmanagementapp.data.remote.api.model.signin.request.SignInRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.signin.response.SignInResponseDto
 import com.example.assetmanagementapp.data.remote.api.model.signup.request.SignUpRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -121,8 +122,8 @@ interface ApiService {
     @POST("api/customer/update_profile")
     suspend fun updateProfiles(@Body profileRequest: ProfileRequest): Response<CommonResponse>
 
-    @GET("api/device/category")
-    suspend fun getCategories(): Response<TypeAssetResponse>
+    @POST("api/device/category")
+    suspend fun getCategories(@Body typeAssetRequest: TypeAssetRequest): Response<TypeAssetResponse>
 
     @POST("api/device/search_asset")
     suspend fun searchListDevice(@Body searchListDeviceRequest: SearchListDeviceRequest): Response<DeviceItemResponse>
@@ -133,13 +134,13 @@ interface ApiService {
     @GET("api/department/get_all_department")
     suspend fun getDepartments(): Response<DepartmentItemResponse>
 
-    @POST("api/department/add_department")
+    @POST("api/admin/department/add_department")
     suspend fun addDepartment(@Body departmentAdditionRequest: DepartmentAdditionRequest): Response<AddDepartmentItemResponse>
 
     @POST("api/department/get_room_by_department_id")
     suspend fun getRoomsByDepartmentId(@Body detailDepartmentRequest: DepartmentDetailRequest): Response<ListRoomItemResponse>
 
-    @POST("api/room/add_room")
+    @POST("api/admin/room/add_room")
     suspend fun addRoomByDepartmentId(@Body addRoomRequest: AddRoomRequest): Response<RoomItemResponse>
 
     @POST("api/room/get_asset_by_id")

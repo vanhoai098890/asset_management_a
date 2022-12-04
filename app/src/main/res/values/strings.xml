@@ -491,6 +491,7 @@
     <string name="department">Departments</string>
     <string name="view_all_department">View all department</string>
     <string name="view_all_categories">View all categories</string>
+    <string name="permission_for_admin">This permission is only for admin</string>
     <string name="total_price">Total price</string>
     <string name="total_price_description">Total price of all assets</string>
     <string name="asset_information">Asset information</string>
@@ -501,9 +502,9 @@
     <string name="add_department">Add department</string>
     <string name="ex_information_technology">ex: Information technology</string>
     <string name="add_department_success">This department is already added</string>
-    <string name="add_department_false">This department is already existed</string>
+    <string name="add_department_false">This department is already existed or have some thing wrong!!!</string>
     <string name="add_room_success">This room is already added</string>
-    <string name="add_room_false">This room is already existed</string>
+    <string name="add_room_false">This room is already existed or have some thing wrong!!!</string>
     <string name="room_asset">%s\' assets</string>
     <string name="qrcode_title">Asset\' Qrcode</string>
     <string name="qrcode_is_generating">Qrcode is generating</string>

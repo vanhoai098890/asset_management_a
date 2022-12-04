@@ -25,6 +25,17 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="All" />
 
+        <TextView
+            android:id="@+id/tvNumberOfAssets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_48dp"
+            android:elevation="@dimen/_1dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvCategory"
+            app:layout_constraintEnd_toEndOf="@id/tvCategory"
+            app:layout_constraintTop_toTopOf="@id/tvCategory"
+            tools:text="16" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1dp"

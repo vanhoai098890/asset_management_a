@@ -7,6 +7,7 @@ import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDevic
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import javax.inject.Inject
 
@@ -17,9 +18,10 @@ class SearchMainImpl @Inject constructor(private val apiService: ApiService) :
             apiService.getListMainDevice(listMainDeviceRequest)
         }
 
-    override suspend fun getListCategories(): TypeAssetResponse = apiCall {
-        apiService.getCategories()
-    }
+    override suspend fun getListCategories(typeAssetRequest: TypeAssetRequest): TypeAssetResponse =
+        apiCall {
+            apiService.getCategories(typeAssetRequest)
+        }
 
     override suspend fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest): DeviceItemResponse =
         apiCall {

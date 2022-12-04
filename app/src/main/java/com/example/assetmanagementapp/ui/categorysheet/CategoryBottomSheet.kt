@@ -14,6 +14,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class CategoryBottomSheet :
     BaseBottomSheetDialogFragment() {
+    var departmentId: Int = 0
+    var roomId: Int = 0
     var currentCategory: Int = 0
     var categoryOnClick: (TypeAsset) -> Unit = {}
     private lateinit var binding: FragmentBottomSheetCaregoryBinding
@@ -36,7 +38,7 @@ class CategoryBottomSheet :
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBottomSheetCaregoryBinding.inflate(inflater, container, false)
-        initView()
+        initData()
         initAction()
         initObservers()
         return binding.root
@@ -53,8 +55,10 @@ class CategoryBottomSheet :
         }
     }
 
-    private fun initView() {
-
+    private fun initData() {
+        viewModel.currentState.departmentId = departmentId
+        viewModel.currentState.roomId = roomId
+        viewModel.getCategories()
     }
 
     private fun initObservers() {

@@ -82,6 +82,7 @@ class DepartmentFragment : BaseFragment() {
             btnAddDepartment.setSafeOnClickListener {
                 addDepartmentDialog.show(parentFragmentManager, null)
             }
+            btnAddDepartment.visibility = if (viewModel.stateIsAdmin.value) View.VISIBLE else View.GONE
         }
         layoutListener = binding.btnAddDepartment.let { button ->
             binding.root.let { root ->
@@ -142,6 +143,7 @@ class DepartmentFragment : BaseFragment() {
         } else {
             customSnackBar.show()
         }
+        viewModel.resetStateSnackBar()
     }
 
     override fun onPause() {

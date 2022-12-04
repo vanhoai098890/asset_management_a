@@ -16,7 +16,7 @@ import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentDetailDepartmentBinding
 import com.example.assetmanagementapp.ui.department.AddDepartmentDialog
-import com.example.assetmanagementapp.ui.room_detail.RoomDetailFragment
+import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,7 +30,13 @@ class DetailDepartmentFragment : BaseFragment() {
     private val roomAdapter: RoomAdapter by lazy {
         RoomAdapter().apply {
             onClick = {
-                addNoNavigationFragment(RoomDetailFragment.newInstance(it.roomName, it.roomId))
+                addNoNavigationFragment(
+                    SearchResultFragment.newInstance(
+                        departmentName = it.roomName,
+                        departmentId = viewModel.currentState.departmentId,
+                        roomId = it.roomId
+                    )
+                )
             }
         }
     }
@@ -105,6 +111,16 @@ class DetailDepartmentFragment : BaseFragment() {
                 backButton.setSafeOnClickListener {
                     handleBackPressed()
                 }
+                endIcon.visibility = View.VISIBLE
+                endIcon.setImageResource(R.drawable.ic_search_outline)
+                endIcon.setSafeOnClickListener {
+                    addNoNavigationFragment(
+                        SearchResultFragment.newInstance(
+                            departmentName = arguments?.getString(DEPARTMENT_NAME),
+                            departmentId = viewModel.currentState.departmentId
+                        )
+                    )
+                }
             }
             rvRooms.apply {
                 layoutManager =
@@ -115,6 +131,8 @@ class DetailDepartmentFragment : BaseFragment() {
             btnAddRoom.setSafeOnClickListener {
                 addDepartmentDialog.show(parentFragmentManager, null)
             }
+
+            btnAddRoom.visibility = if (viewModel.stateIsAdmin.value) View.VISIBLE else View.GONE
         }
         layoutListener = binding.btnAddRoom.let { button ->
             binding.root.let { root ->
@@ -142,6 +160,7 @@ class DetailDepartmentFragment : BaseFragment() {
         } else {
             customSnackBar.show()
         }
+        viewModel.resetStateSnackBar()
     }
 
     private fun initData() {

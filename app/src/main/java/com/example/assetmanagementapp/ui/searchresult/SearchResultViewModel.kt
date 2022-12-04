@@ -21,15 +21,6 @@ class SearchResultViewModel @Inject constructor(
 ) : BaseViewModelV2<SearchResultState>() {
     override fun initState(): SearchResultState = SearchResultState()
 
-
-    init {
-        deviceRepository.getListCategories().onSuccess {
-            dispatchState(currentState.copy(listCategory = ArrayList(currentState.listCategory).apply {
-                addAll(it.data)
-            }))
-        }.launchIn(viewModelScope)
-    }
-
     fun onLoadMore(searchString: String) {
         synchronized(currentState.block) {
             if (!currentState.mapSearchListDevice.containsKey(
@@ -51,7 +42,9 @@ class SearchResultViewModel @Inject constructor(
                     searchString = searchString,
                     category = currentState.currentSelectedPos.id,
                     page = page,
-                    size = currentState.size
+                    size = currentState.size,
+                    departmentId = currentState.departmentId,
+                    roomId = currentState.roomId
                 )
             )
                 .onStart {
@@ -123,7 +116,9 @@ class SearchResultViewModel @Inject constructor(
                 searchString = searchString,
                 category = currentState.currentSelectedPos.id,
                 page = page,
-                size = currentState.size
+                size = currentState.size,
+                departmentId = currentState.departmentId,
+                roomId = currentState.roomId
             )
         )
             .onStart {
@@ -178,7 +173,6 @@ class SearchResultViewModel @Inject constructor(
 
 data class SearchResultState(
     var currentSelectedPos: TypeAsset = TypeAsset(0, "All"),
-    val listCategory: MutableList<TypeAsset> = mutableListOf(TypeAsset(0, "All")),
     val listSearchDevice: MutableList<DeviceItem> = mutableListOf(),
     var size: Int = 10,
     /**
@@ -188,5 +182,7 @@ data class SearchResultState(
     var stateLoadingDevice: Boolean = false,
     var isEndOfList: Boolean = false,
     var block: Any = "",
-    var stateNoResult: Boolean = false
+    var stateNoResult: Boolean = false,
+    var departmentId: Int = 0,
+    var roomId: Int = 0
 )

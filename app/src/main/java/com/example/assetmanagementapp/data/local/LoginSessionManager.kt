@@ -21,6 +21,7 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
         private const val KEY_USERNAME_LOGGED_IN = "key_username_logged_in"
         private const val KEY_PASSWORD_LOGGED_IN = "key_password_logged_in"
         private const val CUSTOMER_INFO = "CUSTOMER_INFO"
+        private const val IS_ADMIN = 2
     }
 
     internal fun saveUserInfo(username: String, password: String) =
@@ -116,4 +117,6 @@ class LoginSessionManager @Inject constructor(private val sharedPreferences: Sha
     }
 
     internal fun isLoggedIn(): Boolean = getTokenAuthorizationRequest()?.isNotBlank() ?: false
+
+    internal fun isAdmin(): Boolean = getLoginAuthenticator()?.role == IS_ADMIN
 }

@@ -39,6 +39,7 @@ class CategoryAdapter : BaseListAdapter<TypeAsset>() {
                 )
             }
             binding.data = data
+            binding.tvNumberOfAssets.text = "${data.numberOfAssets}"
             binding.root.setSafeOnClickListener {
                 onClick.invoke(data)
             }

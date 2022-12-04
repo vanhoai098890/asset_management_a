@@ -9,6 +9,7 @@ import com.example.assetmanagementapp.data.local.LoginSessionManager
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMain
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAsset
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.repositories.CustomerRepository
 import com.example.assetmanagementapp.data.repositories.DeviceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,6 +28,7 @@ class SearchMainViewModel @Inject constructor(
     val stateValueTotalDepreciation: MutableStateFlow<Float> = MutableStateFlow(0f)
     val stateInfoMain: MutableStateFlow<InfoMain?> = MutableStateFlow(null)
     var stateOldIndex = -1
+    var stateIsAdmin = MutableStateFlow(loginSessionManager.isAdmin())
 
     fun getCustomerInfo() {
         customerRepository.getUserInfoByPhoneNumber(loginSessionManager.getUsername())
@@ -40,7 +42,7 @@ class SearchMainViewModel @Inject constructor(
     }
 
     fun getListCategory() {
-        deviceRepository.getListCategories().onSuccess {
+        deviceRepository.getListCategories(TypeAssetRequest()).onSuccess {
             var totalDepreciation = 0f
             val listResult =
                 it.data.map { typeAsset -> typeAsset.copy(totalDepreciation = typeAsset.totalDepreciation * 1000) }

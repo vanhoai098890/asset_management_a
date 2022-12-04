@@ -5,11 +5,12 @@ import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDevic
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 
 interface SearchMainSource {
     suspend fun getListSearchMain(listMainDeviceRequest: ListMainDeviceRequest): ListDeviceMainResponse
-    suspend fun getListCategories(): TypeAssetResponse
+    suspend fun getListCategories(typeAssetRequest: TypeAssetRequest): TypeAssetResponse
     suspend fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest): DeviceItemResponse
     suspend fun getInfoMain(): InfoMainResponse
 }

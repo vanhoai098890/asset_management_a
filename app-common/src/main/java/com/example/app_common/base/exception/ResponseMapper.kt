@@ -37,7 +37,7 @@ fun <T> Response<T>.exceptionOnSuccessResponse(): BaseError? {
             }
         }
     }
-    if (code() == ApiResponseCode.UNAUTHORIZED.code.toInt()) {
+    if (code() == 401) {
         return DefaultError(
             apiErrorCode = ApiResponseCode.UNAUTHORIZED
         )
@@ -52,8 +52,7 @@ fun <T> Response<T>.toError(): BaseError {
             message = Gson().fromJson(
                 errorBody()?.string() ?: "",
                 DefaultError::class.java
-            ).message
-                ?: "",
+            )?.message ?: "",
             apiUrl = this.raw().request.url.toString()
         )
     } catch (ex: Exception) {

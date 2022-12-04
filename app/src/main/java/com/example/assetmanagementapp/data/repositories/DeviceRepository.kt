@@ -6,6 +6,7 @@ import com.example.assetmanagementapp.data.remote.api.datasource.searchmain.Sear
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistRequest
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,8 +23,8 @@ class DeviceRepository @Inject constructor(
         searchMainImpl.getListSearchMain(listMainDeviceRequest)
     }
 
-    fun getListCategories() = safeFlow {
-        searchMainImpl.getListCategories()
+    fun getListCategories(typeAssetRequest: TypeAssetRequest) = safeFlow {
+        searchMainImpl.getListCategories(typeAssetRequest)
     }
 
     fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest) = safeFlow {

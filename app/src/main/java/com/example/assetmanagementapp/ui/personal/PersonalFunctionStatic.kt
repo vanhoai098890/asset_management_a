@@ -20,12 +20,6 @@ sealed class PersonalFunctionStatic(
         id = 3
     )
 
-    object TRANSACTION : PersonalFunctionStatic(
-        drawableRes = R.drawable.ic_transaction_history,
-        stringRes = R.string.v1_transaction,
-        id = 4
-    )
-
     object PASSWORD : PersonalFunctionStatic(
         drawableRes = R.drawable.ic_password,
         stringRes = R.string.v1_security,
@@ -35,12 +29,6 @@ sealed class PersonalFunctionStatic(
     object MANAGEMENT : PersonalFunctionStatic(
         title = R.string.v1_management,
         id = 6
-    )
-
-    object REQUEST : PersonalFunctionStatic(
-        drawableRes = R.drawable.ic_request,
-        stringRes = R.string.v1_requests,
-        id = 7
     )
 
     object HELP : PersonalFunctionStatic(

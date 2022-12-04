@@ -62,11 +62,14 @@ class SearchResultFragment : BaseFragment() {
                 backButton.setSafeOnClickListener {
                     handleBackPressed()
                 }
-                tvCenter.text = getString(R.string.v1_search)
+                tvCenter.text =
+                    arguments?.getString(DEPARTMENT_NAME) ?: getString(R.string.v1_search)
             }
             layoutCategory.setSafeOnClickListener {
                 categoryBottomSheet.apply {
                     currentCategory = viewModel.currentState.currentSelectedPos.id
+                    departmentId = viewModel.currentState.departmentId
+                    roomId = viewModel.currentState.roomId
                 }.show(parentFragmentManager, null)
             }
             ivFilter.setSafeOnClickListener {
@@ -77,6 +80,8 @@ class SearchResultFragment : BaseFragment() {
 
     private fun initData() {
         binding.apply {
+            viewModel.currentState.departmentId = arguments?.getInt(DEPARTMENT_ID) ?: 0
+            viewModel.currentState.roomId = arguments?.getInt(ROOM_ID) ?: 0
             arguments?.getString(SEARCH_STRING)?.apply {
                 edtSearch.setText(this)
                 viewModel.searchDevices(this)
@@ -130,13 +135,24 @@ class SearchResultFragment : BaseFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(searchString: String) =
+        fun newInstance(
+            searchString: String = "",
+            departmentId: Int = 0,
+            departmentName: String? = null,
+            roomId: Int = 0
+        ) =
             SearchResultFragment().apply {
                 arguments = Bundle().apply {
                     putString(SEARCH_STRING, searchString)
+                    putString(DEPARTMENT_NAME, departmentName)
+                    putInt(DEPARTMENT_ID, departmentId)
+                    putInt(ROOM_ID, roomId)
                 }
             }
 
-        const val SEARCH_STRING = "SEARCH_STRING"
+        private const val SEARCH_STRING = "SEARCH_STRING"
+        private const val DEPARTMENT_NAME = "DEPARTMENT_NAME"
+        private const val DEPARTMENT_ID = "DEPARTMENT_ID"
+        private const val ROOM_ID = "ROOM_ID"
     }
 }

@@ -33,7 +33,6 @@ import com.example.assetmanagementapp.ui.searchmain.chart.ChartCategoryAdapter
 import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import com.example.assetmanagementapp.utils.bindImageAvatar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -129,11 +128,12 @@ class SearchMainFragment : BaseFragment(), TipListener {
         binding?.layoutCateInfo?.apply {
             ivAssetInfo.setBackgroundResource(R.drawable.ic_baseline_circle_pampas_24)
             ivAssetInfo.setImageResource(R.drawable.ic_outline_category_24)
-            tvTitleInfo.text = getString(R.string.v1_category)
-            tvDetailInfo.text = getString(R.string.view_all_categories)
+            tvTitleInfo.text = getString(R.string.v1_management)
+            tvDetailInfo.text = getString(R.string.permission_for_admin)
             root.setSafeOnClickListener {
                 addNoNavigationFragment(CategoryFragment())
             }
+            root.visibility = if (viewModel.stateIsAdmin.value) View.VISIBLE else View.GONE
         }
         binding?.layoutTotalPrice?.apply {
             ivAssetInfo.setBackgroundResource(R.drawable.ic_baseline_circle_bizarre_24)
@@ -179,7 +179,6 @@ class SearchMainFragment : BaseFragment(), TipListener {
     private fun handleShowInfoMain(infoMain: InfoMain) {
         binding?.apply {
             layoutAssetInfo.tvValueInfo.text = infoMain.assetNumber.toString()
-            layoutCateInfo.tvValueInfo.text = infoMain.categoryNumber.toString()
             layoutDepartment.tvValueInfo.text = infoMain.locationNumber.toString()
             layoutTotalPrice.tvValueInfo.text =
                 parseTextToKVND(infoMain.totalPrice.toInt().toString())
