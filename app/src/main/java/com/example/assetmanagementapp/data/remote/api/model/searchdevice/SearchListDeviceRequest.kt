@@ -5,6 +5,7 @@ data class SearchListDeviceRequest(
     val departmentId: Int = 0,
     val roomId: Int = 0,
     val category: Int = 0,
+    val statusId: Int = 0,
     val page: Int = 0,
     val size: Int = 10
 )

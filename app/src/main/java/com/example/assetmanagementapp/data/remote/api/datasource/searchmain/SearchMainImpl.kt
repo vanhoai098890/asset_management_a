@@ -23,6 +23,16 @@ class SearchMainImpl @Inject constructor(private val apiService: ApiService) :
             apiService.getCategories(typeAssetRequest)
         }
 
+    override suspend fun getListCategories(): TypeAssetResponse =
+        apiCall {
+            apiService.getCategories()
+        }
+
+    override suspend fun getListStatusType(): TypeAssetResponse =
+        apiCall {
+            apiService.getStatusType()
+        }
+
     override suspend fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest): DeviceItemResponse =
         apiCall {
             apiService.searchListDevice(searchListDeviceRequest)

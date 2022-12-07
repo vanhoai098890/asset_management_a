@@ -44,7 +44,8 @@ class SearchResultViewModel @Inject constructor(
                     page = page,
                     size = currentState.size,
                     departmentId = currentState.departmentId,
-                    roomId = currentState.roomId
+                    roomId = currentState.roomId,
+                    statusId = currentState.currentSelectedStatus.id
                 )
             )
                 .onStart {
@@ -118,7 +119,8 @@ class SearchResultViewModel @Inject constructor(
                 page = page,
                 size = currentState.size,
                 departmentId = currentState.departmentId,
-                roomId = currentState.roomId
+                roomId = currentState.roomId,
+                statusId = currentState.currentSelectedStatus.id
             )
         )
             .onStart {
@@ -169,10 +171,19 @@ class SearchResultViewModel @Inject constructor(
     fun dispatchCategorySelected(typeAsset: TypeAsset) {
         dispatchState(currentState.copy(currentSelectedPos = typeAsset))
     }
+
+    fun dispatchStatusTypeSelected(typeAsset: TypeAsset) {
+        dispatchState(currentState.copy(currentSelectedStatus = typeAsset))
+    }
+
+    fun dispatchStateIsAdmin(isAdmin:Boolean) {
+        dispatchState(currentState.copy(stateIsAdmin = isAdmin))
+    }
 }
 
 data class SearchResultState(
     var currentSelectedPos: TypeAsset = TypeAsset(0, "All"),
+    var currentSelectedStatus: TypeAsset = TypeAsset(0, "All"),
     val listSearchDevice: MutableList<DeviceItem> = mutableListOf(),
     var size: Int = 10,
     /**
@@ -184,5 +195,6 @@ data class SearchResultState(
     var block: Any = "",
     var stateNoResult: Boolean = false,
     var departmentId: Int = 0,
-    var roomId: Int = 0
+    var roomId: Int = 0,
+    var stateIsAdmin:Boolean = false
 )

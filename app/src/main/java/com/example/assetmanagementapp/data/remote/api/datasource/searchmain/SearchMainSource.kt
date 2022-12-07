@@ -11,6 +11,8 @@ import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetR
 interface SearchMainSource {
     suspend fun getListSearchMain(listMainDeviceRequest: ListMainDeviceRequest): ListDeviceMainResponse
     suspend fun getListCategories(typeAssetRequest: TypeAssetRequest): TypeAssetResponse
+    suspend fun getListCategories(): TypeAssetResponse
+    suspend fun getListStatusType(): TypeAssetResponse
     suspend fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest): DeviceItemResponse
     suspend fun getInfoMain(): InfoMainResponse
 }

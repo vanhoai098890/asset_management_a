@@ -29,4 +29,10 @@ class DepartmentDatasourceImpl @Inject constructor(private val apiService: ApiSe
             apiService.getRoomsByDepartmentId(departmentDetailRequest)
         }
     }
+
+    override suspend fun getRooms(): ListRoomItemResponse {
+        return apiCall {
+            apiService.getRooms()
+        }
+    }
 }

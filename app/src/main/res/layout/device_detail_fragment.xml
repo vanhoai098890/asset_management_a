@@ -13,9 +13,9 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/layoutParent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="true"
-        android:focusable="true"
-        android:layout_height="match_parent">
+        android:focusable="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -236,13 +236,23 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <include
+                            android:id="@+id/itemNameRoom"
+                            layout="@layout/layout_item_info_device"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_16dp"
+                            app:layout_constraintEnd_toStartOf="@id/itemDateManufacture"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/itemPrice" />
+
+                        <include
                             android:id="@+id/itemDateManufacture"
                             layout="@layout/layout_item_info_device"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_16dp"
+                            android:layout_marginTop="@dimen/_16dp"
                             app:layout_constraintEnd_toStartOf="@id/itemDateWarranty"
-                            app:layout_constraintStart_toStartOf="@id/itemCategory"
+                            app:layout_constraintStart_toEndOf="@id/itemNameRoom"
                             app:layout_constraintTop_toBottomOf="@id/itemPrice" />
 
                         <include
@@ -250,8 +260,8 @@
                             layout="@layout/layout_item_info_device"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/_16dp"
-                            app:layout_constraintEnd_toEndOf="@id/itemNameConsignment"
+                            android:layout_marginTop="@dimen/_16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/itemDateManufacture"
                             app:layout_constraintTop_toBottomOf="@id/itemPrice" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -292,6 +302,19 @@
                         android:backgroundTint="@color/babyBlue"
                         android:src="@drawable/ic_qr"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:ignore="ContentDescription" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/btnEditAsset"
+                        goneUnless="@{data.originalState.stateIsAdmin}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_16dp"
+                        android:layout_marginBottom="@dimen/_16dp"
+                        android:backgroundTint="@color/babyBlue"
+                        android:src="@drawable/ic_baseline_edit_24"
+                        app:layout_constraintBottom_toTopOf="@id/btnGenerateQr"
                         app:layout_constraintEnd_toEndOf="parent"
                         tools:ignore="ContentDescription" />
 

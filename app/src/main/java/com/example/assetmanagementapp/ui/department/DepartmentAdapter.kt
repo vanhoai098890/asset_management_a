@@ -1,6 +1,7 @@
 package com.example.assetmanagementapp.ui.department
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.example.app_common.base.BaseListAdapter
 import com.example.app_common.extensions.setSafeOnClickListener
@@ -35,7 +36,13 @@ class DepartmentAdapter : BaseListAdapter<DepartmentItem>() {
                     root.resources.getString(R.string.number_of_rooms_d, data.numberOfRooms)
                 tvNumberOfAssets.text =
                     root.resources.getString(R.string.number_of_assets_d, data.numberOfAssets)
+                if (data.departmentName == WAREHOUSE) {
+                    tvNumberOfRooms.visibility = View.GONE
+                }
             }
         }
+    }
+    companion object {
+        const val WAREHOUSE = "Warehouse"
     }
 }

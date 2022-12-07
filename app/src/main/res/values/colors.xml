@@ -69,4 +69,12 @@
     <color name="box_money_color">#00A1F9</color>
     <color name="txt_unselect">#334461</color>
     <color name="system_blue_light">#007AFF</color>
+    <color name="admin_color_1">#F5D1D4</color>
+    <color name="admin_color_2">#CFE1F8</color>
+    <color name="admin_color_3">#F5DBAF</color>
+    <color name="admin_color_4">#DECCF8</color>
+    <color name="admin_color_5">#BBE8D9</color>
+    <color name="admin_color_6">#C6DAED</color>
+    <color name="admin_color_7">#6278A5</color>
+    <color name="concrete">#F2F2F2</color>
 </resources>

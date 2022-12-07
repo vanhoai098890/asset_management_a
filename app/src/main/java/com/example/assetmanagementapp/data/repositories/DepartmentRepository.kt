@@ -22,4 +22,8 @@ class DepartmentRepository @Inject constructor(
         departmentDatasourceImpl.getRoomByDepartmentId(departmentDetailRequest)
     }
 
+    fun getRooms() = safeFlow {
+        departmentDatasourceImpl.getRooms()
+    }
+
 }

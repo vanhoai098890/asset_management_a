@@ -13,15 +13,13 @@ import com.example.app_common.constant.AppConstant.LOADING_BITMAP
 import com.example.app_common.constant.AppConstant.SHOW_BITMAP
 import com.example.app_common.extensions.setSafeOnClickListener
 import com.example.app_common.ui.snackbar.CustomSnackBar
-import com.example.app_common.utils.LogUtils
 import com.example.app_common.utils.ScreenUtils
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItem
-import com.example.assetmanagementapp.data.remote.api.model.favourite.StatusDevice
-import com.example.assetmanagementapp.data.remote.api.model.favourite.StatusTicket
 import com.example.assetmanagementapp.databinding.DeviceDetailFragmentBinding
 import com.example.assetmanagementapp.databinding.LayoutItemInfoDeviceBinding
+import com.example.assetmanagementapp.ui.detaildevicedialog.DetailDeviceDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -32,6 +30,9 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
     private lateinit var binding: DeviceDetailFragmentBinding
     private val viewModel: DetailDeviceViewModel by viewModels()
     var onBackPress: (Int, Boolean) -> Unit = { _, _ -> }
+    private val editAssetDialog: DetailDeviceDialog by lazy {
+        DetailDeviceDialog()
+    }
 
     private val customSnackBar: CustomSnackBar by lazy {
         CustomSnackBar.make(
@@ -68,6 +69,7 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
     private fun initData() {
         arguments?.apply {
             viewModel.currentState.deviceId = getInt(DEVICE_ID)
+            viewModel.dispatchStateIsAdmin(getBoolean(IS_ADMIN))
         }
         binding.apply {
             toolbarId.apply {
@@ -107,6 +109,23 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
                 btnGenerateQr.setSafeOnClickListener {
                     customSnackBar.dismiss()
                     viewModel.showDialogQrcode()
+                }
+                btnEditAsset.setSafeOnClickListener {
+                    editAssetDialog.apply {
+                        roomName = viewModel.currentState.deviceItem?.roomName ?: ""
+                        statusName = viewModel.currentState.deviceItem?.status ?: ""
+                        handleBackPress = { roomName, statusName ->
+                            viewModel.currentState.deviceItem?.apply {
+                                viewModel.dispatchStateItem(
+                                    this.copy(
+                                        roomName = roomName,
+                                        status = statusName
+                                    )
+                                )
+                            }
+                        }
+                        deviceId = viewModel.currentState.deviceItem?.id ?: 0
+                    }.show(parentFragmentManager, null)
                 }
             }
         }
@@ -160,7 +179,7 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
     }
 
     private fun handleShowUI(deviceItem: DeviceItem) {
-        handleShowButton(deviceItem)
+//        handleShowButton(deviceItem)
         handleShowLayoutInfoDevice(deviceItem)
     }
 
@@ -195,6 +214,12 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
             icon = R.drawable.ic_manufacture,
             detail = R.string.v1_date_manufacture
         )
+        handleShowItemInfo(
+            itemInfo = binding.itemNameRoom,
+            nameInfo = deviceItem.roomName,
+            icon = R.drawable.ic_baseline_meeting_room_24,
+            detail = R.string.v1_room
+        )
     }
 
     private fun handleShowItemInfo(
@@ -207,48 +232,6 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
             tvService.text = nameInfo
             ivService.setImageResource(icon)
             ivService.contentDescription = getString(detail)
-        }
-    }
-
-    private fun handleShowButton(deviceItem: DeviceItem) {
-        binding.apply {
-            deviceItem.apply {
-                when {
-                    (status == StatusDevice.FREE.statusName) && (statusTicket == StatusTicket.NEW.ordinal) -> {
-                        btnRequest.visibility = View.VISIBLE
-                    }
-                    (status == StatusDevice.FREE.statusName) && (statusTicket == StatusTicket.IN_PROGRESS.ordinal) && isOwnTicket -> {
-                        btnClose.visibility = View.VISIBLE
-                    }
-                    (status == StatusDevice.FREE.statusName) && (statusTicket == StatusTicket.IN_PROGRESS.ordinal) -> {
-                        btnRequest.visibility = View.VISIBLE
-                        btnRequest.isEnabled = false
-                        tvMessage.text = getString(R.string.v1_ticket_is_in_progress)
-                        tvMessage.visibility = View.VISIBLE
-                    }
-                    status == StatusDevice.BORROWED.statusName && isOwnTicket -> {
-                        btnReturn.visibility = View.VISIBLE
-                        btnReport.visibility = View.VISIBLE
-                    }
-                    status == StatusDevice.BORROWED.statusName -> {
-                        btnReturn.visibility = View.VISIBLE
-                        btnReturn.isEnabled = false
-                        btnReport.visibility = View.VISIBLE
-                        btnReport.isEnabled = false
-                        tvMessage.text = getString(R.string.v1_ticket_was_borrowed)
-                        tvMessage.visibility = View.VISIBLE
-                    }
-                    status == StatusDevice.WARRANTY.statusName || status == StatusDevice.DAMAGED.statusName -> {
-                        btnRequest.visibility = View.VISIBLE
-                        btnRequest.isEnabled = false
-                        tvMessage.text = getString(R.string.v1_device_is_damaged_or_is_repairing)
-                        tvMessage.visibility = View.VISIBLE
-                    }
-                    else -> {
-                        LogUtils.d("Item have status not match with StatusDevice enum")
-                    }
-                }
-            }
         }
     }
 
@@ -322,11 +305,13 @@ class DetailDeviceFragment private constructor() : BaseFragment() {
     }
 
     companion object {
-        const val DEVICE_ID = "DEVICE_ID"
+        private const val DEVICE_ID = "DEVICE_ID"
+        private const val IS_ADMIN = "IS_ADMIN"
 
-        fun newInstance(deviceId: Int): DetailDeviceFragment {
+        fun newInstance(deviceId: Int, stateIsAdmin: Boolean = false): DetailDeviceFragment {
             val args = Bundle().apply {
                 putInt(DEVICE_ID, deviceId)
+                putBoolean(IS_ADMIN, stateIsAdmin)
             }
             val fragment = DetailDeviceFragment()
             fragment.arguments = args

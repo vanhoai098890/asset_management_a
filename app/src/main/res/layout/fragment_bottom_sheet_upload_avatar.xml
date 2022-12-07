@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottomSheetAvatar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_8dp">
+
+        <LinearLayout
+
+            android:id="@+id/layoutAbove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8dp"
+            android:layout_marginVertical="@dimen/margin_18dp"
+            android:background="@drawable/bg_bottom_sheet_background"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_usePhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_18dp"
+                android:gravity="center"
+                android:text="@string/use_your_photo"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/vLine1"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin_18dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toBottomOf="@id/tv_usePhoto" />
+
+            <TextView
+                android:id="@+id/tvTakeCamera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_18dp"
+                android:gravity="center"
+                android:text="@string/take_a_photo_with_camera"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/vLine1" />
+
+            <View
+                android:id="@+id/vLine2"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin_18dp"
+                app:layout_constraintTop_toBottomOf="@id/tvTakeCamera" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_8dp"
+            android:layout_marginTop="@dimen/margin_18dp"
+            android:background="@drawable/bg_bottom_sheet_background"
+            android:paddingVertical="@dimen/padding_18dp"
+            android:stateListAnimator="@null"
+            android:text="@string/v1_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/alizarinCrimson"
+            android:textSize="@dimen/text_size_16"
+            android:textStyle="bold"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layoutAbove" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

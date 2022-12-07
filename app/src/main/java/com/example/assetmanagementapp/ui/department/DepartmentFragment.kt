@@ -15,7 +15,9 @@ import com.example.app_common.utils.ScreenUtils
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentDepartmentBinding
+import com.example.assetmanagementapp.ui.department.DepartmentAdapter.Companion.WAREHOUSE
 import com.example.assetmanagementapp.ui.room.DetailDepartmentFragment
+import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -28,7 +30,23 @@ class DepartmentFragment : BaseFragment() {
     private val departmentAdapter by lazy {
         DepartmentAdapter().apply {
             onClick = {
-                addNoNavigationFragment(DetailDepartmentFragment.newInstance(it.departmentId,it.departmentName))
+                if (it.departmentName == WAREHOUSE) {
+                    addNoNavigationFragment(
+                        SearchResultFragment.newInstance(
+                            departmentId = it.departmentId,
+                            departmentName = it.departmentName,
+                            roomId = 18
+                            //hard code in here 18 -> warehouse room
+                        )
+                    )
+                } else {
+                    addNoNavigationFragment(
+                        DetailDepartmentFragment.newInstance(
+                            it.departmentId,
+                            it.departmentName
+                        )
+                    )
+                }
             }
         }
     }
@@ -82,7 +100,8 @@ class DepartmentFragment : BaseFragment() {
             btnAddDepartment.setSafeOnClickListener {
                 addDepartmentDialog.show(parentFragmentManager, null)
             }
-            btnAddDepartment.visibility = if (viewModel.stateIsAdmin.value) View.VISIBLE else View.GONE
+            btnAddDepartment.visibility =
+                if (viewModel.stateIsAdmin.value) View.VISIBLE else View.GONE
         }
         layoutListener = binding.btnAddDepartment.let { button ->
             binding.root.let { root ->

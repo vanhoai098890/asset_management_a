@@ -19,7 +19,7 @@ class CategoryViewModel @Inject constructor(
         return CategoryState()
     }
 
-    fun getCategories(){
+    fun getCategories() {
         deviceRepository.getListCategories(
             TypeAssetRequest(
                 departmentId = currentState.departmentId,
@@ -32,10 +32,28 @@ class CategoryViewModel @Inject constructor(
             }))
         }.launchIn(viewModelScope)
     }
+
+    fun getStatus() {
+        deviceRepository.getListStatusType().bindLoading(this).onSuccess {
+            dispatchState(currentState.copy(listStatusType = ArrayList(currentState.listStatusType).apply {
+                add(TypeAsset(0, "All"))
+                addAll(it.data)
+            }))
+        }.launchIn(viewModelScope)
+    }
+
+    fun dispatchStateCategory(list: MutableList<TypeAsset>) {
+        dispatchState(currentState.copy(listCategory = list))
+    }
+
+    fun dispatchStateStatusType(list: MutableList<TypeAsset>) {
+        dispatchState(currentState.copy(listStatusType = list))
+    }
 }
 
 data class CategoryState(
     val listCategory: MutableList<TypeAsset> = mutableListOf(),
+    val listStatusType: MutableList<TypeAsset> = mutableListOf(),
     var departmentId: Int = 0,
     var roomId: Int = 0
 )

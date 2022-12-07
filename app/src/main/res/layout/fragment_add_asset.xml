@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:clickable="true"
     android:focusable="true"
-    android:background="@color/white"
-    tools:context=".ui.category.CategoryFragment">
+    tools:context=".ui.addasset.AddAssetFragment">
+
+    <include
+        android:id="@+id/layoutToolbar"
+        layout="@layout/layout_toolbar_common" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

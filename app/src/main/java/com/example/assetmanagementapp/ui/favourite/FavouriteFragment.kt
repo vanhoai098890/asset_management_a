@@ -134,13 +134,6 @@ class FavouriteFragment : BaseFragment() {
         if (listItem.size < 10 && loadMoreListener != null) {
             binding.rvFavouriteRoom.removeOnScrollListener(loadMoreListener!!)
         }
-        if (listItem.size <= 10) {
-            binding.rvFavouriteRoom.apply {
-                post {
-                    scrollToPosition(listItem.size - 1)
-                }
-            }
-        }
     }
 
     override fun onResume() {

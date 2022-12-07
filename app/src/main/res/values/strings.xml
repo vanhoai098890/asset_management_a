@@ -14,6 +14,7 @@
     <string name="v1_forgot_password"><u>Forgot Password</u></string>
     <string name="v1_create_account">Create\nAccount</string>
     <string name="v1_name">Name</string>
+    <string name="v1_name_asset">Asset name</string>
     <string name="v1_email">Email</string>
     <string name="v1_citizen_id">Citizen Id</string>
     <string name="v1_email_">Email:</string>
@@ -83,6 +84,7 @@
     <string name="v1_see_more">See more</string>
     <string name="v1_see_less">See less</string>
     <string name="v1_rooms">Rooms</string>
+    <string name="v1_room">Room</string>
     <string name="v1_rooms_of_department">%s\' rooms</string>
     <string name="v1_bed_room">%s Bedrooms</string>
     <string name="v1_room_sqrt">%s sqft</string>
@@ -398,7 +400,7 @@
     <string name="v1_yemen">YEMEN</string>
     <string name="v1_zambia">ZAMBIA</string>
     <string name="v1_zimbabwe">ZIMBABWE</string>
-    <string name="v1_check_info_edit_profile">Please check the information carefully because this information will affect the rental and rental process</string>
+    <string name="v1_check_info_edit_profile">Please check the information carefully because this information will affect the management process</string>
     <string name="v1_single_char">%s</string>
     <string name="v1_send">Send</string>
     <string name="v1_received">Received</string>
@@ -410,6 +412,7 @@
     <string name="v1_free">Free</string>
     <string name="v1_damaged">Damaged</string>
     <string name="v1_borrowed">Borrowed</string>
+    <string name="v1_liquidated">Liquidated</string>
     <string name="v1_warranty">Warranty</string>
     <string name="v1_canceled">Canceled</string>
     <string name="v1_cancel">Cancel</string>
@@ -498,6 +501,7 @@
     <string name="user_information">User information</string>
     <string name="number_of_rooms_d">Number of rooms: %d</string>
     <string name="number_of_assets_d">Number of assets: %d</string>
+    <string name="number_of_assets">Number of assets</string>
     <string name="name_department">%s department</string>
     <string name="add_department">Add department</string>
     <string name="ex_information_technology">ex: Information technology</string>
@@ -527,4 +531,28 @@
     <string name="contact_us_by_phone">Contact us by phone</string>
     <string name="contact_support_mail_subject4" />
     <string name="contact_support_mail_subject">%s: [Management_Asset] Inquiries</string>
+    <string name="admin">Admin</string>
+    <string name="add_consignment">Add consignment</string>
+    <string name="edit_consignment">Edit consignment</string>
+    <string name="edit_asset">Edit asset</string>
+    <string name="add_asset">Asset management</string>
+    <string name="category_search">%s - %s</string>
+    <string name="reduce_asset">Reduce asset</string>
+    <string name="asset_liquidation">Asset liquidation</string>
+    <string name="repair_management">Repair management</string>
+    <string name="user_management">User management</string>
+    <string name="account_management">Account management</string>
+    <string name="notification">Notification</string>
+    <string name="number">Number</string>
+    <string name="detail_consignment">Detail consignment</string>
+    <string name="consignment">Consignment</string>
+    <string name="type_asset">Asset type</string>
+    <string name="brand">Brand</string>
+    <string name="date_in">Date in</string>
+    <string name="asset_image">Asset image</string>
+    <string name="use_your_photo">Use your photo</string>
+    <string name="have_something_wrong_with_your_input">Have something wrong with your input or error server!!!</string>
+    <string name="take_a_photo_with_camera">Take a photo with camera</string>
+    <string name="common_request_photos_permission">This features would like to access your Photos to upload photos on app</string>
+    <string name="status_type">Status type</string>
 </resources>

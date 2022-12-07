@@ -17,4 +17,5 @@ data class DetailDeviceState(
     // 1 -> loading, 2 -> error, 3 -> showdialog
     val stateShowDialogBitmap: Int = 0,
     var stateErrorGenerateQr: Boolean = false,
+    val stateIsAdmin: Boolean = false
 ) : Parcelable

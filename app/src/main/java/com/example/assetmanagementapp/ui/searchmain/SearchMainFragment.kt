@@ -27,7 +27,7 @@ import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfo
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMain
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAsset
 import com.example.assetmanagementapp.databinding.FragmentSearchMainBinding
-import com.example.assetmanagementapp.ui.category.CategoryFragment
+import com.example.assetmanagementapp.ui.admin.AdminFragment
 import com.example.assetmanagementapp.ui.department.DepartmentFragment
 import com.example.assetmanagementapp.ui.searchmain.chart.ChartCategoryAdapter
 import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
@@ -131,7 +131,7 @@ class SearchMainFragment : BaseFragment(), TipListener {
             tvTitleInfo.text = getString(R.string.v1_management)
             tvDetailInfo.text = getString(R.string.permission_for_admin)
             root.setSafeOnClickListener {
-                addNoNavigationFragment(CategoryFragment())
+                addNoNavigationFragment(AdminFragment())
             }
             root.visibility = if (viewModel.stateIsAdmin.value) View.VISIBLE else View.GONE
         }

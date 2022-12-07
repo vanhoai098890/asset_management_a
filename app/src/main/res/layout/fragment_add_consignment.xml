@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layoutParent"
+    android:background="@color/babyBlue"
+    tools:context=".ui.addconsignment.AddConsignmentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <include
+            android:id="@+id/toolbarId"
+            layout="@layout/layout_toolbar_common"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_0dp"
+            android:background="@drawable/bg_common_dialog_top_round_16dp"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarId">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/_40dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_0dp"
+                    android:layout_margin="@dimen/margin_16dp"
+                    app:cardCornerRadius="@dimen/margin_16dp"
+                    app:layout_constraintDimensionRatio="2:1"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tvTitleImageAsset"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_8dp"
+                            android:background="@drawable/bg_common_dialog_round_gray_6dp"
+                            android:padding="@dimen/_10dp"
+                            android:text="@string/asset_image"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivAvatarAsset"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/btnUpdateAvatar"
+                            android:layout_width="38dp"
+                            android:layout_height="38dp"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_8dp"
+                            android:background="@drawable/ic_ripple_camera"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:padding="@dimen/_10dp"
+                            app:layout_constraintBottom_toBottomOf="@id/ivAvatarAsset"
+                            app:layout_constraintRight_toRightOf="@id/ivAvatarAsset"
+                            tools:ignore="ContentDescription" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutNameAsset"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:hint="@string/v1_name_asset"
+                    app:layout_constraintTop_toBottomOf="@id/cvImage">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtNameAsset"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutNameConsignment"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/v1_name_consignment"
+                    app:layout_constraintTop_toBottomOf="@id/layoutNameAsset">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtNameConsignment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutNumberAssets"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/number_of_assets"
+                    app:layout_constraintTop_toBottomOf="@id/layoutNameConsignment">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtNumberAsset"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutUnitPrice"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/v1_unit_price"
+                    app:layout_constraintTop_toBottomOf="@id/layoutNumberAssets">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtUnitPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="number"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutBrandName"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/brand"
+                    app:layout_constraintTop_toBottomOf="@id/layoutUnitPrice">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtBrandName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTypeName"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/type_asset"
+                    app:layout_constraintTop_toBottomOf="@id/layoutBrandName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtAssetType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginEnd="@dimen/_8dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutTypeName"
+                    app:layout_constraintEnd_toEndOf="@id/layoutTypeName"
+                    app:layout_constraintTop_toTopOf="@id/layoutTypeName"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutProvider"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/v1_provider"
+                    app:layout_constraintTop_toBottomOf="@id/layoutTypeName">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtProvider"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginEnd="@dimen/_8dp"
+                    android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutProvider"
+                    app:layout_constraintEnd_toEndOf="@id/layoutProvider"
+                    app:layout_constraintTop_toTopOf="@id/layoutProvider"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDateIn"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/date_in"
+                    app:layout_constraintTop_toBottomOf="@id/layoutProvider">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtDateIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginEnd="@dimen/_8dp"
+                    android:src="@drawable/ic_calendar_24"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutDateIn"
+                    app:layout_constraintEnd_toEndOf="@id/layoutDateIn"
+                    app:layout_constraintTop_toTopOf="@id/layoutDateIn"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDateManufacture"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/v1_date_manufacture"
+                    app:layout_constraintTop_toBottomOf="@id/layoutDateIn">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtDateManufacture"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginEnd="@dimen/_8dp"
+                    android:src="@drawable/ic_calendar_24"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutDateManufacture"
+                    app:layout_constraintEnd_toEndOf="@id/layoutDateManufacture"
+                    app:layout_constraintTop_toTopOf="@id/layoutDateManufacture"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDateWarranty"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/v1_date_warranty"
+                    app:layout_constraintTop_toBottomOf="@id/layoutDateManufacture">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtDateWarranty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:cursorVisible="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:maxLength="24"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="@dimen/_20dp"
+                    android:layout_height="@dimen/_20dp"
+                    android:layout_marginTop="@dimen/_5dp"
+                    android:layout_marginEnd="@dimen/_8dp"
+                    android:src="@drawable/ic_calendar_24"
+                    app:layout_constraintBottom_toBottomOf="@id/layoutDateWarranty"
+                    app:layout_constraintEnd_toEndOf="@id/layoutDateWarranty"
+                    app:layout_constraintTop_toTopOf="@id/layoutDateWarranty"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutDescription"
+                    style="@style/myEditTextEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="@dimen/_8dp"
+                    android:hint="@string/v1_description"
+                    app:layout_constraintTop_toBottomOf="@id/layoutDateWarranty">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="40dp"
+                        tools:ignore="RtlSymmetry" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/tvTitleNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_36dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_8dp"
+                    android:text="@string/v1_check_info_edit_profile"
+                    android:textAlignment="center"
+                    app:layout_constraintTop_toBottomOf="@id/layoutDescription" />
+
+                <Button
+                    android:id="@+id/btnSubmit"
+                    style="@style/commonButtonCornerMainEditProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_44dp"
+                    android:layout_marginHorizontal="@dimen/_16dp"
+                    android:layout_marginVertical="@dimen/_16dp"
+                    android:text="@string/v1_submit"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blackRussian"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleNote" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

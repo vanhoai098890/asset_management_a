@@ -1,11 +1,13 @@
 package com.example.assetmanagementapp.data.remote.api.datasource.detaildevice
 
 import com.example.app_common.base.exception.apiCall
+import com.example.app_common.base.response.CommonResponse
 import com.example.assetmanagementapp.data.remote.ApiService
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistResponse
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.EditDeviceRequest
 import javax.inject.Inject
 
 class DetailDeviceDatasourceImpl @Inject constructor(private val apiService: ApiService) :
@@ -19,6 +21,12 @@ class DetailDeviceDatasourceImpl @Inject constructor(private val apiService: Api
                 )
             )
         }
+
+    override suspend fun editDevice(editDeviceRequest: EditDeviceRequest): CommonResponse {
+        return apiCall {
+            apiService.editDevice(editDeviceRequest)
+        }
+    }
 
     override suspend fun checkDeviceExist(checkDeviceExistRequest: CheckDeviceExistRequest): CheckDeviceExistResponse {
         return apiCall {

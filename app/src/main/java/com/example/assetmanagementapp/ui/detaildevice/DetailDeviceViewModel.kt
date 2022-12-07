@@ -14,6 +14,7 @@ import com.example.app_common.extensions.onError
 import com.example.app_common.extensions.onSuccess
 import com.example.app_common.utils.LogUtils
 import com.example.assetmanagementapp.data.local.LoginSessionManager
+import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItem
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeRequest
 import com.example.assetmanagementapp.data.repositories.DeviceRepository
 import com.example.assetmanagementapp.data.repositories.FavouriteRepository
@@ -54,6 +55,9 @@ class DetailDeviceViewModel @Inject constructor(
         }
     }
 
+    fun dispatchStateItem(deviceItem: DeviceItem) {
+        dispatchState(currentState.copy(deviceItem = deviceItem))
+    }
 
     fun saveDevices(deviceId: Int, isSave: Boolean) {
         if (stateSetJobOnSaveDeviceRequest.contains(deviceId)) return
@@ -116,5 +120,9 @@ class DetailDeviceViewModel @Inject constructor(
                 dispatchState(currentState.copy(stateShowDialogBitmap = ERROR_BITMAP))
             }
         }
+    }
+
+    fun dispatchStateIsAdmin(isAdmin: Boolean) {
+        dispatchState(currentState.copy(stateIsAdmin = isAdmin))
     }
 }

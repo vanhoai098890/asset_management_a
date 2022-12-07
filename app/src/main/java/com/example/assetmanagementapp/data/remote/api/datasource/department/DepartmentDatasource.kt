@@ -11,4 +11,6 @@ interface DepartmentDatasource {
     suspend fun addDepartment(name: String): AddDepartmentItemResponse
 
     suspend fun getRoomByDepartmentId(departmentDetailRequest: DepartmentDetailRequest): ListRoomItemResponse
+
+    suspend fun getRooms(): ListRoomItemResponse
 }

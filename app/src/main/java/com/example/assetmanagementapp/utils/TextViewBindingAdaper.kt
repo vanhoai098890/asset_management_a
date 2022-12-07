@@ -102,6 +102,24 @@ fun TextView.bindTextUserName(name: String?) {
     text = tempText
 }
 
+@BindingAdapter("bindTextNumber")
+fun TextView.bindTextNumber(numberValue: Int?) {
+    text = if (numberValue != null) {
+        "$numberValue"
+    } else {
+        ""
+    }
+}
+
+@BindingAdapter("bindTextDouble")
+fun TextView.bindTextDouble(numberValue: Double?) {
+    text = if (numberValue != null) {
+        "$numberValue"
+    } else {
+        ""
+    }
+}
+
 @BindingAdapter("bindPhoneNumber")
 fun TextView.bindPhoneNumber(phoneNumber: String?) {
     var tempText = ""
@@ -185,8 +203,8 @@ fun TextView.bindTextStatus(status: String?) {
 fun TextView.bindStatusDevice(status: String?) {
     status?.apply {
         when (status) {
-            StatusDevice.BORROWED.statusName -> {
-                text = resources.getString(R.string.v1_borrowed)
+            StatusDevice.LIQUIDATED.statusName -> {
+                text = resources.getString(R.string.v1_liquidated)
                 setTextColor(resources.getColor(R.color.chaletGreen, null))
                 backgroundTintList =
                     ColorStateList.valueOf(resources.getColor(R.color.peppermint, null))

@@ -54,6 +54,8 @@ data class DeviceItem(
     val dateWarranty: String = "01-12-2025",
     @SerializedName("dateManufacture")
     val dateManufacture: String = "01-12-2022",
+    @SerializedName("roomName")
+    val roomName: String = "C105",
 ) : Parcelable
 
 sealed class StatusDevice(val statusName: String) {
@@ -61,7 +63,7 @@ sealed class StatusDevice(val statusName: String) {
 
     object DAMAGED : StatusDevice("Damaged")
 
-    object BORROWED : StatusDevice("Borrowed")
+    object LIQUIDATED : StatusDevice("Liquidated")
 
     object WARRANTY : StatusDevice("Warranty")
 }

@@ -5,6 +5,10 @@ import com.example.assetmanagementapp.data.remote.api.model.changepassword.Chang
 import com.example.assetmanagementapp.data.remote.api.model.changepassword.ChangePasswordResponse
 import com.example.assetmanagementapp.data.remote.api.model.checkotp.CheckOtpRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.checkotp.VerifyOTPRequest
+import com.example.assetmanagementapp.data.remote.api.model.consignment.ConsignmentItem
+import com.example.assetmanagementapp.data.remote.api.model.consignment.ConsignmentItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.consignment.ItemConsignmentRequest
+import com.example.assetmanagementapp.data.remote.api.model.consignment.SearchListConsignmentRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
 import com.example.assetmanagementapp.data.remote.api.model.customer.ProfileRequest
@@ -17,6 +21,7 @@ import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDe
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistResponse
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.DetailDeviceResponse
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.EditDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.device.ListDeviceMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItemResponse
@@ -26,6 +31,7 @@ import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.Forge
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.provider.ProviderItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeRequest
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeResponse
 import com.example.assetmanagementapp.data.remote.api.model.resetpassword.InputPhoneRequest
@@ -43,11 +49,14 @@ import com.example.assetmanagementapp.data.remote.api.model.signin.response.Sign
 import com.example.assetmanagementapp.data.remote.api.model.signup.request.SignUpRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Part
 import retrofit2.http.Path
 
 interface ApiService {
@@ -94,7 +103,7 @@ interface ApiService {
     suspend fun postPhoneSignUp(@Body phoneRequest: InputPhoneRequest): Response<InputPhoneResponse>
 
     @POST("api/iam/resend-otp")
-    suspend fun getOtpResendInfo(inputPhoneRequest: InputPhoneRequest): Response<CommonResponse>
+    suspend fun getOtpResendInfo(@Body inputPhoneRequest: InputPhoneRequest): Response<CommonResponse>
 
     @POST("api/iam/verify-otp")
     suspend fun postVerifyOTP(@Body verifyOTPRequest: VerifyOTPRequest): Response<CommonResponse>
@@ -125,6 +134,15 @@ interface ApiService {
     @POST("api/device/category")
     suspend fun getCategories(@Body typeAssetRequest: TypeAssetRequest): Response<TypeAssetResponse>
 
+    @GET("api/device/category")
+    suspend fun getCategories(): Response<TypeAssetResponse>
+
+    @GET("api/device/status_type")
+    suspend fun getStatusType(): Response<TypeAssetResponse>
+
+    @GET("api/provider/get_all")
+    suspend fun getProviders(): Response<ProviderItemResponse>
+
     @POST("api/device/search_asset")
     suspend fun searchListDevice(@Body searchListDeviceRequest: SearchListDeviceRequest): Response<DeviceItemResponse>
 
@@ -140,6 +158,9 @@ interface ApiService {
     @POST("api/department/get_room_by_department_id")
     suspend fun getRoomsByDepartmentId(@Body detailDepartmentRequest: DepartmentDetailRequest): Response<ListRoomItemResponse>
 
+    @GET("api/department/get_room")
+    suspend fun getRooms(): Response<ListRoomItemResponse>
+
     @POST("api/admin/room/add_room")
     suspend fun addRoomByDepartmentId(@Body addRoomRequest: AddRoomRequest): Response<RoomItemResponse>
 
@@ -154,5 +175,35 @@ interface ApiService {
 
     @POST("api/customer/change_password")
     suspend fun changePassword(@Body changePasswordRequest: ChangePasswordRequest): Response<ChangePasswordResponse>
+
+    @POST("api/admin/consignment/get_consignment")
+    suspend fun getConsignment(@Body itemConsignmentRequest: ItemConsignmentRequest): Response<ConsignmentItemResponse>
+
+    @POST("api/admin/consignment/search_consignment")
+    suspend fun searchConsignment(@Body searchListConsignmentRequest: SearchListConsignmentRequest): Response<ConsignmentItemResponse>
+
+    @Multipart
+    @POST("api/admin/consignment/add_consignment")
+    suspend fun addConsignment(
+        @Part("request") consignmentItem: ConsignmentItem,
+        @Part file: MultipartBody.Part
+    ): Response<CommonResponse>
+
+    @Multipart
+    @POST("api/admin/consignment/edit_consignment")
+    suspend fun editConsignment(
+        @Part("request") consignmentItem: ConsignmentItem,
+        @Part file: MultipartBody.Part
+    ): Response<CommonResponse>
+
+    @POST("api/admin/consignment/edit_consignment_without_image")
+    suspend fun editConsignment(
+        @Body consignmentItem: ConsignmentItem
+    ): Response<CommonResponse>
+
+    @POST("api/admin/device/edit_device")
+    suspend fun editDevice(
+        @Body editDeviceRequest: EditDeviceRequest
+    ): Response<CommonResponse>
 
 }

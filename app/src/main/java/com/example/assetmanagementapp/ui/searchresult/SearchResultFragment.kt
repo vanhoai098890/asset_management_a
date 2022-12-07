@@ -30,6 +30,9 @@ class SearchResultFragment : BaseFragment() {
             categoryOnClick = {
                 viewModel.dispatchCategorySelected(it)
             }
+            statusTypeOnClick = {
+                viewModel.dispatchStatusTypeSelected(it)
+            }
         }
     }
     private val deviceAdapter: DeviceFavAdapter by lazy {
@@ -42,7 +45,12 @@ class SearchResultFragment : BaseFragment() {
     }
 
     private fun showDialog(deviceItem: DeviceItem) {
-        addNoNavigationFragment(DetailDeviceFragment.newInstance(deviceId = deviceItem.id))
+        addNoNavigationFragment(
+            DetailDeviceFragment.newInstance(
+                deviceId = deviceItem.id,
+                stateIsAdmin = viewModel.currentState.stateIsAdmin
+            )
+        )
     }
 
     override fun onCreateView(
@@ -68,6 +76,7 @@ class SearchResultFragment : BaseFragment() {
             layoutCategory.setSafeOnClickListener {
                 categoryBottomSheet.apply {
                     currentCategory = viewModel.currentState.currentSelectedPos.id
+                    currentStatusType = viewModel.currentState.currentSelectedStatus.id
                     departmentId = viewModel.currentState.departmentId
                     roomId = viewModel.currentState.roomId
                 }.show(parentFragmentManager, null)
@@ -82,9 +91,14 @@ class SearchResultFragment : BaseFragment() {
         binding.apply {
             viewModel.currentState.departmentId = arguments?.getInt(DEPARTMENT_ID) ?: 0
             viewModel.currentState.roomId = arguments?.getInt(ROOM_ID) ?: 0
-            arguments?.getString(SEARCH_STRING)?.apply {
-                edtSearch.setText(this)
-                viewModel.searchDevices(this)
+            arguments?.apply {
+                getString(SEARCH_STRING)?.apply {
+                    edtSearch.setText(this)
+                    viewModel.searchDevices(this)
+                }
+                getBoolean(IS_ADMIN).apply {
+                    viewModel.dispatchStateIsAdmin(this)
+                }
             }
             rvDevice.layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -103,7 +117,23 @@ class SearchResultFragment : BaseFragment() {
             observe(
                 owner = this@SearchResultFragment,
                 selector = { state -> state.currentSelectedPos },
-                observer = { binding.layoutCategory.text = it.typeName })
+                observer = {
+                    binding.layoutCategory.text = getString(
+                        R.string.category_search,
+                        it.typeName,
+                        viewModel.currentState.currentSelectedStatus.typeName
+                    )
+                })
+            observe(
+                owner = this@SearchResultFragment,
+                selector = { state -> state.currentSelectedStatus },
+                observer = {
+                    binding.layoutCategory.text = getString(
+                        R.string.category_search,
+                        viewModel.currentState.currentSelectedPos.typeName,
+                        it.typeName
+                    )
+                })
         }
         lifecycleScope.launchWhenStarted {
             launch {
@@ -139,7 +169,8 @@ class SearchResultFragment : BaseFragment() {
             searchString: String = "",
             departmentId: Int = 0,
             departmentName: String? = null,
-            roomId: Int = 0
+            roomId: Int = 0,
+            isAdmin: Boolean = false
         ) =
             SearchResultFragment().apply {
                 arguments = Bundle().apply {
@@ -147,6 +178,7 @@ class SearchResultFragment : BaseFragment() {
                     putString(DEPARTMENT_NAME, departmentName)
                     putInt(DEPARTMENT_ID, departmentId)
                     putInt(ROOM_ID, roomId)
+                    putBoolean(IS_ADMIN, isAdmin)
                 }
             }
 
@@ -154,5 +186,6 @@ class SearchResultFragment : BaseFragment() {
         private const val DEPARTMENT_NAME = "DEPARTMENT_NAME"
         private const val DEPARTMENT_ID = "DEPARTMENT_ID"
         private const val ROOM_ID = "ROOM_ID"
+        private const val IS_ADMIN = "IS_ADMIN"
     }
 }

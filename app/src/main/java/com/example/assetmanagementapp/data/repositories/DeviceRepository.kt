@@ -4,6 +4,7 @@ import com.example.app_common.extensions.safeFlow
 import com.example.assetmanagementapp.data.remote.api.datasource.detaildevice.DetailDeviceDatasourceImpl
 import com.example.assetmanagementapp.data.remote.api.datasource.searchmain.SearchMainImpl
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDeviceExistRequest
+import com.example.assetmanagementapp.data.remote.api.model.detaildevice.EditDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
@@ -18,6 +19,9 @@ class DeviceRepository @Inject constructor(
     fun getDetailDevice(deviceId: Int, phoneNumber: String) = safeFlow {
         deviceDatasourceImpl.getDetailDevice(deviceId, phoneNumber)
     }
+    fun editDevice(editDeviceRequest: EditDeviceRequest) = safeFlow {
+        deviceDatasourceImpl.editDevice(editDeviceRequest)
+    }
 
     fun getListSearchMain(listMainDeviceRequest: ListMainDeviceRequest) = safeFlow {
         searchMainImpl.getListSearchMain(listMainDeviceRequest)
@@ -25,6 +29,14 @@ class DeviceRepository @Inject constructor(
 
     fun getListCategories(typeAssetRequest: TypeAssetRequest) = safeFlow {
         searchMainImpl.getListCategories(typeAssetRequest)
+    }
+
+    fun getListCategories() = safeFlow {
+        searchMainImpl.getListCategories()
+    }
+
+    fun getListStatusType() = safeFlow {
+        searchMainImpl.getListStatusType()
     }
 
     fun searchListDevice(searchListDeviceRequest: SearchListDeviceRequest) = safeFlow {

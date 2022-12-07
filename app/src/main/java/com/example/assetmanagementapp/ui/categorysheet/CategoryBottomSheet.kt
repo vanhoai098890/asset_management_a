@@ -17,15 +17,55 @@ class CategoryBottomSheet :
     var departmentId: Int = 0
     var roomId: Int = 0
     var currentCategory: Int = 0
+    var currentStatusType: Int = 0
     var categoryOnClick: (TypeAsset) -> Unit = {}
+    var statusTypeOnClick: (TypeAsset) -> Unit = {}
     private lateinit var binding: FragmentBottomSheetCaregoryBinding
     private val categoryAdapter: CategoryAdapter by lazy {
         CategoryAdapter().apply {
-            currentSelectedPos = currentCategory
             onClick = { data ->
                 if (data.id != currentCategory) {
                     categoryOnClick.invoke(data)
-                    dismiss()
+                    val oldItem = currentCategory
+                    currentCategory = data.id
+                    viewModel.dispatchStateCategory(ArrayList(viewModel.currentState.listCategory).map {
+                        when (it.id) {
+                            data.id -> {
+                                it.copy(isSelected = true)
+                            }
+                            oldItem -> {
+                                it.copy(isSelected = false)
+                            }
+                            else -> {
+                                it
+                            }
+                        }
+                    } as MutableList<TypeAsset>)
+                }
+            }
+        }
+    }
+    private val statusAdapter: CategoryAdapter by lazy {
+        CategoryAdapter().apply {
+            isShowNumberAsset = false
+            onClick = { data ->
+                if (data.id != currentStatusType) {
+                    statusTypeOnClick.invoke(data)
+                    val oldItem = currentStatusType
+                    currentStatusType = data.id
+                    viewModel.dispatchStateStatusType(ArrayList(viewModel.currentState.listStatusType).map {
+                        when (it.id) {
+                            data.id -> {
+                                it.copy(isSelected = true)
+                            }
+                            oldItem -> {
+                                it.copy(isSelected = false)
+                            }
+                            else -> {
+                                it
+                            }
+                        }
+                    } as MutableList<TypeAsset>)
                 }
             }
         }
@@ -52,6 +92,12 @@ class CategoryBottomSheet :
                 adapter = categoryAdapter
                 setHasFixedSize(true)
             }
+            rvStatusType.apply {
+                layoutManager =
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                adapter = statusAdapter
+                setHasFixedSize(true)
+            }
         }
     }
 
@@ -59,6 +105,7 @@ class CategoryBottomSheet :
         viewModel.currentState.departmentId = departmentId
         viewModel.currentState.roomId = roomId
         viewModel.getCategories()
+        viewModel.getStatus()
     }
 
     private fun initObservers() {
@@ -70,6 +117,26 @@ class CategoryBottomSheet :
                     if (it.size > 0) {
                         categoryAdapter.submitList(it.mapIndexed { _, typeAsset ->
                             if (typeAsset.id == currentCategory) {
+                                typeAsset.apply {
+                                    isSelected = true
+                                }
+                            } else {
+                                typeAsset.apply {
+                                    isSelected = false
+                                }
+                            }
+                        })
+                    }
+                })
+        }
+        viewModel.store.apply {
+            observe(
+                owner = this@CategoryBottomSheet,
+                selector = { state -> state.listStatusType },
+                observer = {
+                    if (it.size > 0) {
+                        statusAdapter.submitList(it.mapIndexed { _, typeAsset ->
+                            if (typeAsset.id == currentStatusType) {
                                 typeAsset.apply {
                                     isSelected = true
                                 }

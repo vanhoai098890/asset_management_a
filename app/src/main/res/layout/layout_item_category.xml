@@ -17,7 +17,7 @@
         <TextView
             android:id="@+id/tvCategory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_50dp"
             android:paddingHorizontal="@dimen/_16dp"
             android:paddingVertical="@dimen/_13dp"
             android:text="@{data.typeName}"

@@ -16,5 +16,6 @@ data class RoomItemResponse(
 data class RoomItem(
     val roomId: Int,
     val roomName: String,
-    val numberOfAssets: Int
+    val numberOfAssets: Int = 0,
+    var isSelected: Boolean = false
 )
