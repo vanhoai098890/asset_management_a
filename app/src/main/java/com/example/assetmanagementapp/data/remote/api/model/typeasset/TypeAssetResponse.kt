@@ -8,6 +8,11 @@ data class TypeAssetResponse(
     val data: List<TypeAsset>
 ) : CommonResponse()
 
+data class TypeAssetItemResponse(
+    @SerializedName("data")
+    val data: TypeAsset
+) : CommonResponse()
+
 data class TypeAsset(
     @SerializedName("typeId")
     val id: Int,

@@ -71,11 +71,15 @@ fun TextView.displayErrorMessageSignUp(msg: Int) {
             View.VISIBLE
         }
         SignUpViewModel.USERNAME_EXISTED -> {
-            text = context.getString(R.string.v1_username_is_existed)
+            text = context.getString(R.string.v1_phone_number_is_existed)
             View.VISIBLE
         }
         SignUpViewModel.REQUIRE_FIELD_NOT_BLANK -> {
             text = context.getString(R.string.v1_require_field_not_blank)
+            View.VISIBLE
+        }
+        SignUpViewModel.SOMETHING_WRONG -> {
+            text = context.getString(R.string.have_something_wrong_with_your_input)
             View.VISIBLE
         }
         else -> {

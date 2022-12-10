@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_8dp"
+    android:background="@drawable/bg_common_dialog_round_6dp"
+    android:elevation="@dimen/_6dp"
+    android:padding="@dimen/_16dp">
+
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/_48dp"
+        android:layout_height="@dimen/_48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@drawable/avatar1"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvNameUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/_16dp"
+        android:textSize="@dimen/_16sp"
+        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Philippe coutinho" />
+
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        app:layout_constraintStart_toStartOf="@id/tvNameUser"
+        app:layout_constraintTop_toBottomOf="@id/tvNameUser"
+        tools:text="0367359816" />
+
+    <ImageView
+        android:id="@+id/ivEditUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ripple_item_bg_round_16dp"
+        android:padding="@dimen/_3dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

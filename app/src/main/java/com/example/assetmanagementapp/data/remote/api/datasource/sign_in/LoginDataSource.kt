@@ -8,4 +8,5 @@ import com.example.assetmanagementapp.data.remote.api.model.signup.request.SignU
 interface LoginDataSource {
     suspend fun signIn(signInRequestDto: SignInRequestDto): SignInResponseDto
     suspend fun signUp(signUpRequestDto: SignUpRequestDto): CommonResponse
+    suspend fun editUser(signUpRequestDto: SignUpRequestDto): CommonResponse
 }

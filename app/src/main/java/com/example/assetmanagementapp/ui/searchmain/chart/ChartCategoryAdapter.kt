@@ -49,9 +49,8 @@ class ChartCategoryAdapter : BaseListAdapter<TypeAsset>(diffCallBack = diffUtil)
 
         override fun bind(data: TypeAsset) {
             super.bind(data)
-            if (!data.isAnimated) {
+            if ((-data.totalPercent * maxHeightChart).toInt() != binding.customChartView.rectF.top.toInt()) {
                 animationBar(data)
-                data.isAnimated = true
             }
             binding.root.setSafeOnClickListener {
                 onItemClick.invoke(

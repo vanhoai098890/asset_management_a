@@ -10,9 +10,10 @@ import com.example.app_common.extensions.setSafeOnClickListener
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentAdminBinding
-import com.example.assetmanagementapp.ui.addasset.AddAssetFragment
+import com.example.assetmanagementapp.ui.category.CategoryAdminFragment
 import com.example.assetmanagementapp.ui.consignmentmain.ConsignmentFragment
 import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
+import com.example.assetmanagementapp.ui.usermanagement.UserManagementFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,7 +60,12 @@ class AdminFragment : BaseFragment() {
                 tvItemAdmin.text = getString(R.string.add_asset)
                 ivItemAdmin.setImageResource(R.drawable.ic_setting_launcher)
                 root.setSafeOnClickListener {
-                    addNoNavigationFragment(SearchResultFragment.newInstance(searchString = "", isAdmin = true))
+                    addNoNavigationFragment(
+                        SearchResultFragment.newInstance(
+                            searchString = "",
+                            isAdmin = true
+                        )
+                    )
                 }
             }
             layoutManageCategory.apply {
@@ -68,22 +74,16 @@ class AdminFragment : BaseFragment() {
                 tvItemAdmin.text = getString(R.string.v1_category)
                 ivItemAdmin.setImageResource(R.drawable.ic_outline_category_24)
                 root.setSafeOnClickListener {
+                    addNoNavigationFragment(CategoryAdminFragment())
                 }
             }
             layoutManageUser.apply {
                 root.backgroundTintList =
                     ColorStateList.valueOf(resources.getColor(R.color.admin_color_6, null))
-                tvItemAdmin.text = getString(R.string.user_management)
-                ivItemAdmin.setImageResource(R.drawable.ic_baseline_person_24)
-                root.setSafeOnClickListener {
-                }
-            }
-            layoutManageAccount.apply {
-                root.backgroundTintList =
-                    ColorStateList.valueOf(resources.getColor(R.color.admin_color_7, null))
                 tvItemAdmin.text = getString(R.string.account_management)
                 ivItemAdmin.setImageResource(R.drawable.ic_baseline_manage_accounts_24)
                 root.setSafeOnClickListener {
+                    addNoNavigationFragment(UserManagementFragment())
                 }
             }
         }

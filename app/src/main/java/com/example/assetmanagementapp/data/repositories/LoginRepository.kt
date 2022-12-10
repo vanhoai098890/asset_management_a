@@ -16,4 +16,8 @@ class LoginRepository @Inject constructor(private val signInDataSourceImpl: Logi
     fun signUp(signUpRequestDto: SignUpRequestDto) = safeFlow {
         signInDataSourceImpl.signUp(signUpRequestDto)
     }
+
+    fun editUser(signUpRequestDto: SignUpRequestDto) = safeFlow {
+        signInDataSourceImpl.editUser(signUpRequestDto)
+    }
 }

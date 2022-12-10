@@ -21,4 +21,10 @@ class LoginDataSourceImpl @Inject constructor(private val apiService: ApiService
             apiService.signUp(signUpRequestDto)
         }
     }
+
+    override suspend fun editUser(signUpRequestDto: SignUpRequestDto): CommonResponse {
+        return apiCall {
+            apiService.editUser(signUpRequestDto)
+        }
+    }
 }

@@ -1,12 +1,15 @@
 package com.example.assetmanagementapp.data.remote.api.datasource.searchmain
 
 import com.example.app_common.base.exception.apiCall
+import com.example.app_common.base.response.CommonResponse
 import com.example.assetmanagementapp.data.remote.ApiService
 import com.example.assetmanagementapp.data.remote.api.model.device.ListDeviceMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.favourite.DeviceItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAsset
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import javax.inject.Inject
@@ -27,6 +30,18 @@ class SearchMainImpl @Inject constructor(private val apiService: ApiService) :
         apiCall {
             apiService.getCategories()
         }
+
+    override suspend fun editCategory(typeAsset: TypeAsset): CommonResponse {
+        return apiCall {
+            apiService.editCategory(typeAsset)
+        }
+    }
+
+    override suspend fun addCategory(typeAsset: TypeAsset): TypeAssetItemResponse {
+        return apiCall {
+            apiService.addCategory(typeAsset)
+        }
+    }
 
     override suspend fun getListStatusType(): TypeAssetResponse =
         apiCall {

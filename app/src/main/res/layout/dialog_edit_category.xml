@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/layoutParent"
+    android:layout_marginHorizontal="32dp"
+    android:background="@drawable/bg_common_dialog_round_16dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingBottom="@dimen/_32dp">
+
+    <TextView
+        android:id="@+id/tvTitleDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="@dimen/_16dp"
+        android:text="@string/edit_category"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:src="@drawable/ic_close_ripple"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitleDialog"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitleDialog"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutNameCategory"
+        style="@style/myEditTextEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="@dimen/_32dp"
+        android:hint="@string/v1_category"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleDialog">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtNameCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:imeOptions="actionDone"
+            android:maxLength="24"
+            android:maxLines="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="40dp"
+            tools:ignore="RtlSymmetry" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <LinearLayout
+        android:id="@+id/btnSection"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutNameCategory">
+
+        <Button
+            android:id="@+id/btnSubmit"
+            style="@style/commonButtonAuthFlow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/v1_submit"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

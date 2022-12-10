@@ -7,6 +7,7 @@ import com.example.assetmanagementapp.data.remote.api.model.detaildevice.CheckDe
 import com.example.assetmanagementapp.data.remote.api.model.detaildevice.EditDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.device.ListMainDeviceRequest
 import com.example.assetmanagementapp.data.remote.api.model.searchdevice.SearchListDeviceRequest
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAsset
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -19,6 +20,7 @@ class DeviceRepository @Inject constructor(
     fun getDetailDevice(deviceId: Int, phoneNumber: String) = safeFlow {
         deviceDatasourceImpl.getDetailDevice(deviceId, phoneNumber)
     }
+
     fun editDevice(editDeviceRequest: EditDeviceRequest) = safeFlow {
         deviceDatasourceImpl.editDevice(editDeviceRequest)
     }
@@ -33,6 +35,14 @@ class DeviceRepository @Inject constructor(
 
     fun getListCategories() = safeFlow {
         searchMainImpl.getListCategories()
+    }
+
+    fun editCategory(typeAsset: TypeAsset) = safeFlow {
+        searchMainImpl.editCategory(typeAsset)
+    }
+
+    fun addCategory(typeAsset: TypeAsset) = safeFlow {
+        searchMainImpl.addCategory(typeAsset)
     }
 
     fun getListStatusType() = safeFlow {

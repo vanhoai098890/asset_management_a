@@ -9,8 +9,12 @@ import com.example.assetmanagementapp.data.remote.api.model.consignment.Consignm
 import com.example.assetmanagementapp.data.remote.api.model.consignment.ConsignmentItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.consignment.ItemConsignmentRequest
 import com.example.assetmanagementapp.data.remote.api.model.consignment.SearchListConsignmentRequest
+import com.example.assetmanagementapp.data.remote.api.model.customer.CityListResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.CountryListResponse
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerProperty
 import com.example.assetmanagementapp.data.remote.api.model.customer.CustomerPropertyResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.ListUserInfoResponse
+import com.example.assetmanagementapp.data.remote.api.model.customer.MajorListResponse
 import com.example.assetmanagementapp.data.remote.api.model.customer.ProfileRequest
 import com.example.assetmanagementapp.data.remote.api.model.customer.UserInfoResponse
 import com.example.assetmanagementapp.data.remote.api.model.department.AddDepartmentItemResponse
@@ -47,6 +51,8 @@ import com.example.assetmanagementapp.data.remote.api.model.setpassword.SetPassw
 import com.example.assetmanagementapp.data.remote.api.model.signin.request.SignInRequestDto
 import com.example.assetmanagementapp.data.remote.api.model.signin.response.SignInResponseDto
 import com.example.assetmanagementapp.data.remote.api.model.signup.request.SignUpRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAsset
+import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import okhttp3.MultipartBody
@@ -73,8 +79,11 @@ interface ApiService {
     @POST("/api/iam/reset_password")
     suspend fun resetPassword(@Body resetPasswordRequestDto: ResetPasswordRequestDto): Response<CommonResponse>
 
-    @POST("/api/iam/signup")
+    @POST("api/admin/customer/signup")
     suspend fun signUp(@Body signUpRequestDto: SignUpRequestDto): Response<CommonResponse>
+
+    @POST("api/admin/customer/edit")
+    suspend fun editUser(@Body signUpRequestDto: SignUpRequestDto): Response<CommonResponse>
 
     @POST("/api/iam/logout")
     suspend fun logout(@Body logoutRequestDto: LogoutRequestDto): Response<CommonResponse>
@@ -205,5 +214,30 @@ interface ApiService {
     suspend fun editDevice(
         @Body editDeviceRequest: EditDeviceRequest
     ): Response<CommonResponse>
+
+    @POST("api/admin/category/edit_category")
+    suspend fun editCategory(
+        @Body typeAsset: TypeAsset
+    ): Response<CommonResponse>
+
+    @POST("api/admin/category/add_category")
+    suspend fun addCategory(
+        @Body typeAsset: TypeAsset
+    ): Response<TypeAssetItemResponse>
+
+    @GET("api/admin/user/get_all_user")
+    suspend fun getAllUser(): Response<ListUserInfoResponse>
+
+    @POST("api/admin/user/search_user")
+    suspend fun searchUser(@Body searchListDeviceRequest: SearchListDeviceRequest): Response<ListUserInfoResponse>
+
+    @GET("api/admin/user/get_country")
+    suspend fun getCountry(): Response<CountryListResponse>
+
+    @GET("api/admin/user/get_major")
+    suspend fun getMajor(): Response<MajorListResponse>
+
+    @GET("api/admin/user/get_city")
+    suspend fun getCity(): Response<CityListResponse>
 
 }
