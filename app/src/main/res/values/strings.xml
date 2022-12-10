@@ -565,4 +565,5 @@
     <string name="take_a_photo_with_camera">Take a photo with camera</string>
     <string name="common_request_photos_permission">This features would like to access your Photos to upload photos on app</string>
     <string name="status_type">Status type</string>
+    <string name="click_to_the_chart_to_view_depreciation_of_each_category">* Click to the chart to view depreciation of each category</string>
 </resources>
