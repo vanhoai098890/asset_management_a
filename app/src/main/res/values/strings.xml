@@ -553,6 +553,8 @@
     <string name="user_management">User management</string>
     <string name="account_management">Account management</string>
     <string name="notification">Notification</string>
+    <string name="property_assessment">Property Assessment</string>
+    <string name="title_detail_notification">%s - %s</string>
     <string name="number">Number</string>
     <string name="detail_consignment">Detail consignment</string>
     <string name="consignment">Consignment</string>

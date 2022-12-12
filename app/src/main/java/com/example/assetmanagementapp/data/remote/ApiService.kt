@@ -35,6 +35,7 @@ import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.Forge
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.notification.NotificationItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.provider.ProviderItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeRequest
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeResponse
@@ -56,6 +57,7 @@ import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetI
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetRequest
 import com.example.assetmanagementapp.data.remote.api.model.typeasset.TypeAssetResponse
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -64,6 +66,7 @@ import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Streaming
 
 interface ApiService {
 
@@ -239,5 +242,12 @@ interface ApiService {
 
     @GET("api/admin/user/get_city")
     suspend fun getCity(): Response<CityListResponse>
+
+    @GET("api/user/get_notifications")
+    suspend fun getNotifications(): Response<NotificationItemResponse>
+
+    @Streaming
+    @GET("api/user/get_notifications_file/{path}")
+    suspend fun getExcelFileFromPath(@Path("path") path: String): Response<ResponseBody>
 
 }
