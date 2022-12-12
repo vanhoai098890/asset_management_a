@@ -38,6 +38,10 @@ class DetailDepartmentFragment : BaseFragment() {
                     )
                 )
             }
+            isShowAddNotification = viewModel.stateIsAdmin.value
+            onAddNotification = {
+                viewModel.createNotification(it)
+            }
         }
     }
     private val addDepartmentDialog: AddDepartmentDialog by lazy {

@@ -60,8 +60,13 @@ class DetailDepartmentViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun resetStateSnackBar(){
+    fun resetStateSnackBar() {
         dispatchState(currentState.copy(stateAddRoomSuccess = null))
+    }
+
+    fun createNotification(roomItem: RoomItem) {
+        roomRepository.createNotification(roomItem).bindLoading(this)
+            .onSuccess { }.launchIn(viewModelScope)
     }
 }
 

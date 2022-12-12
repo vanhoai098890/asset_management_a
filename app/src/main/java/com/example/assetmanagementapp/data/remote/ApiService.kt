@@ -250,4 +250,7 @@ interface ApiService {
     @GET("api/user/get_notifications_file/{path}")
     suspend fun getExcelFileFromPath(@Path("path") path: String): Response<ResponseBody>
 
+    @GET("api/admin/user/create_notification/{roomId}")
+    suspend fun createNotification(@Path("roomId") roomId: Int): Response<CommonResponse>
+
 }

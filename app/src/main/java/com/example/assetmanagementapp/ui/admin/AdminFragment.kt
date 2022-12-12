@@ -12,6 +12,8 @@ import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentAdminBinding
 import com.example.assetmanagementapp.ui.category.CategoryAdminFragment
 import com.example.assetmanagementapp.ui.consignmentmain.ConsignmentFragment
+import com.example.assetmanagementapp.ui.department.DepartmentFragment
+import com.example.assetmanagementapp.ui.room.DetailDepartmentFragment
 import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import com.example.assetmanagementapp.ui.usermanagement.UserManagementFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,6 +86,15 @@ class AdminFragment : BaseFragment() {
                 ivItemAdmin.setImageResource(R.drawable.ic_baseline_manage_accounts_24)
                 root.setSafeOnClickListener {
                     addNoNavigationFragment(UserManagementFragment())
+                }
+            }
+            layoutCreateNotification.apply {
+                root.backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.admin_color_4, null))
+                tvItemAdmin.text = getString(R.string.property_assessment)
+                ivItemAdmin.setImageResource(R.drawable.ic_baseline_notification_add_24)
+                root.setSafeOnClickListener {
+                    addNoNavigationFragment(DepartmentFragment())
                 }
             }
         }

@@ -76,6 +76,14 @@
                     android:layout_margin="@dimen/_8dp"
                     android:layout_weight="1" />
             </LinearLayout>
+
+            <include
+                android:id="@+id/layoutCreateNotification"
+                layout="@layout/layout_item_admin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8dp" />
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
