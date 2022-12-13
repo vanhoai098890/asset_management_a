@@ -23,9 +23,28 @@ class MainViewModel @Inject constructor() : BaseViewModelV2<MainActivityState>()
             )
         )
     }
+
+    fun dispatchClickNotification(isClicked: Boolean) {
+        dispatchState(
+            currentState.copy(
+                stateCLickedNotification = isClicked
+            )
+        )
+    }
+
+    fun dispatchClickPersonal(isClicked: Boolean) {
+        dispatchState(
+            currentState.copy(
+                stateCLickedPersonal = isClicked
+            )
+        )
+    }
 }
 
 data class MainActivityState(
     val stateClickedHome: Boolean = false,
-    val stateCLickedFav: Boolean = false
+    val stateCLickedFav: Boolean = false,
+    val stateCLickedNotification: Boolean = false,
+    val stateCLickedPersonal: Boolean = false,
+
 )

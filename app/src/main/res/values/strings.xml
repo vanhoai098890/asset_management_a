@@ -478,6 +478,7 @@
     <string name="tv_hi_account">Hi, %s</string>
     <string name="common_phone_number_length_error">* The phone number has more than 10 number, please try again.</string>
     <string name="my_list_favorite_toast">This device has been added to your favorites</string>
+    <string name="liquidation_file_created">The liquidation notifications have been created</string>
     <string name="my_list_un_favorite_toast">This device has been removed from your favorites</string>
     <string name="timeout_session">Log in session has expired\nPlease log in again</string>
     <string name="title_login">Login</string>
@@ -545,6 +546,8 @@
     <string name="edit_consignment">Edit consignment</string>
     <string name="edit_asset">Edit asset</string>
     <string name="edit_category">Edit category</string>
+    <string name="update_file">Update file</string>
+    <string name="excel_file">Excel file</string>
     <string name="add_asset">Asset management</string>
     <string name="category_search">%s - %s</string>
     <string name="reduce_asset">Reduce asset</string>

@@ -1,7 +1,6 @@
 package com.example.assetmanagementapp.ui.notification
 
 import android.annotation.SuppressLint
-import android.graphics.PorterDuff
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,8 @@ import com.example.assetmanagementapp.databinding.LayoutItemNotificationBinding
 class NotificationAdapter : BaseListAdapter<NotificationItem>(diffUtil) {
 
     var onDownloadClick: (NotificationItem) -> Unit = {}
+    var onEditClick: (NotificationItem) -> Unit = {}
+    var isAdmin: Boolean = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseItemViewHolder {
         return ViewHolder(
@@ -34,7 +35,10 @@ class NotificationAdapter : BaseListAdapter<NotificationItem>(diffUtil) {
         if (payloads.isEmpty()) {
             super.onBindViewHolder(holder, position, payloads)
         } else {
-            (holder as ViewHolder).updateStateLoading(getItem(position))
+            (holder as ViewHolder).apply {
+                updateStateLoading(getItem(position))
+                updateStateUploading(getItem(position))
+            }
         }
     }
 
@@ -62,7 +66,80 @@ class NotificationAdapter : BaseListAdapter<NotificationItem>(diffUtil) {
                 ivDownload.setSafeOnClickListener {
                     onDownloadClick.invoke(getItem(adapterPosition))
                 }
+                updateStateUploading(data)
                 updateStateLoading(data)
+                if (data.isUpdated) {
+                    ivEdit.visibility = View.GONE
+                }
+            }
+        }
+
+        @SuppressLint("UseCompatLoadingForDrawables")
+        fun updateStateUploading(data: NotificationItem) {
+            binding.apply {
+                when (data.stateUpdating) {
+                    null -> {
+                        ivEdit.setImageDrawable(
+                            root.resources.getDrawable(
+                                R.drawable.ic_baseline_edit_24,
+                                null
+                            )
+                        )
+                        ivEdit.visibility = View.VISIBLE
+                        progressbarUploading.visibility = View.GONE
+                        ivEdit.isClickable = true
+                    }
+                    StateDownload.DEFAULT -> {
+                        ivEdit.setImageDrawable(
+                            root.resources.getDrawable(
+                                R.drawable.ic_baseline_edit_24,
+                                null
+                            )
+                        )
+                        ivEdit.visibility = View.VISIBLE
+                        progressbarUploading.visibility = View.GONE
+                        ivEdit.isClickable = true
+                    }
+                    StateDownload.UPLOADING -> {
+                        ivEdit.visibility = View.INVISIBLE
+                        ivEdit.isClickable = false
+                        progressbarUploading.visibility = View.VISIBLE
+                    }
+                    StateDownload.ERROR -> {
+                        ivEdit.setImageDrawable(
+                            root.resources.getDrawable(
+                                R.drawable.ic_close_red,
+                                null
+                            )
+                        )
+                        ivEdit.visibility = View.VISIBLE
+                        progressbarUploading.visibility = View.GONE
+                        ivEdit.isClickable = true
+                    }
+                    StateDownload.SUCCESS -> {
+                        ivEdit.setImageDrawable(
+                            root.resources.getDrawable(
+                                R.drawable.ic_baseline_check_24,
+                                null
+                            )
+                        )
+                        ivEdit.visibility = View.VISIBLE
+                        progressbarUploading.visibility = View.GONE
+                        ivEdit.isClickable = false
+                    }
+                    else -> {}
+                }
+                when {
+                    !isAdmin -> {
+                        ivEdit.visibility = View.GONE
+                    }
+                    else -> {
+                        ivEdit.visibility = View.VISIBLE
+                        ivEdit.setSafeOnClickListener {
+                            onEditClick.invoke(getItem(adapterPosition))
+                        }
+                    }
+                }
             }
         }
 
@@ -119,6 +196,7 @@ class NotificationAdapter : BaseListAdapter<NotificationItem>(diffUtil) {
                         progressbarDownload.visibility = View.GONE
                         ivDownload.isClickable = false
                     }
+                    else -> {}
                 }
             }
         }
@@ -126,6 +204,7 @@ class NotificationAdapter : BaseListAdapter<NotificationItem>(diffUtil) {
 
     companion object {
         private const val STATE_LOADING_CHANGE = "STATE_LOADING_CHANGE"
+        private const val STATE_UP_LOADING_CHANGE = "STATE_UP_LOADING_CHANGE"
         val diffUtil = object : BaseDiffUtilItemCallback<NotificationItem>() {
             override fun getChangePayload(
                 oldItem: NotificationItem,
@@ -133,6 +212,8 @@ class NotificationAdapter : BaseListAdapter<NotificationItem>(diffUtil) {
             ): Any? {
                 if (oldItem.stateLoading != newItem.stateLoading) {
                     return STATE_LOADING_CHANGE
+                } else if (oldItem.stateUpdating != newItem.stateUpdating) {
+                    return STATE_UP_LOADING_CHANGE
                 }
                 return super.getChangePayload(oldItem, newItem)
             }

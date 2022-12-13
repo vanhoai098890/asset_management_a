@@ -61,17 +61,27 @@ class DetailDepartmentViewModel @Inject constructor(
     }
 
     fun resetStateSnackBar() {
-        dispatchState(currentState.copy(stateAddRoomSuccess = null))
+        dispatchState(
+            currentState.copy(
+                stateAddRoomSuccess = null,
+                stateCreateNotificationSuccess = null
+            )
+        )
     }
 
     fun createNotification(roomItem: RoomItem) {
         roomRepository.createNotification(roomItem).bindLoading(this)
-            .onSuccess { }.launchIn(viewModelScope)
+            .onSuccess {
+                dispatchState(currentState.copy(stateCreateNotificationSuccess = true))
+            }.onError {
+                dispatchState(currentState.copy(stateCreateNotificationSuccess = true))
+            }.launchIn(viewModelScope)
     }
 }
 
 data class DepartmentDetailState(
     val listRoom: MutableList<RoomItem> = mutableListOf(),
     val stateAddRoomSuccess: Boolean? = null,
-    var departmentId: Int = 0
+    var departmentId: Int = 0,
+    val stateCreateNotificationSuccess: Boolean? = null
 )

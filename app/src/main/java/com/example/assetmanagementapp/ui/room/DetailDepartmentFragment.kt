@@ -98,6 +98,12 @@ class DetailDepartmentFragment : BaseFragment() {
                 observer = {
                     it?.let { showCustomSnackBar(it) }
                 })
+            observe(
+                owner = this@DetailDepartmentFragment,
+                selector = { state -> state.stateCreateNotificationSuccess },
+                observer = {
+                    it?.let { showCreateNotificationSnackBar(it) }
+                })
         }
 
         viewModel.loadingState().onEach {
@@ -156,6 +162,20 @@ class DetailDepartmentFragment : BaseFragment() {
     private fun showCustomSnackBar(isSuccess: Boolean) {
         val message = getString(
             if (isSuccess) R.string.add_room_success else R.string.add_room_false
+        )
+
+        customSnackBar.setText(message)
+        if (customSnackBar.isShown) {
+            customSnackBar.refreshCounting()
+        } else {
+            customSnackBar.show()
+        }
+        viewModel.resetStateSnackBar()
+    }
+
+    private fun showCreateNotificationSnackBar(isSuccess: Boolean) {
+        val message = getString(
+            if (isSuccess) R.string.v1_success else R.string.v1_failed
         )
 
         customSnackBar.setText(message)

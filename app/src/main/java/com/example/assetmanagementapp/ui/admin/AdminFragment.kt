@@ -6,23 +6,41 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.app_common.extensions.setSafeOnClickListener
+import com.example.app_common.ui.snackbar.CustomSnackBar
+import com.example.app_common.utils.ScreenUtils
 import com.example.assetmanagementapp.R
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentAdminBinding
 import com.example.assetmanagementapp.ui.category.CategoryAdminFragment
 import com.example.assetmanagementapp.ui.consignmentmain.ConsignmentFragment
 import com.example.assetmanagementapp.ui.department.DepartmentFragment
-import com.example.assetmanagementapp.ui.room.DetailDepartmentFragment
 import com.example.assetmanagementapp.ui.searchresult.SearchResultFragment
 import com.example.assetmanagementapp.ui.usermanagement.UserManagementFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class AdminFragment : BaseFragment() {
 
     private val viewModel: AdminViewModel by viewModels()
     private lateinit var binding: FragmentAdminBinding
+
+    private val customSnackBar: CustomSnackBar by lazy {
+        CustomSnackBar.make(
+            parent = binding.layoutParent,
+            message = ""
+        ).apply {
+            setContentMargin(
+                activityContext = context,
+                left = null,
+                right = null,
+                bottom = ScreenUtils.toPx(context, 16f)
+            )
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +54,18 @@ class AdminFragment : BaseFragment() {
     }
 
     private fun initObserver() {
-
+        viewModel.store.apply {
+            observe(
+                owner = this@AdminFragment,
+                selector = { state -> state.stateCreateLiquidationSuccess },
+                observer = {
+                    it?.apply { showCustomSnackBar(it) }
+                }
+            )
+        }
+        viewModel.loadingState().onEach {
+            handleShowLoadingDialog(it)
+        }.launchIn(lifecycleScope)
     }
 
     private fun initView() {
@@ -97,10 +126,32 @@ class AdminFragment : BaseFragment() {
                     addNoNavigationFragment(DepartmentFragment())
                 }
             }
+            layoutCreateLiquidation.apply {
+                root.backgroundTintList =
+                    ColorStateList.valueOf(resources.getColor(R.color.admin_color_7, null))
+                tvItemAdmin.text = getString(R.string.asset_liquidation)
+                ivItemAdmin.setImageResource(R.drawable.ic_baseline_sell_24)
+                root.setSafeOnClickListener {
+                    viewModel.createLiquidation()
+                }
+            }
         }
     }
 
     private fun initData() {
 
+    }
+
+    private fun showCustomSnackBar(isFavourite: Boolean) {
+        val message = getString(
+            if (isFavourite) R.string.liquidation_file_created else R.string.v1_failed
+        )
+        customSnackBar.setText(message)
+        if (customSnackBar.isShown) {
+            customSnackBar.refreshCounting()
+        } else {
+            customSnackBar.show()
+        }
+        viewModel.dispatchResetSnackBar()
     }
 }

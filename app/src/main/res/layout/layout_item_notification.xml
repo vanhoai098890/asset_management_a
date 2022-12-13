@@ -38,6 +38,26 @@
         tools:text="C106" />
 
     <ImageView
+        android:id="@+id/ivEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_edit_24"
+        app:layout_constraintBottom_toBottomOf="@id/tvRoomName"
+        app:layout_constraintEnd_toStartOf="@id/ivDownload"
+        android:layout_marginEnd="@dimen/_16dp"
+        app:layout_constraintTop_toTopOf="@id/tvRoomName"
+        tools:ignore="ContentDescription" />
+
+    <ProgressBar
+        android:id="@+id/progressbarUploading"
+        android:layout_width="@dimen/_0dp"
+        android:layout_height="@dimen/_0dp"
+        app:layout_constraintBottom_toBottomOf="@id/ivEdit"
+        app:layout_constraintEnd_toEndOf="@id/ivEdit"
+        app:layout_constraintStart_toStartOf="@id/ivEdit"
+        app:layout_constraintTop_toTopOf="@id/ivEdit" />
+
+    <ImageView
         android:id="@+id/ivDownload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

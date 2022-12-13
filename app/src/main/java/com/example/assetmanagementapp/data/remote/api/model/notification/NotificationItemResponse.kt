@@ -8,6 +8,11 @@ data class NotificationItemResponse(
     val data: List<NotificationItem>
 ) : CommonResponse()
 
+data class NotificationItemSingleResponse(
+    @SerializedName("data")
+    val data: NotificationItem
+) : CommonResponse()
+
 data class NotificationItem(
     @SerializedName("id")
     val id: Int,
@@ -21,12 +26,16 @@ data class NotificationItem(
     val departmentName: String,
     @SerializedName("path")
     val path: String,
-    val stateLoading: StateDownload? = StateDownload.DEFAULT
+    @SerializedName("isUpdated")
+    val isUpdated: Boolean,
+    val stateLoading: StateDownload? = StateDownload.DEFAULT,
+    val stateUpdating: StateDownload? = StateDownload.DEFAULT
 )
 
 enum class StateDownload {
     DEFAULT,
     LOADING,
     SUCCESS,
-    ERROR
+    ERROR,
+    UPLOADING
 }

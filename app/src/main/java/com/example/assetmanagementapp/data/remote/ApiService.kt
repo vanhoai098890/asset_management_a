@@ -35,7 +35,9 @@ import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.Forge
 import com.example.assetmanagementapp.data.remote.api.model.forgetpassword.InputPhoneResponse
 import com.example.assetmanagementapp.data.remote.api.model.infomain.InfoMainResponse
 import com.example.assetmanagementapp.data.remote.api.model.logout.LogoutRequestDto
+import com.example.assetmanagementapp.data.remote.api.model.notification.NotificationItem
 import com.example.assetmanagementapp.data.remote.api.model.notification.NotificationItemResponse
+import com.example.assetmanagementapp.data.remote.api.model.notification.NotificationItemSingleResponse
 import com.example.assetmanagementapp.data.remote.api.model.provider.ProviderItemResponse
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeRequest
 import com.example.assetmanagementapp.data.remote.api.model.qrcode.QrcodeResponse
@@ -252,5 +254,15 @@ interface ApiService {
 
     @GET("api/admin/user/create_notification/{roomId}")
     suspend fun createNotification(@Path("roomId") roomId: Int): Response<CommonResponse>
+
+    @GET("api/admin/notification/create_liquidation")
+    suspend fun createLiquidation(): Response<CommonResponse>
+
+    @Multipart
+    @POST("api/admin/notification/update_notification")
+    suspend fun updateNotification(
+        @Part("request") notificationItem: NotificationItem,
+        @Part file: MultipartBody.Part
+    ): Response<NotificationItemSingleResponse>
 
 }

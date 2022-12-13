@@ -7,11 +7,14 @@ import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app_common.utils.LogUtils
+import com.example.assetmanagementapp.MainViewModel
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentNotificationBinding
+import com.example.assetmanagementapp.ui.editexceldialog.EditExcelDialog
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.ResponseBody
@@ -19,14 +22,25 @@ import java.io.FileOutputStream
 import java.io.InputStream
 import java.util.Date
 
-
 @AndroidEntryPoint
 class NotificationFragment : BaseFragment() {
     private lateinit var binding: FragmentNotificationBinding
     private val viewModel: NotificationViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
+    private val editExcelDialog: EditExcelDialog by lazy {
+        EditExcelDialog()
+    }
     private val notificationAdapter: NotificationAdapter by lazy {
         NotificationAdapter().apply {
             onDownloadClick = { viewModel.downloadExcelFile(it) }
+            onEditClick = { item ->
+                editExcelDialog.apply {
+                    submitOnClick = { file ->
+                        viewModel.updateFileExcelTicket(notification = item, excelFile = file)
+                    }
+                }.show(parentFragmentManager, null)
+            }
+            isAdmin = viewModel.stateIsAdmin.value
         }
     }
 
@@ -39,11 +53,6 @@ class NotificationFragment : BaseFragment() {
         initView()
         initObserver()
         return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.getNotification()
     }
 
     private fun initData() {
@@ -80,13 +89,26 @@ class NotificationFragment : BaseFragment() {
                     )
                 })
         }
+        mainViewModel.store.apply {
+            observe(
+                owner = this@NotificationFragment,
+                selector = { state -> state.stateCLickedNotification },
+                observer = {
+                    if (it) {
+                        viewModel.getNotification()
+                        mainViewModel.dispatchClickNotification(false)
+                    }
+                })
+        }
     }
 
     private val snackBar: Snackbar by lazy {
         Snackbar
             .make(binding.parentLayout, "Download successfully!!", Snackbar.LENGTH_LONG)
             .setAction("View") {
-                startActivity(Intent(DownloadManager.ACTION_VIEW_DOWNLOADS));
+                val intent = Intent(DownloadManager.ACTION_VIEW_DOWNLOADS)
+                startActivity(intent)
+
             }
     }
 

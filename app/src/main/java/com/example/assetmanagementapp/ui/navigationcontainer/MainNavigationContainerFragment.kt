@@ -95,6 +95,8 @@ class MainNavigationContainerFragment : BaseFragment() {
                     when (item.order) {
                         MainNavigationItem.SEARCH.ordinal -> mainViewModel.dispatchClickHome(true)
                         MainNavigationItem.FAVOURITE.ordinal -> mainViewModel.dispatchClickFav(true)
+                        MainNavigationItem.MESSENGER.ordinal -> mainViewModel.dispatchClickNotification(true)
+                        MainNavigationItem.PERSONAL.ordinal -> mainViewModel.dispatchClickPersonal(true)
                     }
                 }
                 it.getOrCreateBadge(R.id.btnFooter4).apply {

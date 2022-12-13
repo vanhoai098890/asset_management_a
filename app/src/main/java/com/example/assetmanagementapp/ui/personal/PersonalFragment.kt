@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.assetmanagementapp.MainViewModel
 import com.example.assetmanagementapp.common.BaseFragment
 import com.example.assetmanagementapp.databinding.FragmentPersonalBinding
 import com.example.assetmanagementapp.ui.editprofile.EditProfileBottomSheet
@@ -22,6 +24,7 @@ class PersonalFragment : BaseFragment() {
 
     private lateinit var binding: FragmentPersonalBinding
     private val viewModel: PersonalViewModel by viewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
     private val adapter by lazy {
         PersonalAdapter().apply {
             onClickItem = {
@@ -92,6 +95,17 @@ class PersonalFragment : BaseFragment() {
                     adapter.submitList(it.toList())
                 }
             }
+        }
+        mainViewModel.store.apply {
+            observe(
+                owner = this@PersonalFragment,
+                selector = { state -> state.stateCLickedPersonal },
+                observer = {
+                    if (it) {
+                        viewModel.getCustomerInfo()
+                        mainViewModel.dispatchClickPersonal(false)
+                    }
+                })
         }
     }
 
